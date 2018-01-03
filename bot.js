@@ -143,7 +143,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.hears(['info'], 'direct_message,direct_mention,mention', function(bot, message) {
-                  bot.reply(message, 'ok');
                   controller.storage.users.save({id: message.user, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
                   controller.storage.users.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});
                   //bot.reply(message, 'ok' + data);

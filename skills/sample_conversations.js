@@ -29,6 +29,7 @@ module.exports = function(controller) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
                         convo.say('Okay, let\'s try again.');
+                        convo.next();
                         offerRide();
                       }
                     });
