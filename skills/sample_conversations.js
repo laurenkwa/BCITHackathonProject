@@ -16,7 +16,7 @@ module.exports = function(controller) {
         bot.startConversation(message, function(err, convo) {
 
             convo.ask('Where will you start driving from?', function(response, convo) {
-                start = response.text;
+                start: response.text;
                 convo.say('Cool, let\'s start at ' + response.text);
                 convo.next();
                 convo.ask('Where will you drive to?', function(response, convo) {
