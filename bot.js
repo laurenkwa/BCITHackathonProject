@@ -64,6 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
+    json_file_store: 'path_to_json_database'
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
@@ -73,14 +74,14 @@ var bot_options = {
     studio_command_uri: process.env.studio_command_uri
 };
 
-// Use a mongo database if specified, otherwise store in a JSON file local to the app.
+/*// Use a mongo database if specified, otherwise store in a JSON file local to the app.
 // Mongo is automatically configured when deploying to Heroku
 if (process.env.MONGO_URI) {
     var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.MONGO_URI});
     bot_options.storage = mongoStorage;
 } else {
     bot_options.json_file_store = __dirname + '/.data/db/'; // store user data in a simple JSON format
-}
+}*/
 
 // Create the Botkit controller, which controls all instances of the bot.
 var controller = Botkit.slackbot(bot_options);
