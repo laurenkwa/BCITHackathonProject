@@ -145,8 +145,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('direct_message', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
-                  controller.storage.users.save({id: message.user, name:'Steve'}, function(err, user) {bot.reply(message, 'saved');});
-                  controller.storage.users.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});
+                  controller.storage.users.save({id: 5, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
+                  controller.storage.users.get(5, function(err, user) {bot.reply(message, 'ok' + user.name);});
                   //bot.reply(message, 'ok' + data);
                   // no trigger was matched
                   // If you want your bot to respond to every message,
