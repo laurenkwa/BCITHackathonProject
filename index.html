@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -14,18 +16,39 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Google Map -->
-    <script src="googlemap.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap"
-    async defer></script>
+    <!-- <script src="GoogleMap.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap" async defer></script>
     <title>Ride-Share</title>
 </head>
 
 <body>
+    <div class="jumbotron text-center">
+        <h1>Ride Share</h1>
+        <p>Needs a ride? find one here!</p>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#driver">Offer a Drive</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#passenger">Request a ride</a>
+            </li>
+        </ul>
 
-
+        <div class="tab-content">
+            <div id="driver" class="tab-pane fade in active">
+                <h3>Offer a driver</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
+            </div>
+            <div id="passenger" class="tab-pane fade">
+                <h3>Request a ride</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
