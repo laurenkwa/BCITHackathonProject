@@ -143,10 +143,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.on('direct_message,direct_mention,mention', function(bot, message) {
-          controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
+          controller.studio.runTrigger(directmess).then(function(convo) {
               if (!convo) {
-                  controller.storage.users.save({id: message.user, name:'Steve'}, function(err, user) {bot.reply(message, user});
-                  controller.storage.users.get(message.user, function(err, user) {bot.reply(message, 'ok' + user[0]);});
+                  controller.storage.users.save({id: message.user, name:'Steve'}, function(err, user) {bot.reply(message, 'ok' + user);});
+                  //controller.storage.users.get(message.user, function(err, user) {bot.reply(message, 'ok' + user[0]);});
                   //bot.reply(message, 'ok' + data);
                   // no trigger was matched
                   // If you want your bot to respond to every message,
