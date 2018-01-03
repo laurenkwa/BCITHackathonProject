@@ -18,9 +18,12 @@
         crossorigin="anonymous"></script>
     <!-- Google Map -->
     <!-- <script src="GoogleMap.js"></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap" async
+        defer></script>
     <title>Ride-Share</title>
 </head>
+
+
 
 <body>
     <div class="jumbotron text-center">
@@ -40,15 +43,35 @@
         <div class="tab-content">
             <div id="driver" class="tab-pane fade in active">
                 <h3>Offer a driver</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.</p>
+                <form id="driverForm">
+                    Time
+                    <input type="text" id="driverTime" />
+                    <br/> Start
+                    <input type="text" id="driverStart" />
+                    <br/> End
+                    <input type="text" id="driverEnd" />
+                    <br/> Number of Seats Available
+                    <input type="number" id="seats" min="0" max="10" />
+                    <br/>
+                    <input type="submit" class="btn btn-default" id="submitDriver">
+                </form>
             </div>
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <form id="passengerForm">
+                    Time
+                    <input type="text" id="passengerTime" />
+                    <br/> Start
+                    <input type="text" id="passengerStart" />
+                    <br/> End
+                    <input type="text" id="passengerEnd" />
+                    <br/>
+                    <input type="submit" class="btn btn-default" id="submitPassenger">
+                </form>
             </div>
         </div>
     </div>
 </body>
+
 
 </html>
