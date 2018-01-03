@@ -64,6 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
+    json_file_store: 'path_to_json_database',
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,

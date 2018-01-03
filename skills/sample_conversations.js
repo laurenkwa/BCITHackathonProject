@@ -11,11 +11,11 @@ through the conversation are chosen based on the user's response.
 
 module.exports = function(controller) {
 
-    controller.hears(['color'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
 
-            convo.ask('Where w', function(response, convo) {
+            convo.ask('Where will you start driving from?', function(response, convo) {
 
                 convo.say('Cool, I like ' + response.text + ' too!');
                 convo.next();
