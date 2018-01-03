@@ -32,10 +32,10 @@ module.exports = function(controller) {
         bot.createConversation(message, function(err, convo) {
 
             // create a path for when a user says YES
-            convo.addMessage({
+            /*convo.addMessage({
                     text: 'How wonderful.',
                     attachments: 
-            },'yes_thread');
+            },'yes_thread');*/
 
             // create a path for when a user says NO
             // mark the conversation as unsuccessful at the end
