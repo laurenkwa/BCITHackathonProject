@@ -17,7 +17,8 @@ module.exports = function(controller) {
 
             convo.ask('Where will you start driving from?', function(response, convo) {
 
-                convo.say('Cool, I like ' + response.text + ' too!');
+                convo.say('Cool, do you want to go?');
+                convo.say('https://www.google.com/maps/embed/v1/place?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&q=Space+Needle,Seattle+WA');
                 convo.next();
 
             });

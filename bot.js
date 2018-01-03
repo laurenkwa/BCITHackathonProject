@@ -64,7 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
-    json_file_store: 'C://',
+    json_file_store: 'C:\Users\jango\Documents\test',
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
