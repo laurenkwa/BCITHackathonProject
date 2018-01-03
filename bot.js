@@ -142,17 +142,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.hears(['info'], 'direct_message,direct_mention,mention', function(bot, message) {
-                  bot.reply(message, message.user);
-                  controller.storage.users.save({id: message.channel, name:'Joey'}, function(err, user) {bot.reply(message, 'saved');});
-                  controller.storage.users.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user.name);});
-                  //bot.reply(message, 'ok' + data);
-                  // no trigger was matched
-                  // If you want your bot to respond to every message,
-                  // define a 'fallback' script in Botkit Studio
-                  // and uncomment the line below.
-                  // controller.studio.run(bot, 'fallback', message.user, message.channel);
-             
+      controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
+      bot.reply(message, message.channel);
+      controller.storage.users.save({id: message.channel, name:'Joey'}, function(err, user) {bot.reply(message, 'saved');});
+      controller.storage.users.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user.name);});   
       });
   } else {
       console.log('~~~~~~~~~~');
