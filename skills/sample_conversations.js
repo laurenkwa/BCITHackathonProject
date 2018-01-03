@@ -34,6 +34,7 @@ module.exports = function(controller) {
             // create a path for when a user says YES
             convo.addMessage({
                     text: 'How wonderful.',
+                    attachments: 
             },'yes_thread');
 
             // create a path for when a user says NO
