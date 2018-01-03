@@ -145,9 +145,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('direct_mention', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
-                  controller.storage.users.save({id: message.user, name:'Steve'}, function(err, user) {bot.reply(message, 'ok' + user);});
+                  //controller.storage.users.save({id: message.user, name:'Steve'}, function(err, user) {bot.reply(message, 'ok' + user);});
                   //controller.storage.users.get(message.user, function(err, user) {bot.reply(message, 'ok' + user[0]);});
-                  //bot.reply(message, 'ok' + data);
+                  bot.reply(message, 'ok');
                   // no trigger was matched
                   // If you want your bot to respond to every message,
                   // define a 'fallback' script in Botkit Studio
