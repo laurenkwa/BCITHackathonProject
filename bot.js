@@ -64,7 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
-    json_file_store: 'path_to_json_database'
+    json_file_store: 'path_to_json_database',
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
@@ -149,6 +149,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('direct_message,direct_mention,mention', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
+                controller.storage.teams.save({id: message.team, foo:'bar'}, function(err) {});
+                controller.storage.teams.get(id, function(err, team_data) {});
                 bot.reply(message,'OK');
                   // no trigger was matched
                   // If you want your bot to respond to every message,
