@@ -28,7 +28,8 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
-                        con
+                        convo.say('Okay, let\'s try again.');
+                        offerRide();
                       }
                     });
                   });
