@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Mapping Interesting Application Additions Using the Google Maps API</title>
+</head>
+<body>
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY
+        &q=Space+Needle,Seattle+WA" allowfullscreen>
+    </iframe>
+
+    <script>
+        function GetMap() {
+                 var Latitude = document.getElementById("latitude").value;
+                 var Longitude = document.getElementById("longitude").value;
+                 var mapOptions = {
+                    center: new google.maps.LatLng(Latitude, Longitude),
+                    zoom: 8,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                 }
+                 var map = new google.maps.Map(document.getElementById("MapCanvas"),
+                 mapOptions);
+              }
+
+
+    </script>
+</body>
+</html>
