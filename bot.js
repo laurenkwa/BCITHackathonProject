@@ -151,7 +151,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
               if (!convo) {
                 var memory = message.user;
                   controller.storage.users.save({id: memory, foo:'bar'}, function(err) {});
-                  controller.storage.users.get(memory, function(err, user_data) {bot.reply(message, "erro err);});
+                  controller.storage.users.get(memory, function(err, user_data) {bot.reply(message, 'error');});
                   bot.reply(message,'OK' + controller.storage.users.get(memory, function(err, user_data) {}));
                   // no trigger was matched
                   // If you want your bot to respond to every message,
