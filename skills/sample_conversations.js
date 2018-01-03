@@ -10,7 +10,7 @@ through the conversation are chosen based on the user's response.
 */
 
 module.exports = function(controller) {
-
+  
     controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
@@ -27,7 +27,9 @@ module.exports = function(controller) {
                   convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
                   convo.ask('Does this look correct?', function (response, convo) {
                     convo.next();
-                    if (response.text == 'no' || response.text
+                    if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
+                      convo.say
+                    }
                   });
                 });
 
