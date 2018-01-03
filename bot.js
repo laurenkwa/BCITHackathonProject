@@ -163,8 +163,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   convo.setVar('current_time', new Date());
               }
           }).catch(function(err) {
-              bot.reply(message, 'I experienced an error with a request to Botkit Studio: ' + err);
-              debug('Botkit Studio: ', err);
+              //bot.reply(message, 'I experienced an error with a request to Botkit Studio: ' + err);
+              //debug('Botkit Studio: ', err);
           });
       });
   } else {
