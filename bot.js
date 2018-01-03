@@ -134,10 +134,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
   require("fs").readdirSync(normalizedPath).forEach(function(file) {
     require("./skills/" + file)(controller);
   });
-
-  controller.hear('direct_message,direct_mention,mention', function(bot, message) {
-    bot.reply(message, "Hi");
-  });
   
   // This captures and evaluates any message sent to the bot as a DM
   // or sent to the bot in the form "@bot message" and passes it to
@@ -146,6 +142,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
+    controller.hears(['life'], 'ambient,direct_message,direct_mention', function(bot, message) {
+    bot.reply(message, "Hi");
+  });
       controller.on('direct_message,direct_mention,mention', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
