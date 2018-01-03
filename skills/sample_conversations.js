@@ -22,7 +22,7 @@ module.exports = function(controller) {
                   convo.ask('Where will you drive to?', function(response, convo) {
                     var destination = response.text;
                     convo.next();
-                    convo.say('Great, let\s go to ' + destination);
+                    convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
                     convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
                     convo.ask('Does this look correct?', function (response, convo) {
