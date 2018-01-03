@@ -141,7 +141,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // If a trigger is matched, the conversation will automatically fire!
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
-  if (process.env.studio_token) {
+  //if (process.env.studio_token) {
       controller.hears(['life'], 'ambient,direct_message,direct_mention', function(bot, message) {
         bot.reply(message, "Hi");
       });
@@ -164,11 +164,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
               debug('Botkit Studio: ', err);
           });
       });
-  } else {
+  /*} else {
       console.log('~~~~~~~~~~');
       console.log('NOTE: Botkit Studio functionality has not been enabled');
       console.log('To enable, pass in a studio_token parameter with a token from https://studio.botkit.ai/');
-  }
+  }*/
 }
 
 
