@@ -142,7 +142,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.on('direct_message', function(bot, message) {
+      controller.on('direct_message,direct_mention', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
                   controller.storage.users.save({id: 5, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
