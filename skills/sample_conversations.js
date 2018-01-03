@@ -10,8 +10,8 @@ through the conversation are chosen based on the user's response.
 */
 
 module.exports = function(controller) {
-    controller.hears(['offer'], 'direct_message,direct_mention', offerRide());
-
+    controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
+      offerRide();
       function offerRide() {
               bot.startConversation(message, function(err, convo) {
 
@@ -28,7 +28,7 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
-                        convo.say
+                        con
                       }
                     });
                   });
