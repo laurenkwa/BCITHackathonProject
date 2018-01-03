@@ -142,7 +142,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.on('direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['info'], direct_message,direct_mention,mention', function(bot, message) {
           
                   controller.storage.users.save({id: 5, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
                   controller.storage.users.get(5, function(err, user) {bot.reply(message, 'ok' + user.name);});
