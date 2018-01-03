@@ -135,9 +135,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
     require("./skills/" + file)(controller);
   });
   
-  controller.hears(['life'], 'ambient,direct_message,direct_mention', function(bot, message) {
-        bot.reply(message, "Hi");
-  });
   // This captures and evaluates any message sent to the bot as a DM
   // or sent to the bot in the form "@bot message" and passes it to
   // Botkit Studio to evaluate for trigger words and patterns.
