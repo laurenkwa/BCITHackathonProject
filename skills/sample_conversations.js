@@ -23,7 +23,8 @@ module.exports = function(controller) {
                   var destination = response.text;
                   convo.next();
                   convo.say('Great, let\s go to ' + destination);
-                  convo.say('Creating
+                  convo.say('Here\'s your map.');
+                  convo.say('"https://www.google.com/maps/embed/v1/directions?origin=" + origin + "&destination=" + destination +   "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY"
                 });
 
             });
