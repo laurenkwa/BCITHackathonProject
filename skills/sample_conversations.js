@@ -16,12 +16,14 @@ module.exports = function(controller) {
         bot.startConversation(message, function(err, convo) {
 
             convo.ask('Where will you start driving from?', function(response, convo) {
-                var start = response.text;
-                convo.say('Cool, let\'s start at ' + start);
+                var origin = response.text;
+                convo.say('Cool, let\'s start at ' + origin);
                 convo.next();
                 convo.ask('Where will you drive to?', function(response, convo) {
+                  var destination = response.text;
                   convo.next();
-                  convo.say('Great, let\s go to ' + response.text);
+                  convo.say('Great, let\s go to ' + destination);
+                  convo.say('Creating
                 });
 
             });
