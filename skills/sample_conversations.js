@@ -10,31 +10,32 @@ through the conversation are chosen based on the user's response.
 */
 
 module.exports = function(controller) {
-  
-    controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['offer'], 'direct_message,direct_mention', offerRide());
 
-        bot.startConversation(message, function(err, convo) {
+      function offerRide() {
+              bot.startConversation(message, function(err, convo) {
 
-            convo.ask('Where will you start driving from?', function(response, convo) {
-                var origin = response.text;
-                convo.say('Cool, let\'s start at ' + origin);
-                convo.next();
-                convo.ask('Where will you drive to?', function(response, convo) {
-                  var destination = response.text;
+              convo.ask('Where will you start driving from?', function(response, convo) {
+                  var origin = response.text;
+                  convo.say('Cool, let\'s start at ' + origin);
                   convo.next();
-                  convo.say('Great, let\s go to ' + destination);
-                  convo.say('Here\'s your map.');
-                  convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
-                  convo.ask('Does this look correct?', function (response, convo) {
+                  convo.ask('Where will you drive to?', function(response, convo) {
+                    var destination = response.text;
                     convo.next();
-                    if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
-                      convo.say
-                    }
+                    convo.say('Great, let\s go to ' + destination);
+                    convo.say('Here\'s your map.');
+                    convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
+                    convo.ask('Does this look correct?', function (response, convo) {
+                      convo.next();
+                      if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
+                        convo.say
+                      }
+                    });
                   });
-                });
 
-            });
-        });
+              });
+          });
+      }
 
     });
 
