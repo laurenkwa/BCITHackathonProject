@@ -145,7 +145,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['info'], 'direct_message,direct_mention,mention', function(bot, message) {
                   bot.reply(message, message.user);
                   controller.storage.users.save({id: message.channel, name:'Jo'}, function(err, user) {bot.reply(message, 'saved');});
-                  controller.storage.users.get(message.channel, function(err, channel_data) {bot.reply(message, 'ok' + channel_data.name);});
+                  controller.storage.users.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user.name);});
                   //bot.reply(message, 'ok' + data);
                   // no trigger was matched
                   // If you want your bot to respond to every message,
