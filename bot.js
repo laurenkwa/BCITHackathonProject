@@ -64,7 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
-    json_file_store: 'C:\Users\jango\Documents\test',
+    json_file_store: 'https://ride-share.glitch.me/',
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
@@ -151,7 +151,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
               if (!convo) {
                 var memory = message.user;
                   controller.storage.users.save({id: memory, foo:'bar'}, function(err) {});
-                  controller.storage.users.get(memory, function(err, user_data) {});
+                  controller.storage.users.get(memory, function(err, user_data) {bot});
                   bot.reply(message,'OK' + controller.storage.users.get(memory, function(err, user_data) {}));
                   // no trigger was matched
                   // If you want your bot to respond to every message,
