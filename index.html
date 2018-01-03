@@ -23,9 +23,64 @@
     <title>Ride-Share</title>
 </head>
 
+
+    
 <body>
+     <div id="selectType">
+        <button id="passenger" onclick="showPassengerForm()">Passenger</button>
+        <button id="driver" onclick="showDriverForm()">Driver</button>
+    </div>
+    <div id="passengerForm" style="display:none;">
+        <form id="passengerForm">
+            Time<input type="text" id="passengerTime"/>
+            <br/>
+            Start<input type="text" id="passengerStart" />
+            <br/>
+            End <input type="text" id="passengerEnd" />
+            <br/>
+            <input type="submit" id="submitPassenger">
+        </form>
+    </div>
+    <div id="driverForm" style="display:none;">
+        <form id="driverForm">
+            Time<input type="text" id="driverTime"/>
+            <br/>    
+            Start<input type="text" id="driverStart" />
+            <br/>
+            End <input type="text" id="driverEnd" />
+            <br/>
+            Number of Seats Available <input type="number" id="seats" min="0" max="10"/>    
+            <br/>
+            <input type="submit" id="submitDriver">
+        </form>
+    </div>
 
+    <script>
+        function showPassengerForm() {
+                        var x = document.getElementById("passengerForm");
+                        if (x.style.display == "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }   
+            
+                        var y = document.getElementById("driverForm");
+                        y.style.display="none";
+            }
+        function showDriverForm() {
+                        var x = document.getElementById("driverForm");
+                        if (x.style.display == "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }   
+            
+                        var y = document.getElementById("passengerForm");
+                        y.style.display="none";
+        }
 
-</body>
+    </script>
+</body>    
+
 
 </html>
