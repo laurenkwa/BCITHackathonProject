@@ -149,7 +149,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
                   var memory = message.user;
-                  //controller.storage.users.save({id: memory, foo:'bar'}, function(err) {});
+                  controller.storage.users.save({id: memory, foo:'bar'}, function(err) {});
                   var data = controller.storage.users.all(function(err, all_user_data) {bot.reply(message, 'ok' + all_user_data);});
                   //bot.reply(message, 'ok' + data);
                   // no trigger was matched
