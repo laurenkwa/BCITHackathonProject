@@ -142,9 +142,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.on('direct_message,direct_mention', function(bot, message) {
-          controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
-              if (!convo) {
+      controller.on('direct_message,direct_mention,mention', function(bot, message) {
+          
                   controller.storage.users.save({id: 5, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
                   controller.storage.users.get(5, function(err, user) {bot.reply(message, 'ok' + user.name);});
                   //bot.reply(message, 'ok' + data);
@@ -153,15 +152,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   // define a 'fallback' script in Botkit Studio
                   // and uncomment the line below.
                   // controller.studio.run(bot, 'fallback', message.user, message.channel);
-              } else {
-                  // set variables here that are needed for EVERY script
-                  // use controller.studio.before('script') to set variables specific to a script
-                  convo.setVar('current_time', new Date());
-              }
-          }).catch(function(err) {
-              bot.reply(message, 'I experienced an error with a request to Botkit Studio: ' + err);
-              debug('Botkit Studio: ', err);
-          });
+             
       });
   } else {
       console.log('~~~~~~~~~~');
