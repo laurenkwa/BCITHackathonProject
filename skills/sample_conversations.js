@@ -24,7 +24,7 @@ module.exports = function(controller) {
                   convo.next();
                   convo.say('Great, let\s go to ' + destination);
                   convo.say('Here\'s your map.');
-                  convo.say("https://www.google.com/maps/dir/?api=1&origin=760+West+Genesee+Street+Syracuse+NY+13204"&destination=" + destination + "&destination=" + destination +   "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
+                  convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
                 });
 
             });
