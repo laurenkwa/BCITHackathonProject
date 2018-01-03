@@ -67,7 +67,7 @@ var bot_options = {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
-    redirect
+    redirectUri: 'https://ride-share.glitch.me/oauth',
     scopes: ['bot'],
     studio_token: process.env.studio_token,
     studio_command_uri: process.env.studio_command_uri
