@@ -149,8 +149,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('direct_message,direct_mention,mention', function(bot, message) {
           controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
               if (!convo) {
-                var memory = message.user;
-                  controller.storage.users.save({id: memory, foo:'bar'}, function(err) {bot.reply(message, 'save_error');});
+                  var memory = message.user;
+                  controller.storage.users.save({id: memory, foo:'bar'}, function(err) {bot.reply(message, 'save_error: ' + err);});
                   controller.storage.users.get(memory, function(err, user_data) {bot.reply(message, 'gjet_error');});
                   bot.reply(message,'OK' + controller.storage.users.get(memory, function(err, user_data) {}));
                   // no trigger was matched

@@ -17,8 +17,8 @@ module.exports = function(controller) {
 
             convo.ask('Where will you start driving from?', function(response, convo) {
 
-                convo.say('Cool, let\'s start at ' + response.text + '. Where will you drive to?');
-                convo.ask('where 
+                convo.reply('Cool, let\'s start at ' + response.text + '. Where will you drive to?');
+                convo.next();
                 convo.say('Great, let\s go to ' + response.text);
 
             });
