@@ -135,7 +135,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     require("./skills/" + file)(controller);
   });
 
-  controller.on('direct_message,direct_mention,mention', function(bot, message) {
+  controller.hear('direct_message,direct_mention,mention', function(bot, message) {
     bot.reply(message, "Hi");
   });
   
