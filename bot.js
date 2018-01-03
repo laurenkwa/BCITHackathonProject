@@ -64,7 +64,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 var bot_options = {
-    json_file_store: 'path_to_json_database',
+    json_file_store: 'C://',
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
@@ -152,7 +152,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 var memory = message.user;
                   controller.storage.users.save({id: memory, foo:'bar'}, function(err) {});
                   controller.storage.users.get(memory, function(err, user_data) {});
-                  bot.reply(message,'OK');
+                  bot.reply(message,'OK' + );
                   // no trigger was matched
                   // If you want your bot to respond to every message,
                   // define a 'fallback' script in Botkit Studio
