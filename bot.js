@@ -148,7 +148,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
       controller.hears(['get'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
-        controller.storage.users.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user.name);});   
+        controller.storage.users.get(message.channel, function(err, user) {bot.reply(message, user.name);});   
       });
   } else {
       console.log('~~~~~~~~~~');
