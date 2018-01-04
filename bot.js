@@ -229,7 +229,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
               }
             }); 
           }else{
-            bot.reply(message, 'Rider Declined' + message.actions[0].value); 
+            bot.reply(message, 'Rider Declined'); 
             controller.storage.channels.all(function(err, user) {
               for(var i = 0; i < user.length; i++){
                 if(user[i].id == message.user){
@@ -255,12 +255,12 @@ if (!process.env.clientId || !process.env.clientSecret) {
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
-          bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
+          //bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 controller.storage.channels.get(user[i].id, function(err, user) {
-                  bot.reply(message, '' + user.name);
+                  bot.reply(message, '');
                 }); 
                 clickButton.text = "Accept Car Pool Ride Request From " + "<@" + message.user + ">";
                 clickButton.attachments[0].actions[0].value = message.user;

@@ -195,7 +195,6 @@ module.exports = function(controller) {
        var text = '';
        var routes = 0;
        for(var i = 0; i < user.length; i++){
-         bot.reply(message, '' + city + '~' + user[i].city);
          if(parseInt(user[i].seats) > 0 
             && parseInt(earlyTime) <= parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime) < parseInt(lateTime)
             && (String(city) == String(user[i].city) || city == "Other")
@@ -298,7 +297,6 @@ module.exports = function(controller) {
                     city = city.slice(0, city.indexOf(','));
                     regexPat = /[a-zA-Z\s]*/;
                     city = String(city.match(regexPat));
-                    bot.reply(message, 'test' + city);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     var driver = "";
