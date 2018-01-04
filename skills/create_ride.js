@@ -172,7 +172,8 @@ module.exports = function(controller) {
        for(var i = 0; i < user.length; i++){
          //bot.reply(message, '' + user[i].time);
          if(parseInt(user[i].seats) > 0 
-            && parseInt(earlyTime) < parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime < lateTime)){
+            //&& parseInt(earlyTime) < parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime < lateTime)
+           ){
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
            var object = { text: string, value: user[i].name };
            text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
