@@ -9,6 +9,34 @@ through the conversation are chosen based on the user's response.
 
 */
 
+var selectionButton = {
+    "text": "Would you like to create a new car pool route or find one??",
+    "attachments": [
+        {
+            "text": "Choose?",
+            "fallback": "Something went wrong",
+            "callback_id": "accept_ride_request",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "Create",
+                    "text": "Create",
+                    "type": "button",
+                    "value": "Create"
+                },
+                {
+                    "name": "Find",
+                    "text": "Find",
+                    "style": "Find",
+                    "type": "Find",
+                    "value": "Find"
+                }
+            ]
+        }
+    ]
+}
+
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
         bot.replyAcknowledge();
@@ -151,10 +179,8 @@ module.exports = function(controller) {
             users: 'U5E31FZAB',
           });
           bot.say({
-          text: "",
-
-        });
-
+            text: "Start your conversation.",
+          });
       }
 
 };
