@@ -11,7 +11,7 @@
 <div class="jumbotron text-center">
         <br/>
         <a href="index.php"><h1>Ride Share</h1></a>
-        <p>Needs a ride? Find one here!</p>
+        <p>Need a ride? Find one here!</p>
         <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
 </div>
 
