@@ -11,6 +11,7 @@ through the conversation are chosen based on the user's response.
 
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
+        message.task.timeLimit = 900000;
         var dialog = bot.createDialog(
               'Route Selector',
               'callback_id',
@@ -25,7 +26,6 @@ module.exports = function(controller) {
       });
   
     controller.on('dialog_submission', function(bot, message) {
-          
           launchDialog(bot, message);
       });
   
