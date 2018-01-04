@@ -6,9 +6,11 @@ include("includes/header.php");
 
 
 <div class="jumbotron text-center">
-    <a href="index.php"><h1>Ride Share</h1></a>
-    <p>Needs a ride? find one here!</p>
-</div>
+        <br/>
+        <a href="index.php"><h1>Ride Share</h1></a>
+        <p>Needs a ride? Find one here!</p>
+        <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
+    </div>
 <div>
     <div id="map"  style="text-align: center; width: 1000px; height: 750px;"></div>
 </div>
