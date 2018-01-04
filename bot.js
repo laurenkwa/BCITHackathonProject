@@ -233,7 +233,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
-        /*if(message.callback_id == 'route_selection'){
+        if(message.callback_id == 'route_selection'){
           bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
