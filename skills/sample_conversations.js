@@ -31,7 +31,7 @@ module.exports = function(controller) {
                     var xmlhttp = new XMLHttpRequest();
                     convo.say("Let's get started.");
                     xmlhttp.onreadystatechange = function() {
-                        if (this.status == 200) {
+                        if (this.readyState == 4) {
                             convo.say("Got it.");
                             mapObject = JSON.parse(this.responseText);
                         } else {
