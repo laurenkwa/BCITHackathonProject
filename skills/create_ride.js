@@ -96,10 +96,9 @@ module.exports = function(controller) {
       }
         
       function alertChannel(bot, submission) {
-        //var rideshareChannel = bot.apichannels.list.
         bot.say({
         text: "Hello World!",
-        //channel:
+        channel: "C8NT4J1C7"
         });
       }
 
@@ -112,10 +111,10 @@ module.exports = function(controller) {
         convo.say(message.channel);
 
             // create a path for when a user says YES
-            /*convo.addMessage({
+            convo.addMessage({
                     text: 'How wonderful.',
                     attachments: 
-            },'yes_thread');*/
+            },'yes_thread');
 
             // create a path for when a user says NO
             // mark the conversation as unsuccessful at the end
