@@ -221,7 +221,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
           }
           bot.reply(message, user.length + string);
         });  
-        
         bot.reply(message, dropDownList);
       });
     
