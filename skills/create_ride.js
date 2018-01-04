@@ -92,6 +92,15 @@ module.exports = function(controller) {
               'callback_id',
               'Submit'
             ).addSelect('Select Your City','city',null,[
+                {label:'Vancouver',value:''},
+                {label:'Abbotsford',value:''},
+                {label:'Mission',value:''},
+                {label:'New Westminister',value:''},
+                {label:'North Vancouver',value:''},
+                {label:'Richmond',value:''},
+                {label:'',value:''},
+                {label:'',value:''},
+                {label:'',value:''},
                 {label:'',value:''},
                 {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'})
@@ -256,7 +265,7 @@ module.exports = function(controller) {
           + '\nSeats: ' + user.seats + '\nLeaving: ' + user.date + " at " + user.time + 
           "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7",
-          attachments: [{
+        attachments: [{
             image_url: user.image
         }]
         });
