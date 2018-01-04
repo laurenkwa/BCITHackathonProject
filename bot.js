@@ -229,12 +229,12 @@ if (!process.env.clientId || !process.env.clientSecret) {
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
-                bot.reply(message, user[i].id);
+                bot.reply(user[i].id, user[i].id);
                 //bot.whisper(user[i].id, "this works");
                 bot.sendEphemeral({
                   channel: user[i].id,
                   user: user[i].id,
-                  message: clickButton});
+                  text: clickButton});
                 //bot.say({user:user[i].id, text:'this works'});
               }
             }
