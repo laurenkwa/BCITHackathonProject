@@ -60,6 +60,9 @@
                 } else {
                 foreach ($offers as $offer) {
                     $i += 1;
+                    echo "<br/>Driver name: " . $offer['driver_username'];
+                    echo "<br/><br/>";
+                    echo "Ride schedule: " . $offer['driver_time'];
                     ?>
                     <iframe id="googleMap<?php echo($i); ?>" width="1000" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
                     <script>
@@ -86,6 +89,9 @@
                 } else {
                 foreach ($requests as $request) {
                     $j += 1;
+                    echo "<br/>Passenger name: " . $request['passenger_username'];
+                    echo "<br/><br/>";
+                    echo "Passenger schedule: " . $request['passenger_time'];
                     ?>
                     <iframe id="googleMap2<?php echo($j); ?>" width="1000" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
                     <script>
