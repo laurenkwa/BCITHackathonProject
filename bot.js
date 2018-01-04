@@ -158,6 +158,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             string+=user[i].name;
           }
+          bot.reply(message, user.length + string);
         });  
       });
   } else {
