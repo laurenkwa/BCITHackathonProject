@@ -44,13 +44,10 @@ module.exports = function(controller) {
         //launchDialog(bot, message);
       });
     
-    controller.on('dialog_submission', function(bot, message) {
-          var submission = message.submission;
-          //bot.reply(message, 'Got it!');
-  
-          // call dialogOk or else Slack will think this is an error
-          bot.dialogOk();
-          offerRide(bot, message, submission); 
+    controller.on('interactive_message_callback', function(bot, message) {
+          if(message.callback_id == 'route_selection'){
+              
+          }
       });
   
     controller.on('dialog_submission', function(bot, message) {
@@ -180,19 +177,16 @@ module.exports = function(controller) {
       
       controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
             bot.reply(message, "I hear you");
-            startPrivateMessage(bot);
-        });
-  
-      function startPrivateMessage(bot) {
-          var newConvo = bot.api.conversations.open({
-            token: process.env.slackToken,
-            users: 'U5E31FZAB',
-          });
-          bot.say(newConvo);
-          bot.say({
+            var newConvo = bot.api.conversations.open({
+              token: process.env.slackToken,
+              users: 'U5E31FZAB',
+            });
+          message.say(newConvo);
+          messa.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
           });
-      }
+        });
+  
 
 };
