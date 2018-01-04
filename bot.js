@@ -251,7 +251,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       /***** New route submitted *****/
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Your route has been selected, you will be notified riders wish to carpool');
+        bot.reply(message, 'Your route has been created, you will be notified riders wish to carpool');
 
         bot.dialogOk();
       });
