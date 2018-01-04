@@ -297,7 +297,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
             dropDownList.attachments[0].actions[0].options.push(object);
           }
           bot.reply(message, dropDownList);
-          
         });  
       });
     
