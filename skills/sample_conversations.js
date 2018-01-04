@@ -54,8 +54,10 @@ module.exports = function(controller) {
                     convo.say(thumbnail);
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
-                      if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
+                      if (response.text.toUpperCase() == 'NO') {
                         offerRide();
+                      } else if (response.text.toUppercase() == 'YES') {
+                        
                       }
                     });
                   });
