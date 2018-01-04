@@ -23,10 +23,13 @@ module.exports = function(controller) {
                   convo.say('Cool, let\'s start at ' + origin);
                   convo.next();
                   convo.ask('Where will you drive to?', function(response, convo) {
-                  if (destination.toUpperCase() == 'BCIT') {
-                    destination = 'BCIT Burnaby campus';
-                  }
+
                     var destination = response.text;
+                    
+                   if (destination.toUpperCase() == 'BCIT') {
+                      destination = 'BCIT Burnaby campus';
+                    }
+                    
                     convo.next();
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
