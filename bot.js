@@ -231,7 +231,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       
     slashCommand.replyPrivate();
     
-      controller.on('interactive_message_callback', function(bot, message) {
+      controller.on('sl', function(bot, message) {
         if(message.callback_id == 'route_selection'){
           bot.reply(message, 'You chose a route!'); 
         var dialog = bot.createDialog(
