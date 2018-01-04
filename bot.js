@@ -263,7 +263,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 clickButton.attachments[0].actions[1].value = message.user;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
                 user[i].seats = parseInt(user[i].seats) - 1;
-                bot.reply(message, 'seats' + user[i].seats);
                 controller.storage.channels.save(user[i], function(err, user) {});
               }
             }
