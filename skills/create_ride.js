@@ -105,9 +105,6 @@ module.exports = function(controller) {
                         }
                     });
                   });
-
-              //});
-          //});
       }
         
       function alertChannel(bot, user) {
