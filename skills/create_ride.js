@@ -94,7 +94,7 @@ module.exports = function(controller) {
                           convo.say('Great. I\'ll tell the rideshare channel.');
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
-                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: driver}, function(err, user) {
+                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: driver, seats:submission.Seats, time:submission.Time, date:submission.Date}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
                           });
@@ -111,7 +111,7 @@ module.exports = function(controller) {
       function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name + " by " + user.driver 
-          + '\nSeats: ' + submission.Seats + 'Leaving:' + submission.Date + " at " + submission.Time + 
+          + '\nSeats: ' + user.seats + 'Leaving:' + user.date + " at " + user.time + 
           "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7"
           
