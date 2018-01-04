@@ -300,9 +300,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           bot.reply(message, '');
           for(var i = 0; i < user.length; i++){
-            bot.reply(message, '' + user[i].seats);
             if(parseInt(user[i].seats) > 0){
-              var object = { text: user[i].name, value: user[i].name + '  ~  Seats: ' + user[i].seats };
+              var string = user[i].name + '  ~  Seats: ' + user[i].seats;
+              var object = { text: user[i].name, value: user[i].na };
               dropDownList.attachments[0].actions[0].options.push(object);
             }
           }
