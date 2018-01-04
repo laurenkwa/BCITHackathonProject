@@ -29,10 +29,10 @@ module.exports = function(controller) {
 
 
     controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
-            bot.say(bot.api.conversations.open({
+            bot.reply(bot.api.conversations.open({
               token: process.env.legacyToken,
               users: 'U5E31FZAB',
-            }).channel.id);
+            }));
         });
 
     controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
