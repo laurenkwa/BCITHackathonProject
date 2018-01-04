@@ -256,7 +256,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 controller.storage.channels.get(user[i].id, function(err, user) {
-                  user
+                  user.seats = user.seats - 1;
                   bot.reply(message, 'ok' + user.name);
                 }); 
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].driver;
@@ -297,8 +297,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           for(var i = 0; i < user.length; i++){
-            var object = { text: user[i].name, value: user[i].name };
-            dropDownList.attachments[0].actions[0].options.push(object);
+            if(parsuser[i].seats
+              var object = { text: user[i].name, value: user[i].name };
+              dropDownList.attachments[0].actions[0].options.push(object);
           }
           bot.reply(message, dropDownList);
         });  
