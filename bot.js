@@ -217,9 +217,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           var array = [];
           for(var i = 0; i < 5; i++){
-            array[i] = i;
+            dropDownList.attachments[0].actions[0].options.push({});
           }
-          dropDownList.attachments[0].actions[0].options.push(5);
+          
         });  
         bot.reply(message, dropDownList);
       });
