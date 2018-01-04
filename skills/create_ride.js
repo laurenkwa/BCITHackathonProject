@@ -99,7 +99,7 @@ module.exports = function(controller) {
         var rideshareChannel = bot.apichannels.list.
         bot.say({
         text: "Hello World!",
-        channel: rideshareChannel
+        //channel:
         });
       }
 

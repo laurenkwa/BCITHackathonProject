@@ -230,12 +230,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
-    
+      /***** New route submitted *****/
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Your route has been selected, the ' + submission.Destination);
+        bot.reply(message, 'Your route has been selected, you will be notified riders wish to carpool');
 
-        // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
       });
     
