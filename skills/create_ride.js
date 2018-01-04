@@ -281,7 +281,7 @@ module.exports = function(controller) {
                           convo.say('Great. I\'ll tell the rideshare channel.');
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
-                            var time = (submission.Time <= 12) ? submission.Time : submission.Time - 12);
+                            var time = (parseInt(submission.Time) <= 12) ? submission.Time + 'am' : toString(parseInt(submission.Time) - 12;
                             controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: '<@' + message.user + '>', seats:submission.Seats, time:submission.Time, date:submission.Date}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
