@@ -103,29 +103,18 @@ var clickButton = {
             "attachment_type": "default",
             "actions": [
                 {
-                    "name": "game",
-                    "text": "Chess",
+                    "name": "Yes",
+                    "text": "Yes",
                     "type": "button",
-                    "value": "chess"
+                    "value": "Yes"
                 },
                 {
-                    "name": "game",
-                    "text": "Falken's Maze",
-                    "type": "button",
-                    "value": "maze"
-                },
-                {
-                    "name": "game",
-                    "text": "Thermonuclear War",
+                    "name": "No",
+                    "text": "No",
                     "style": "danger",
                     "type": "button",
-                    "value": "war",
-                    "confirm": {
-                        "title": "Are you sure?",
-                        "text": "Wouldn't you prefer a good game of chess?",
-                        "ok_text": "Yes",
-                        "dismiss_text": "No"
-                    }
+                    "value": "No",
+                  
                 }
             ]
         }
