@@ -84,7 +84,7 @@ module.exports = function(controller) {
         bot.dialogOk();
         offerRide(bot, message, submission); 
       }
-      if(submission.callback_id == 'route_selector'){
+      if(message.callback_id == 'route_selector'){
         bot.dialogOk();
         routeMenu(bot, message, submission.City, submission.Time); 
       }
