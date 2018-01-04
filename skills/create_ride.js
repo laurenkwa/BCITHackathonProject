@@ -45,8 +45,8 @@ module.exports = function(controller) {
       });
     
     controller.on('interactive_message_callback', function(bot, message) {
-          if(message.callback_id == 'route_selection'){
-              
+          if(message.callback_id == 'create_find'){
+             
           }
       });
   
@@ -182,7 +182,7 @@ module.exports = function(controller) {
               users: 'U5E31FZAB',
             });
           message.say(newConvo);
-          messa.say({
+          message.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
           });
