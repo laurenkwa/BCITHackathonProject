@@ -150,7 +150,7 @@ module.exports = function(controller) {
             token: process.env.slackToken,
             users: 'U5E31FZAB',
           });
-          bot.say(            text: "You can use this message to work out the details of your upcoming ride."
+          bot.say("You can use this message to work out the details of your upcoming ride.");
 
       }
 
