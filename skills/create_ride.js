@@ -86,7 +86,7 @@ module.exports = function(controller) {
       }
       if(message.callback_id == 'route_selector'){
         bot.dialogOk();
-        routeMenu(bot, message, submission.City, submission.Time); 
+        routeMenu(bot, message, submission.City, submission.EarlyTime, submission.LateTime); 
       }
     });
     
@@ -108,7 +108,7 @@ module.exports = function(controller) {
                 {label:'Whistler',value:'Whistler'},
                 {label:'Other',value:'Other'}
               ], {placeholder: 'Select One'})
-              .addSelect('Select a Earliest Time','Time',null,[
+              .addSelect('Select a Earliest Time','EarlyTime',null,[
                 {label:'12:00 am',value:'00'},
                 {label:'1:00 am',value:'1'},
                 {label:'2:00 am',value:'2'},
@@ -134,7 +134,7 @@ module.exports = function(controller) {
                 {label:'10:00 pm',value:'22'}, 
                 {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'})
-            .addSelect('Select a Earliest Time','Time',null,[
+            .addSelect('Select a Latest Time','LateTime',null,[
                 {label:'12:00 am',value:'00'},
                 {label:'1:00 am',value:'1'},
                 {label:'2:00 am',value:'2'},
@@ -165,7 +165,7 @@ module.exports = function(controller) {
     }
   
     /***** Creates drop down menu of all available routes *****/
-    function routeMenu(bot, message, city, time){
+    function routeMenu(bot, message, city, earlyTime, lateTime){
      controller.storage.channels.all(function(err, user) {
        dropDownList.attachments[0].actions[0].options.length = 0;
        var text = '';
@@ -269,7 +269,6 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + process.env.google_maps;
                     convo.say({
-                        text: "great",
                         attachments: 
                           [{
                             "fallback": "\n<" + thumbnail + "|Map preview>",
