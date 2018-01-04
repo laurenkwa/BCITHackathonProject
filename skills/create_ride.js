@@ -80,7 +80,7 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var driver = "";
                     bot.api.users.info({user: message.user}, (error, response) => {
-                        driver = response.user;
+                        let {name} = response.user;
                     })
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say({
