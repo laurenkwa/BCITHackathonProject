@@ -302,7 +302,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             //bot.reply(message, '' + user[i].time);
             if(parseInt(user[i].seats) > 0){
-              var string = user[i].name + '  ~  Seats: ';
+              var string = user[i].name + '  ~  Seats: ' + user[i].seats;
               var object = { text: string, value: user[i].name };
               text += 'Route ' + user[i].name + ' with ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n';
               dropDownList.attachments[0].actions[0].options.push(object);
