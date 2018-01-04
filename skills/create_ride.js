@@ -33,7 +33,10 @@ module.exports = function(controller) {
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Date', 'Date', 'Date')
-              .addSelect('Select','select',null,[{label:'Foo',value:'foo'}, {label:'Bar',value:'bar'}], {placeholder: 'Select One'});
+              .addSelect('Select','select',null,[
+                {label:'12:00 am',value:'12:00'}, 
+                {label:'Bar',value:'bar'}
+              ], {placeholder: 'Select One'});
               //.addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
