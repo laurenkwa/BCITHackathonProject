@@ -101,7 +101,7 @@ module.exports = function(controller) {
                             });
                           });
                         } else {
-                          launchDialog(bot, message);
+                          convo.say('Oh no. Confirm your locations and then call me again.');
                         }
                     });
                   });
