@@ -216,7 +216,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'accept_ride_request' && message.actions[0].selected_options[0].name == "Yes"){
           bot.reply(message, 'Rider Accepted' + message.actions[0].selected_options[0].value); 
-                bot.reply({text: '', channel: user[i].id}, clickButton); 
+          bot.reply({text: '', channel: message.actions[0].selected_options[0].value}, clickButton); 
         }
       });
     
