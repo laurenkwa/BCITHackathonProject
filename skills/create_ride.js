@@ -61,6 +61,33 @@ var selectionButton = {
     ]
 }
 
+var correctButton = {
+    "text": "Does this look correct?",
+    "attachments": [
+        {
+            "text": "Choose?",
+            "fallback": "Something went wrong",
+            "callback_id": "create_correct",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "Yes",
+                    "text": "Yes",
+                    "type": "button",
+                    "value": "Yes"
+                },
+                {
+                    "name": "No",
+                    "text": "No",
+                    "type": "button",
+                    "value": "No"
+                }
+            ]
+        }
+    ]
+}
+
 module.exports = function(controller) {
   
 
@@ -293,8 +320,8 @@ module.exports = function(controller) {
                     var regexPat = /,[^,]*,[^,]*,[^,]*$/; 
                     var cityString = mapObject.routes[0].legs[0].start_address;
                     var city = cityString.match(regexPat);
-                    city = city.splice(2, city.lastIndexOf(','));
-                                       
+                    city = city.slice(2, city.length - 1);
+                    //city = city.slice(0, city.indexOf(','));
                     bot.reply(message, 'test' + city);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
@@ -316,7 +343,7 @@ module.exports = function(controller) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
                           convo.say('Great. I\'ll tell the rideshare channel.');
-                          //convo.next();
+                          convo.next();
                           controller.storage.channels.delete(message.user, function(err){
                             var time = (parseInt(submission.Time) <= 12) 
                               ? ((submission.Time == '00') ? '12' : submission.Time) + ':00 am' 
@@ -326,6 +353,7 @@ module.exports = function(controller) {
                             });
                           });
                         } else {
+                          convo.next();
                           convo.say('Oh no. Confirm your locations and then call me again.');
                         }
                     });
