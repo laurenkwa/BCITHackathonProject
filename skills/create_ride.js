@@ -25,14 +25,17 @@ module.exports = function(controller) {
       });
   
     controller.on('dialog_submission', function(bot, message) {
+          launchDialog(bot, message);
+      });
+  
+    function launchDialog(bot, message) {
         var submission = message.submission;
         //bot.reply(message, 'Got it!');
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
-        offerRide(bot, message, submission);
-      });
-  
+        offerRide(bot, message, submission); 
+    }
       function offerRide(bot, message, submission) {
               bot.startConversation(message, function(err, convo) {
             
