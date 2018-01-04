@@ -250,8 +250,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
       controller.hears(['get'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
-        controller.storage.channels.all(function(err, user) {bot.reply(message, 'ok' + user.length);});  
-        //controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
+        //controller.storage.channels.all(function(err, user) {bot.reply(message, 'ok' + user.length);});  
+        controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
       });
       controller.hears(['all'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
