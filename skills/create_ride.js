@@ -80,10 +80,11 @@ module.exports = function(controller) {
       var submission = message.submission;
       //bot.reply(message, 'Got it!');
   
-      if(submission.callback_id == 'route_creator){
+      if(submission.callback_id == 'route_creator'){
         bot.dialogOk();
         offerRide(bot, message, submission); 
       }
+      
     });
     
     /***** Opens a route dialog box to choose time and location *****/
@@ -239,8 +240,11 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + process.env.google_maps;
                     convo.say({
-                      text: "<" + thumbnail + "|Map preview>",
-                      unfurl_links: true
+                      attachments: 
+                          [{
+                            "fallback": "\n<" + user.image + "|Map preview>",
+                            "image_url": user.image
+                          }]
                     });
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
