@@ -311,10 +311,11 @@ module.exports = function(controller) {
     controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
         bot.api.conversations.open({
           token: process.env.legacyToken,
-          users: 'U5E31FZAB'
+          users: 'U5E31FZAB',
+          text: 'okay'
         });
-    }
+    });
     
   
 
-};
+}
