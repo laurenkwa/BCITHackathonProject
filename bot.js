@@ -231,7 +231,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             controller.storage.channels.all(function(err, user) {
               for(var i = 0; i < user.length; i++){
                 if(user[i].id == message.user){
-                  bot.reply(message, 'works');
+                  //bot.reply(message, 'works');
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been declined to car pool on the ' + user[i].name + ' route');
                 }
               }
@@ -242,9 +242,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
     function startPrivateMessage(message) {
       bot.api.conversations.open({
+        users:
         
-        
-        message, function(err, convo) {});
+      });
       }
     }
     
