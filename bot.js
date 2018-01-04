@@ -262,6 +262,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 clickButton.attachments[0].actions[0].value = message.user;
                 clickButton.attachments[0].actions[1].value = message.user;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
+                user[i].seats = parseInt(user[i].seats) - 1;
+                bot.reply(message, 'seats' + user[i].seats);
+                controller.storage.channels.save(user[i], function(err, user) {});
               }
             }
           }); 
@@ -300,9 +303,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
             if(parseInt(user[i].seats) > 0){
               var object = { text: user[i].name, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
-              user[i].seats = parseInt(user[i].seats) - 1;
-              bot.reply
-              controller.storage.channels.save(user[i], function(err, user) {});
             }
           }
           bot.reply(message, dropDownList);
