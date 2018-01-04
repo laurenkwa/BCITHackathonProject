@@ -229,6 +229,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
+                bot.reply(message, user[i].name);
                 bot.whisper(user[i].id, "this works");
               }
             }
