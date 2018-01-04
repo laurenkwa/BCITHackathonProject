@@ -56,7 +56,7 @@ module.exports = function(controller) {
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     
-                    var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc%3A" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+                    var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(thumbnail);
                     convo.ask('Does this look correct?', function (response, convo) {
                       //convo.next();
