@@ -144,12 +144,12 @@ if (!process.env.clientId || !process.env.clientSecret) {
   if (process.env.studio_token) {
       controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
-        controller.storage.channel.save({id: message.channel, name:'Jang'}, function(err, user) {bot.reply(message, 'saved');});
+        controller.storage.channels.save({id: message.channel, name:'Jang'}, function(err, user) {bot.reply(message, 'saved');});
       });
       controller.hears(['gets'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
         //controller.storage.users.all(function(err, user) {bot.reply(message, 'ok' + user[0][1]);});  
-        controller.storage.channel.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user);});  
+        controller.storage.channels.get(message.channel, function(err, user) {bot.reply(message, 'ok' + user);});  
       });
   } else {
       console.log('~~~~~~~~~~');
