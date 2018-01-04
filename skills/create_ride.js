@@ -57,13 +57,13 @@ module.exports = function(controller) {
                     var mapObject;
                     var XMLHttpRequest = require("../xmlhttprequest.js").XMLHttpRequest;
                     var xmlhttp = new XMLHttpRequest();
-                    convo.say("Let's get started.");
+                    //convo.say("Let's get started.");
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4) {
                             //convo.say("Got it.");
                             mapObject = JSON.parse(this.responseText);
                         } else {
-                          convo.say("Uh oh. JSON error. Try again.");
+                          convo.whisper("Uh oh. JSON error. Try again.");
                         }
                     };
                     xmlhttp.open("GET", jsonMap, false);
@@ -76,8 +76,8 @@ module.exports = function(controller) {
                     var points = polyline.points;
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
-                    convo.say(thumbnail);
-                    convo.whipser('Does this look correct?', function (response, convo) {
+                    convo.whisper(thumbnail);
+                    convo.whisper('Does this look correct?', function (response, convo) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
                           convo.whisper('Great. I\'ll tell the rideshare channel.');
