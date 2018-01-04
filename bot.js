@@ -219,7 +219,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.user){
-                bot.reply(message.user, message.user);
+                bot.reply(message, message.user);
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
                 clickButton.attachments[0].actions[0].value = message.actions[0].selected_options[0].value;
                 clickButton.attachments[0].actions[1].value = message.actions[0].selected_options[0].value;
@@ -237,7 +237,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
-                bot.reply(user[i].id, user[i].id);
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
                 clickButton.attachments[0].actions[0].value = message.actions[0].selected_options[0].value;
                 clickButton.attachments[0].actions[1].value = message.actions[0].selected_options[0].value;
