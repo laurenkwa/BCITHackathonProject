@@ -282,7 +282,7 @@ module.exports = function(controller) {
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
                             var time = (parseInt(submission.Time) <= 12) 
-                              ? submission.Time + 'am' 
+                              ? ((submission.Time == '00') ? '12:00' : ) + 'am' 
                               : toString(parseInt(submission.Time) - 12) + 'pm';
                             controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: '<@' + message.user + '>', seats:submission.Seats, time: time, twentyFourTime:submission.Time, date:submission.Date}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
@@ -308,12 +308,11 @@ module.exports = function(controller) {
         });
       }
   
-    function privateMessage(bot) {
-      bot.api.conversations.open({
-        token: process.env.legacyToken,
-        users: 
-        
-      });
+    controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
+        bot.api.conversations.open({
+          token: process.env.legacyToken,
+          users: 'U5E31FZAB'
+        });
     
     }
   
