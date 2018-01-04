@@ -218,12 +218,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 bot.reply(user[i].id, user[i].id);
-                bot.say(
-                {
-                  text: clickButton,
-                  channel: user[i].id // a valid slack channel, group, mpim, or im ID
-                }
-                );
+                
                 bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
