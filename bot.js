@@ -231,7 +231,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             controller.storage.channels.all(function(err, user) {
               for(var i = 0; i < user.length; i++){
                 if(user[i].id == message.user){
-                  user[i].seats
+                  user[i].seats = parseInt(user[i].seats) + 1;
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been declined to car pool on the ' + user[i].name + ' route');
                 }
               }
