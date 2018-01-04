@@ -87,7 +87,7 @@ module.exports = function(controller) {
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
                             controller.storage.channels.save({id: message.user, name: name, image: thumbnail}, function(err, user) {
-                              controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user});  
+                              controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
                           });
                         } else {
