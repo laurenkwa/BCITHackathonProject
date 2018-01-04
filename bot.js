@@ -304,7 +304,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             if(parseInt(user[i].seats) > 0){
               var string = user[i].name + '  ~  Seats: ' + user[i].seats;
               var object = { text: string, value: user[i].name };
-              text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nwith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n';
+              text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
               dropDownList.attachments[0].actions[0].options.push(object);
             }
           }
