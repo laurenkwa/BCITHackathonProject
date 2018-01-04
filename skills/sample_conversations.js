@@ -61,7 +61,7 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       var correct = false;
-                      while (!correct) {
+                      while (correct == false) {
                         if (response.text.toUppercase() == 'YES') {
                           correct = true;
                           convo.say('Well done!');
