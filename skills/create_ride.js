@@ -15,7 +15,7 @@ module.exports = function(controller) {
               'Route Selector',
               'callback_id',
               'Submit'
-            ).addText('Start Location','Start Location','Your Address')
+            ).addText('Start Location','StartLocation','Your Address')
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Date', 'Date', 'Date')
@@ -36,23 +36,18 @@ module.exports = function(controller) {
       function offerRide(bot, message, submission) {
               bot.startConversation(message, function(err, convo) {
             
-              convo.ask('Where will you start driving from?', function(response, convo) {
-                  var origin = response.text;
+                  var origin = submission.StartLocation;
                   if (origin.toUpperCase() == 'BCIT') {
                     origin = 'BCIT Burnaby campus';
                   }
-                  convo.say('Cool, let\'s start at ' + origin);
-                  convo.next();
-                  convo.ask('Where will you drive to?', function(response, convo) {
 
-                    var destination = response.text;
+                    var destination = submission.Destination;
                     
                    if (destination.toUpperCase() == 'BCIT') {
                       destination = 'BCIT Burnaby campus';
                     }
                     
                     
-                    convo.next();
                     convo.say('Great, let\'s go to ' + destination);
                     destination = destination + "Vancouver BC";
                     origin = origin + " Vancouver BC";

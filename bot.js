@@ -225,7 +225,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   if (process.env.studio_token) {
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
-         bot.reply(message, 'You chose a route!'); 
+         bot.reply(message, 'You chose a route!' + message.value); 
         }
       });
     
