@@ -77,13 +77,14 @@ module.exports = function(controller) {
       });
   
     controller.on('dialog_submission', function(bot, message) {
-          var submission = message.submission;
-          //bot.reply(message, 'Got it!');
+      var submission = message.submission;
+      //bot.reply(message, 'Got it!');
   
-          // call dialogOk or else Slack will think this is an error
-          bot.dialogOk();
-          offerRide(bot, message, submission); 
-      });
+      if(submission.callback_id == 'route_creator){
+        bot.dialogOk();
+        offerRide(bot, message, submission); 
+      }
+    });
     
     /***** Opens a route dialog box to choose time and location *****/
     function routeDialog(bot, message){
