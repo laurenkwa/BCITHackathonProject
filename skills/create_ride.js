@@ -81,12 +81,13 @@ module.exports = function(controller) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
                           convo.say('Great. I\'ll tell the rideshare channel.');
+                          convo.next();
                           //controller.storage.channels.delete(message.user, function(err){});
                           controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
                           //controller.storage.channels.save({id: message.user, name: name, image: thumbnail}, function(err, user) {});
                           //controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name);});  
                           controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
-                          //convo.next();
+                          convo.next();
                           alertChannel(bot, submission);
                         } else {
                           offerRide(bot, name);
