@@ -27,7 +27,7 @@ module.exports = function(controller) {
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(jsonMap);
                     var mapObject;
-                    var XMLHttpRequest = require("../../xmlhttprequest.js").XMLHttpRequest;
+                    var XMLHttpRequest = require("../xmlhttprequest.js").XMLHttpRequest;
                     var xmlhttp = new XMLHttpRequest();
                     convo.say("Let's get started.");
                     xmlhttp.onreadystatechange = function() {
