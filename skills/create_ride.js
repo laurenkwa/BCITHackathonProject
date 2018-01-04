@@ -24,7 +24,14 @@ module.exports = function(controller) {
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
   
-  
+    controller.on('dialog_submission', function(bot, message) {
+        var submission = message.submission;
+        bot.reply(message, 'Got it!' + submission.Destination);
+
+        // call dialogOk or else Slack will think this is an error
+        bot.dialogOk();
+        offerRide();
+      });
   
     controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
       offerRide();
