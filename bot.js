@@ -299,9 +299,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           for(var i = 0; i < user.length; i++){
-            bot.reply(message, '' + user[i].date);
+            //bot.reply(message, '' + user[i].time);
             if(parseInt(user[i].seats) > 0){
-              var string = user[i].name + '  ~  Seats: ' + user[i].seats;// + '  ~  ' + user[i].date + ' at ' + user[i].time;
+              var string = user[i].name + '  ~  Seats: ' + user[i].seats + '  ~  ' + user[i].date + ' at ' + user[i].time;
               var object = { text: string, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
             }
