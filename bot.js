@@ -235,7 +235,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   text: clickButton,
                   channel: user[i].id // a valid slack channel, group, mpim, or im ID
                 }
-);
+                );
+                bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
           }); 
