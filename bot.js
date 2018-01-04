@@ -214,8 +214,17 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.reply(message, 'it works');
       });
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
+        controller.storage.channels.all(function(err, user) {
+          var string = "";
+          for(var i = 0; i < user.length; i++){
+            string+= '[' + user[i].id + ',' + user[i].name + '] ';
+          }
+          bot.reply(message, user.length + string);
+        });  
+        
         bot.reply(message, dropDownList);
       });
+    
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
         controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
