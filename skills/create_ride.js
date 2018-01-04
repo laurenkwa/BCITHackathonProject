@@ -80,12 +80,13 @@ module.exports = function(controller) {
       var submission = message.submission;
       //bot.reply(message, 'Got it!');
   
-      if(submission.callback_id == 'route_creator'){
+      if(message.callback_id == 'route_creator'){
         bot.dialogOk();
         offerRide(bot, message, submission); 
       }
       if(submission.callback_id == 'route_selector'){
-       routeMenu(bot, message, submission.City, submission.Time); 
+        bot.dialogOk();
+        routeMenu(bot, message, submission.City, submission.Time); 
       }
     });
     
