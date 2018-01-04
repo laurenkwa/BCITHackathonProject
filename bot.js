@@ -223,7 +223,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   //bot.reply(message, 'works');
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route');
                   bot.say(user[i].id.driver);
-                  startPrivateMessage(bot, user[i].driver, message.user);
+                  //startPrivateMessage(bot, user[i].driver, message.user);
                 }
               }
             }); 
