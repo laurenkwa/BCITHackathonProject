@@ -26,7 +26,7 @@ module.exports = function(controller) {
   
     controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Got it!');
+        //bot.reply(message, 'Got it!');
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
