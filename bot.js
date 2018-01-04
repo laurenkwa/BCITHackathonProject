@@ -230,7 +230,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 bot.reply(message, user[i].id);
-                bot.whisper(user[i].id, "this works");
+                //bot.whisper(user[i].id, "this works");
+                bot.sendEphemeral({
+                  channel: 'rideshare',
+                  user: user[i].id,
+                  text: "Pssst! You my friend, are a true Bot Champion!"});
               }
             }
           }); 
