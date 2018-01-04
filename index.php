@@ -21,7 +21,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <!-- <script src="driverMap.js" type="text/javascript"></script> -->
+    <script src="driverMap.js" type="text/javascript"></script>
     <title>Ride-Share</title>
 
 </head>
@@ -36,6 +36,12 @@
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="active">
+                <a data-toggle="tab" href="#offers">Offers</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#requests">Requests</a>
+            </li>
+            <li>
                 <a data-toggle="tab" href="#driver">Offer a Drive</a>
             </li>
             <li>
@@ -44,7 +50,58 @@
         </ul>
 
         <div class="tab-content">
-            <div id="driver" class="tab-pane fade in active">
+            <div id="offers" class="tab-pane fade in active">
+            <?php
+                $offer_file = "offer.json";
+                $offers = json_decode(file_get_contents($offer_file, TRUE), TRUE);
+                $i = 0;
+                if (sizeof($offers) == 0) {
+                    echo("No offer has been posted");
+                } else {
+                foreach ($offers as $offer) {
+                    $i += 1;
+                    ?>
+                    <iframe id="googleMap<?php echo($i); ?>" width="1000" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <script>
+                        $(function() {
+                            $("#googleMap<?php echo($i); ?>").attr("src", "https://www.google.com/maps/embed/v1/directions?origin=" +
+                            <?php echo("\"" . $offer['driver_start'] . "\""); ?> +
+                            "&destination=" +
+                            <?php echo("\"" . $offer['driver_end'] . "\""); ?> +
+                            "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
+                        });
+                    </script>
+                    <?php
+                }}
+            ?>
+            
+            </div>
+            <div id="requests" class="tab-pane fade in">
+            <?php
+                $request_file = "passenger.json";
+                $requests = json_decode(file_get_contents($request_file, TRUE), TRUE);
+                $j = 0;
+                if (sizeof($requests) == 0) {
+                    echo("No request has been posted");
+                } else {
+                foreach ($requests as $request) {
+                    $j += 1;
+                    ?>
+                    <iframe id="googleMap2<?php echo($j); ?>" width="1000" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <script>
+                        $(function() {
+                            $("#googleMap2<?php echo($j); ?>").attr("src", "https://www.google.com/maps/embed/v1/directions?origin=" +
+                            <?php echo("\"" . $request['passenger_start'] . "\""); ?> +
+                            "&destination=" +
+                            <?php echo("\"" . $request['passenger_end'] . "\""); ?> +
+                            "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
+                        });
+                    </script>
+                    <?php
+                }}
+            ?>
+            </div>
+            <div id="driver" class="tab-pane fade in">
                 <h3>Offer a driver</h3>
                 <form class="form-horizontal" id="driverForm" method="post" action="offer_process.php">
                     <div class="form-group">
@@ -86,7 +143,7 @@
                         <input type="submit" onclick="driverMap();" class="btn btn-success" id="driver_submit">
                     </div>
                 </form>
-                <iframe id="googleMap" width="100" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <!-- <iframe id="googleMap" width="100" height="750" frameborder="0" style="border:0" allowfullscreen></iframe> -->
             </div>
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
