@@ -297,7 +297,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           for(var i = 0; i < user.length; i++){
-            bot.reply(message, 'ok' + user[i].seats);
+            bot.reply(message, user[i].seats);
             if(parseInt(user[i].seats) > 0){
               var object = { text: user[i].name, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
