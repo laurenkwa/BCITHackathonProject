@@ -230,7 +230,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
       
       controller.hears(['dia'], 'direct_message,direct_mention,mention', function(bot, message) {
-        dialog.open
+        bot.createDialog();
       });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
