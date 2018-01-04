@@ -76,11 +76,11 @@ module.exports = function(controller) {
                     var points = polyline.points;
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
-                    convo.whi(thumbnail);
-                    convo.whisper('Does this look correct?', function (response, convo) {
+                    convo.say(thumbnail);
+                    convo.say('Does this look correct?', function (response, convo) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
-                          convo.whisper('Great. I\'ll tell the rideshare channel.');
+                          convo.say('Great. I\'ll tell the rideshare channel.');
                           controller.storage.channels.save({id: message.user, name:name, image:thumbnail});
                           controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name);});  
                           convo.next();
