@@ -100,10 +100,11 @@ module.exports = function(controller) {
           //});
       }
         
-      function alertChannel(bot, name) {
+      function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name,
         channel: "C8NT4J1C7"
+          
         });
       }
 
