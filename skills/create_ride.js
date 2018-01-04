@@ -87,7 +87,7 @@ module.exports = function(controller) {
                           //convo.next();
                           alertChannel(bot, submission);
                         } else {
-                          offerRide(bot, message, submission);
+                          offerRide(bot, submission);
                         }
                     });
                   });
