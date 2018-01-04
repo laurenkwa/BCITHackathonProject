@@ -26,9 +26,9 @@ module.exports = function(controller) {
                     convo.say('Here\'s your map.');
                     convo.say("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
                     convo.addMessage({
-                text: 'Cheese! It is not for everyone.',
-                action: 'stop', // this marks the converation as unsuccessful
-            },'no_thread');
+                        text: 'Cheese! It is not for everyone.',
+                        action: 'stop', // this marks the converation as unsuccessful
+                    },'no_thread');
                     
                     
                     convo.ask('Does this look correct?', function (response, convo) {
