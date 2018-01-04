@@ -85,7 +85,7 @@ module.exports = function(controller) {
                         driver = name;
                     })
                     var name = route.summary;
-                    var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + + process.env.google_maps;
+                    var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + process.env.google_maps;
                     convo.say({
                       text: "<" + thumbnail + "|Map preview>",
                       unfurl_links: true
