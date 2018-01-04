@@ -231,11 +231,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
               if(user[i].name == message.actions[0].selected_options[0].value){
                 bot.reply(message, user[i].id);
                 //bot.whisper(user[i].id, "this works");
-                /*bot.sendEphemeral({
-                  channel: 'rideshare',
+                bot.sendEphemeral({
+                  channel: user[i].id,
                   user: user[i].id,
-                  text: "Pssst! You my friend, are a true Bot Champion!"});*/
-                bot.say({user:user[i].id, text:'this works'});
+                  text: clickButton});
+                //bot.say({user:user[i].id, text:'this works'});
               }
             }
           }); 
