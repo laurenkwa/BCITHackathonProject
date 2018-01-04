@@ -219,7 +219,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < 5; i++){
             array[i] = i;
           }
-          dropDownList.attachments = array;
+          dropDownList.attachments.actions.options = array;
         });  
         bot.reply(message, dropDownList);
       });
