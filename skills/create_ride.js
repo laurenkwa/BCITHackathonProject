@@ -120,9 +120,10 @@ module.exports = function(controller) {
       
       controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
             bot.reply(message, "I hear you");
+            startPrivateMessage(bot);
         });
   
-      function startPrivateMessage(bot, driver, passenger) {
+      function startPrivateMessage(bot) {
           bot.api.conversations.open({
             token: process.env.slackToken,
             users: "U5E31FZAB,U6YFZTGSG",
