@@ -222,6 +222,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 if(user[i].id == message.user){
                   bot.reply(message, 'works');
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route');
+                  startPrivateMessage();
                 }
               }
             }); 
@@ -238,6 +239,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
           }
         }
       });
+    
+    function startPrivateMessage() {
+    }
     
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
