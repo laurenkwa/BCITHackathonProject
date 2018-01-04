@@ -218,7 +218,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 bot.reply(user[i].id, user[i].id);
-                clickButton.text = "Accept Car Pool Ride Request From " + 
+                clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
