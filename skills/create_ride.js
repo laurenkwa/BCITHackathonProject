@@ -106,7 +106,7 @@ module.exports = function(controller) {
                 {label:'Burnaby',value:'Burnaby'},
                 {label:'Abbotsford',value:'Abbotsford'},
                 {label:'Mission',value:'Mission'},
-                {label:'New Westminister',value:'New Westminister'},
+                {label:'New Westminster',value:'New Westminster'},
                 {label:'North Vancouver',value:'North Vancouver'},
                 {label:'Richmond',value:'Richmond'},
                 {label:'Surrey',value:'Surrey'},
@@ -198,9 +198,9 @@ module.exports = function(controller) {
          bot.reply(message, '' + city + '~' + user[i].city);
          if(parseInt(user[i].seats) > 0 
             && parseInt(earlyTime) <= parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime) < parseInt(lateTime)
-            && city == user[i].city || city == "Other"
+            && (String(city) == String(user[i].city) || city == "Other")
            ){
-           routes ++;
+           routes++;
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
            var object = { text: string, value: user[i].name };
            text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
@@ -296,7 +296,8 @@ module.exports = function(controller) {
                     var city = String(cityString.match(regexPat));
                     city = city.slice(2, city.length - 1);
                     city = city.slice(0, city.indexOf(','));
-                    regexPat;
+                    regexPat = /[a-zA-Z\s]*/;
+                    city = String(city.match(regexPat));
                     bot.reply(message, 'test' + city);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
