@@ -49,7 +49,7 @@ function getCoodP(){
 }
 </script>
     <div class="jumbotron text-center">
-        <h1>Ride Share</h1>
+        <a href="index.php"><h1>Ride Share</h1></a>
         <p>Needs a ride? find one here!</p>
     </div>
     <div class="container">
