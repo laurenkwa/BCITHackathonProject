@@ -41,7 +41,7 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
-                        convo.say('Okay, let\'s try again.');
+                        convo.reply('Okay, let\'s try again.');
                         convo.next();
                         offerRide();
                       }
