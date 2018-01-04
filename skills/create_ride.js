@@ -105,6 +105,10 @@ module.exports = function(controller) {
 
    // });
 
+  controller.hears(['channel id'], 'direct_mention', function(bot, message) {
+    
+    
+  });
 
     controller.hears(['question'], 'direct_message,direct_mention', function(bot, message) {
 

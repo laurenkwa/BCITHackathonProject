@@ -238,6 +238,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.dialogOk();
       });
     
+      /****** Slash command for creating new route, opens dialog box *****/
       controller.on('slash_command', function(bot, message) {
         var dialog = bot.createDialog(
               'Route Selector',
@@ -251,6 +252,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
     
+      /*
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
