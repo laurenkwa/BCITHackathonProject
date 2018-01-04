@@ -15,11 +15,8 @@
         crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <!-- Google Map -->
-    <!-- <script src="GoogleMap.js"></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap" async
-        defer></script>
+            crossorigin="anonymous"></script>
+    <script src="driverMap.js" type="text/javascript"></script>
     <title>Ride-Share</title>
 </head>
 
@@ -80,9 +77,10 @@
                         </div>
                     </div>
                     <div class="col-sm-10 col-sm-offset-2">
-                        <input type="submit" class="btn btn-success" id="driver_submit">
+                        <input type="submit" onclick="driverMap();" class="btn btn-success" id="driver_submit">
                     </div>
                 </form>
+                <iframe id="googleMap" width="1000" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
