@@ -123,7 +123,7 @@ module.exports = function(controller) {
       function startPrivateMessage(bot) {
           bot.api.conversations.open({
             token: process.env.slackToken,
-            users: "U5E31FZAB,U6YFZTGSG",
+            users: 'U5E31FZAB,U6YFZTGSG',
             text: "You can use this message to work out the details of your upcoming ride."
           });
       }
