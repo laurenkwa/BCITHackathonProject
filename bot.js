@@ -235,14 +235,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
               'callback_id',
               'Submit'
             ).addText('Start Location','Start Location','Your Address')
-              .addText('Text','Destination','Destination Address')
-              .addText('Text','Seats','Number of Seats Available')
-              .addText('Text','Time of Departure','0:00 - 24:00');
+              .addText('Destination','Destination','Destination Address')
+              .addText('Seats','Seats','Number of Seats Available')
+              .addText('Time of Departure','Time of Departure','0:00 - 24:00');
 
-
-        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {
-          // handle your errors!
-        })
+        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
