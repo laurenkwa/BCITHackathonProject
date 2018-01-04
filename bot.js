@@ -241,7 +241,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
     
     function startPrivateMessage() {
-      
+      bot.startPrivateConversation() {
+        
+        
+      }
     }
     
       /****** Sends acceptence message to route owner upon route selection *****/
