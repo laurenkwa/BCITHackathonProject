@@ -143,7 +143,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, message.channel);
+        bot.reply(message, message.user);
         controller.storage.channels.save({id: message.user, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
       });
       controller.hears(['gets'], 'direct_message,direct_mention,mention', function(bot, message) {
@@ -152,7 +152,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
         //controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
       });
       controller.hears(['all'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, message.channel);
         controller.storage.channels.all(function(err, user) {
           var string;
           for(var i = 0; i < user.length; i++){
