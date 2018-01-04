@@ -212,7 +212,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
     
-      
+      /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
           bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
@@ -230,9 +230,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
+    
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Got it!' + submission.Destination);
+        bot.reply(message, 'Your route has been selected, the ' + submission.Destination);
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
