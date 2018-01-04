@@ -9,36 +9,6 @@ through the conversation are chosen based on the user's response.
 
 */
 
-var scrollDialog = {
-    "label": "Meal preferences",
-    "type": "select",
-    "name": "meal_preferences",
-    "placeholder": "Select a meal preference",
-    "value": "vegan",
-    "options": [
-        {
-            "label": "Hindu (Indian) vegetarian",
-            "value": "hindu"
-        },
-        {
-            "label": "Strict vegan",
-            "value": "vegan"
-        },
-        {
-            "label": "Kosher",
-            "value": "kosher"
-        },
-        {
-            "label": "Just put it in a burrito",
-            "value": "burrito"
-        },
-        {
-            "label": "Other",
-            "value": "other"
-        }
-    ]
-}
-
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
         bot.replyAcknowledge();
@@ -55,7 +25,15 @@ module.exports = function(controller) {
       });
   
     function launchDialog(bot, message) {
-        var dialog = bot.createDialog(scrollDialog);
+        var dialog = bot.createDialog(
+              'Route Selector',
+              'callback_id',
+              'Submit'
+            ).addText('Start Location','StartLocation','Your Address')
+              .addText('Destination','Destination','Destination Address')
+              .addText('Seats','Seats','Number of Seats Available')
+              .addText('Date', 'Date', 'Date')
+              .addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
         
