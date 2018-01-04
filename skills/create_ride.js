@@ -40,8 +40,8 @@ var selectionButton = {
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
         bot.replyAcknowledge();
-        bot.reply({text: '', channel: 
-        launchDialog(bot, message);
+        bot.reply({text: '', channel: message.user}, selectionButton);
+        //launchDialog(bot, message);
       });
   
     controller.on('dialog_submission', function(bot, message) {
@@ -179,7 +179,7 @@ module.exports = function(controller) {
             token: process.env.slackToken,
             users: 'U5E31FZAB',
           });
-          
+          bot.say(newConvo);
           bot.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
