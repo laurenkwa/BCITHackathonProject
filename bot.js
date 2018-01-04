@@ -223,7 +223,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      /*controller.on('interactive_message_callback', function(bot, message) {
+      controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
          bot.reply(message, 'You chose a route!'); 
         }

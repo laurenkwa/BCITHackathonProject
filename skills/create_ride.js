@@ -33,9 +33,9 @@ module.exports = function(controller) {
         offerRide(bot, message, submission);
       });
   
-      function offerRide(bot, message) {
+      function offerRide(bot, message, submission) {
               bot.startConversation(message, function(err, convo) {
-
+            
               convo.ask('Where will you start driving from?', function(response, convo) {
                   var origin = response.text;
                   if (origin.toUpperCase() == 'BCIT') {
@@ -91,7 +91,7 @@ module.exports = function(controller) {
                           convo.next();
                           alertChannel();
                         } else {
-                          offerRide(bot, message);
+                          offerRide(bot, message, submission);
                         }
                     });
                   });
