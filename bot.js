@@ -231,7 +231,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Got it!' + message.StartLocation);
+        bot.reply(message, 'Got it!' + submission.Desti);
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
