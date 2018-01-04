@@ -230,8 +230,15 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
       
       controller.hears(['dia'], 'direct_message,direct_mention,mention', function(bot, message) {
+        bot.reply(message, 'o');
         var dialog = bot.createDialog(
-              dialogBox);
+              'Title of dialog',
+              'callback_id',
+              'Submit'
+            ).addText('Text','text','some text')
+              .addSelect('Select','select',null,[{label:'Foo',value:'foo'},{label:'Bar',value:'bar'}],{placeholder: 'Select One'})
+             .addTextarea('Textarea','textarea','some longer text',{placeholder: 'Put words here'})
+             .addUrl('Website','url','http://botkit.ai');
 
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {

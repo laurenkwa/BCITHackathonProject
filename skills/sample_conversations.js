@@ -20,6 +20,7 @@ module.exports = function(controller) {
                   if (origin.toUpperCase() == 'BCIT') {
                     origin = 'BCIT Burnaby campus';
                   }
+                  origin = origin + " Vancouver BC";
                   convo.say('Cool, let\'s start at ' + origin);
                   convo.next();
                   convo.ask('Where will you drive to?', function(response, convo) {
