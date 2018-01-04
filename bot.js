@@ -308,6 +308,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
               dropDownList.attachments[0].actions[0].options.push(object);
             }
           }
+          dropDownList.attachments[0].text = text;
           bot.reply(message, dropDownList);
         });  
       });
