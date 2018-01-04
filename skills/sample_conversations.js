@@ -26,11 +26,11 @@ module.exports = function(controller) {
                     convo.say('Here\'s your map.');
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(jsonMap);
-                    
+                    var mapObject;
                     var xmlhttp = new XMLHttpRequest();
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            var mapObject = JSON.parse(jsonMap);
+                            mapObject = JSON.parse(this.responseText);
                         }
                     };
                     xmlhttp.open("GET", jsonMap, true);
