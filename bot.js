@@ -53,11 +53,11 @@ This bot demonstrates many of the core features of Botkit:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var dropDownList = {
-    "text": "What d?",
+    "text": "What route would you like to take?",
     "response_type": "in_channel",
     "attachments": [
         {
-            "text": "Choose a game to play",
+            "text": "Choose a route",
             "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
             "color": "#3AA3E3",
             "attachment_type": "default",
@@ -238,7 +238,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.reply(message, 'it works');
       });
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, clickButton);
+        bot.reply(message, dropDownList);
       });
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
