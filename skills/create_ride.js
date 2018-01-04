@@ -169,6 +169,23 @@ module.exports = function(controller) {
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
     }
   
+      controller.hears(['maps'], 'direct_mention', function(bot, message) {
+            controller.storage.channels.all(function(err, user) {
+            var images = "";
+            for(var i = 0; i < user.length; i++){
+                bot.say({
+                channel: "C8NT4J1C7",
+                attachments: 
+                  [{
+                    "fallback": "\n<" + user[i].image + "|Map preview>",
+                    "image_url": user[i].image
+                  }]
+                });
+            };
+
+
+        });
+  
     /***** Creates drop down menu of all available routes *****/
     function routeMenu(bot, message, city, earlyTime, lateTime){
      controller.storage.channels.all(function(err, user) {
@@ -272,7 +289,9 @@ module.exports = function(controller) {
                     
                     var route = mapObject.routes[0];
                     var regexPat = /,\s.*,/; 
-                    var city = mapObject.routes[0].legs[0].start_address;
+                    var cityString = mapObject.routes[0].legs[0].start_address;
+                    var city = cityString.match(regexPat);
+                    bot.reply(message, 'ok' + cityString);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     var driver = "";
