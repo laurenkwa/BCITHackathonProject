@@ -53,7 +53,7 @@ This bot demonstrates many of the core features of Botkit:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 var dropDownList = {
-    "text": "Would you like to play a game?",
+    "text": "What d?",
     "response_type": "in_channel",
     "attachments": [
         {
