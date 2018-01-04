@@ -19,7 +19,7 @@ module.exports = function(controller) {
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Date', 'Date', 'Date')
-              .addText('Time of Departure','TimeofDeparture','0:00 - 24:00');
+              .addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
@@ -111,7 +111,8 @@ module.exports = function(controller) {
       function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name + " by " + user.driver 
-          + '\nSeats: ' user.seats + 'Leaving:' + user.date + at<" + user.image + "|Map preview>",
+          + '\nSeats: ' + submission.Seats + 'Leaving:' + submission.Date + " at " + submission.Time + 
+          "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7"
           
         });
