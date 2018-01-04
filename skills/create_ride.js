@@ -89,7 +89,7 @@ module.exports = function(controller) {
     function routeDialog(bot, message){
       var dialog = bot.createDialog(
               'Route Selector',
-              'callback_id',
+              'route_selector',
               'Submit'
             ).addSelect('Select Your City','City',null,[
                 {label:'Vancouver',value:'Vancouver'},
@@ -261,13 +261,12 @@ module.exports = function(controller) {
       function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name + " by " + user.driver 
-          + '\nSeats: ' + user.seats + '\nLeaving: ' + user.date + " at " + user.time + 
-          "\n<" + user.image + "|Map preview>",
+          + '\nSeats: ' + user.seats + '\nLeaving: ' + user.date + " at " + user.time,
         channel: "C8NT4J1C7",
         attachments: 
           [{
             
-            "fallback": "Required plain-text summary of the attachment.",
+            "fallback": "\n<" + user.image + "|Map preview>",
             "image_url": user.image
           }]
         });
