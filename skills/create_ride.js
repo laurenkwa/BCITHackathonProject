@@ -87,7 +87,7 @@ module.exports = function(controller) {
                           //convo.next();
                           alertChannel(bot, submission);
                         } else {
-                          offerRide(bot, submission);
+                          offerRide(bot, name);
                         }
                     });
                   });
@@ -96,9 +96,9 @@ module.exports = function(controller) {
           //});
       }
         
-      function alertChannel(bot, submission) {
+      function alertChannel(bot, name) {
         bot.say({
-        text: 'New ride from ',
+        text: 'New ride offered: ' + name,
         channel: "C8NT4J1C7"
         });
       }
