@@ -234,9 +234,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
               dialogBox);
 
 
-        //bot.replyWithDialog(trigger, dialog.asObject(), function(err, res) {
+        //bot.replyWithDialog(message, dialog.asObject(), function(err, res) {
           // handle your errors!
-        });
+        //});
       });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
