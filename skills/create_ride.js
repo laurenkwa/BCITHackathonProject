@@ -171,7 +171,7 @@ module.exports = function(controller) {
        var text = '';
        for(var i = 0; i < user.length; i++){
          //bot.reply(message, '' + user[i].time);
-         if(parseInt(user[i].seats) > 0){
+         if(parseInt(user[i].seats) > 0 && earlyTime ){
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
            var object = { text: string, value: user[i].name };
            text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
@@ -313,7 +313,7 @@ module.exports = function(controller) {
           token: process.env.legacyToken,
           users: 'U5E31FZAB',
         });
-        newconvo.Channel.id
+        bot.say(newConvo.channel.id);
     });
     
   
