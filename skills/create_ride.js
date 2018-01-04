@@ -110,13 +110,23 @@ module.exports = function(controller) {
       function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name + " by " + user.driver 
-          + '\nSeats: ' + user.seats + '\nLeaving:' + user.date + " at " + user.time + 
+          + '\nSeats: ' + user.seats + '\nLeaving: ' + user.date + " at " + user.time + 
           "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7"
           
         });
       }
+  
+      
 
+  
+      function startPrivateMessage(bot, driver, passenger) {
+          bot.api.conversations.open({
+            token: process.env.slackToken,
+            users: driver + "," + passenger,
+            text: "You can use this message to work out the details of your upcoming ride."
+          });
+      }
    // });
 /*
 
