@@ -51,6 +51,98 @@ This bot demonstrates many of the core features of Botkit:
     -> http://howdy.ai/botkit
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+var dropDownList = {
+    "text": "Would you like to play a game?",
+    "response_type": "in_channel",
+    "attachments": [
+        {
+            "text": "Choose a game to play",
+            "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "callback_id": "game_selection",
+            "actions": [
+                {
+                    "name": "games_list",
+                    "text": "Pick a game...",
+                    "type": "select",
+                    "options": [
+                        {
+                            "text": "Hearts",
+                            "value": "hearts"
+                        },
+                        {
+                            "text": "Bridge",
+                            "value": "bridge"
+                        },
+                        {
+                            "text": "Checkers",
+                            "value": "checkers"
+                        },
+                        {
+                            "text": "Chess",
+                            "value": "chess"
+                        },
+                        {
+                            "text": "Poker",
+                            "value": "poker"
+                        },
+                        {
+                            "text": "Falken's Maze",
+                            "value": "maze"
+                        },
+                        {
+                            "text": "Global Thermonuclear War",
+                            "value": "war"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+var clickButton = {
+    "text": "Would you like to play a game?",
+    "attachments": [
+        {
+            "text": "Choose a game to play",
+            "fallback": "You are unable to choose a game",
+            "callback_id": "wopr_game",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "game",
+                    "text": "Chess",
+                    "type": "button",
+                    "value": "chess"
+                },
+                {
+                    "name": "game",
+                    "text": "Falken's Maze",
+                    "type": "button",
+                    "value": "maze"
+                },
+                {
+                    "name": "game",
+                    "text": "Thermonuclear War",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "war",
+                    "confirm": {
+                        "title": "Are you sure?",
+                        "text": "Wouldn't you prefer a good game of chess?",
+                        "ok_text": "Yes",
+                        "dismiss_text": "No"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
@@ -133,59 +225,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   var normalizedPath = require("path").join(__dirname, "skills");
   require("fs").readdirSync(normalizedPath).forEach(function(file) {
     require("./skills/" + file)(controller);
-  });
-  
-  var dropDownList = {
-    "text": "Would you like to play a game?",
-    "response_type": "in_channel",
-    "attachments": [
-        {
-            "text": "Choose a game to play",
-            "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
-            "color": "#3AA3E3",
-            "attachment_type": "default",
-            "callback_id": "game_selection",
-            "actions": [
-                {
-                    "name": "games_list",
-                    "text": "Pick a game...",
-                    "type": "select",
-                    "options": [
-                        {
-                            "text": "Hearts",
-                            "value": "hearts"
-                        },
-                        {
-                            "text": "Bridge",
-                            "value": "bridge"
-                        },
-                        {
-                            "text": "Checkers",
-                            "value": "checkers"
-                        },
-                        {
-                            "text": "Chess",
-                            "value": "chess"
-                        },
-                        {
-                            "text": "Poker",
-                            "value": "poker"
-                        },
-                        {
-                            "text": "Falken's Maze",
-                            "value": "maze"
-                        },
-                        {
-                            "text": "Global Thermonuclear War",
-                            "value": "war"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
-  
+  });  
   
   // This captures and evaluates any message sent to the bot as a DM
   // or sent to the bot in the form "@bot message" and passes it to
