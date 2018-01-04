@@ -88,7 +88,7 @@ module.exports = function(controller) {
                           convo.say('Great. I\'ll tell the rideshare channel.');
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
-                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail}, function(err, user) {
+                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver:message.}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
                           });
