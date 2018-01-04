@@ -282,8 +282,8 @@ module.exports = function(controller) {
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
                             var time = (parseInt(submission.Time) <= 12) 
-                              ? ((submission.Time == '00') ? '12:00' : ) + 'am' 
-                              : toString(parseInt(submission.Time) - 12) + 'pm';
+                              ? ((submission.Time == '00') ? '12:00' : submission.Time) + ':00 am' 
+                              : toString(parseInt(submission.Time) - 12) + ':00 pm';
                             controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: '<@' + message.user + '>', seats:submission.Seats, time: time, twentyFourTime:submission.Time, date:submission.Date}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
@@ -313,8 +313,8 @@ module.exports = function(controller) {
           token: process.env.legacyToken,
           users: 'U5E31FZAB'
         });
-    
     }
+    
   
 
 };
