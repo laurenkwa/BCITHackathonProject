@@ -155,7 +155,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           var string;
           for(var i = 0; i < user.length; i++){
-            string+=user[i].name;
+            string+= '[' + user[i].id + ',' + user[i].name + ']';
           }
           bot.reply(message, user.length + string);
         });  
