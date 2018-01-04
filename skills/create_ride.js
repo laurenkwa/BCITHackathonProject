@@ -104,12 +104,12 @@ module.exports = function(controller) {
       }
 
    // });
-
+/*
 
     controller.hears(['channel'], 'direct_message,direct_mention', function(bot, message) {
 
         bot.createConversation(message, function(err, convo) {
-        convo.say("I hear you!");
+        convo.say(message.channel);
 
             // create a path for when a user says YES
             /*convo.addMessage({
@@ -169,5 +169,5 @@ module.exports = function(controller) {
         });
 
     });
-
+*/
 };
