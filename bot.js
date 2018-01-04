@@ -261,7 +261,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 controller.storage.channels.get(user[i].id, function(err, user) {
                   bot.reply(message, 'ok' + user.name);
                 }); 
-                clickButton.text = "Accept Car Pool Ride Request From " + user[i].driver;
+                clickButton.text = "Accept Car Pool Ride Request From " + "<@" + message.user + ">";
                 clickButton.attachments[0].actions[0].value = message.user;
                 clickButton.attachments[0].actions[1].value = message.user;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
@@ -273,29 +273,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
-      /***** New route submitted ****
-      controller.on('dialog_submission', function(bot, message) {
-        var submission = message.submission;
-        bot.reply(message, 'Your route has been created and you will be notified if riders wish to carpool');
 
-        bot.dialogOk();
-      });
-    */
-    /**
-      //Slash command for creating new route, opens dialog box
-      controller.on('slash_command', function(bot, message) {
-        var dialog = bot.createDialog(
-              'Route Selector',
-              'callback_id',
-              'Submit'
-            ).addText('Start Location','StartLocation','Your Address')
-              .addText('Destination','Destination','Destination Address')
-              .addText('Seats','Seats','Number of Seats Available')
-              .addText('Time of Departure','TimeofDeparture','0:00 - 24:00');
-
-        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
-      });
-    */
       /***** Creates drop down menu of all available routes *****/
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
