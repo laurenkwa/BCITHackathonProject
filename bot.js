@@ -74,6 +74,24 @@ var dropDownList = {
     ]
 }
 
+var dialogBox = {
+    "callback_id": "ryde-46e2b0",
+    "title": "Request a Ride",
+    "submit_label": "Request",
+    "elements": [
+        {
+            "type": "text",
+            "label": "Pickup Location",
+            "name": "loc_origin"
+        },
+        {
+            "type": "text",
+            "label": "Dropoff Location",
+            "name": "loc_destination"
+        }
+    ]
+}
+
 var clickButton = {
     "text": "Would you like to play a game?",
     "attachments": [
@@ -210,8 +228,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
          bot.reply(message, 'You chose a route!'); 
         }
       });
+      
+      
     
-      controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           for(var i = 0; i < user.length; i++){
