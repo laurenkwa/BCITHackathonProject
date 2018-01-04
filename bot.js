@@ -222,7 +222,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 if(user[i].id == message.user){
                   //bot.reply(message, 'works');
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route.');
-                  startPrivateMessage(bot, user[i].id, message.user);
+                  startPrivateMessage(bot, user[i].id, message.actions[0].value);
                 }
               }
             }); 
