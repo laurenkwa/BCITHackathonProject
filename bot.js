@@ -211,6 +211,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
+    
+      
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
           bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
@@ -219,6 +221,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
               if(user[i].name == message.actions[0].selected_options[0].value){
                 bot.reply(user[i].id, user[i].id);
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
+                clickButton.attachments[0].actions[0].value = message.actions[0].selected_options[0].value;
+                clickButton.attachments[0].actions[1].value = message.actions[0].selected_options[0].value;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
