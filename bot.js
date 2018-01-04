@@ -232,7 +232,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 bot.whisper(user[i].id, "this works");
               }
             }
-        }); 
+          }); 
         }
       });
     
