@@ -25,6 +25,16 @@ module.exports = function(controller) {
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
                     convo.say("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
+                    convo.say({
+    "attachments": [
+        {
+            "fallback": "Required plain-text summary of the attachment.",
+            "text": "Optional text that appears within the attachment",
+            "image_url": "http://my-website.com/path/to/image.jpg",
+            "thumb_url": "http://example.com/path/to/thumb.png"
+        }
+    ]
+});
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
