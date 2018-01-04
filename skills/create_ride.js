@@ -155,7 +155,7 @@ module.exports = function(controller) {
     function launchDialog(bot, message) {
         var dialog = bot.createDialog(
               'Route Selector',
-              'callback_id',
+              'route_creator',
               'Submit'
             ).addText('Start Location','StartLocation','Your Address')
               .addText('Destination','Destination','Destination Address')
@@ -265,7 +265,6 @@ module.exports = function(controller) {
         channel: "C8NT4J1C7",
         attachments: 
           [{
-            
             "fallback": "\n<" + user.image + "|Map preview>",
             "image_url": user.image
           }]
