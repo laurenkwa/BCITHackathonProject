@@ -111,7 +111,6 @@ module.exports = function(controller) {
           + '\nSeats: ' + user.seats + '\nLeaving: ' + user.date + " at " + user.time + 
           "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7"
-          
         });
       }
   
