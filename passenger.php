@@ -18,7 +18,7 @@ include("includes/header.php");
 
 
     extract($_POST);
-    $file = "passenger.js";
+    $file = "passenger.json";
     $json = json_decode(file_get_contents($file, TRUE), TRUE);
     $json[] = $_POST;
     $json = json_encode($json);
@@ -37,7 +37,7 @@ include("includes/header.php");
     locations = [{lat : <?php echo $passenger_lat; ?>, lng : <?php echo $passenger_lng; ?>}, {lat : 49.1665898, lng : -123.133569}, {lat : 49.2993349, lng : -122.891689}]
     
     $.ajax({
-				url: "http://ride-share.azurewebsites.net/offer.js",
+				url: "http://ride-share.azurewebsites.net/offer",
 				type: "GET",
 				dataType: 'json',
 				error: function (x, y, z) {
