@@ -65,8 +65,8 @@ module.exports = function(controller) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
                           convo.say('Great. I\'ll tell the rideshare channel.');
-                          controller.storage.channels.save({id: message.user, name:name, image:thumbnail}, function(err, user) {bot.reply(message, 'saved');});
-                          controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
+                          controller.storage.channels.save({id: convo.user, name:name, image:thumbnail}, function(err, user) {bot.reply(convo, 'saved');});
+                          controller.storage.channels.get(convo.user, function(err, user) {bot.reply(convo, 'ok' + user.name);});  
                           convo.next();
                         } else {
                           offerRide();

@@ -229,7 +229,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });*/
       
-      controller.hears('interactive_message_callback', function(bot, message) {
+      controller.hears('interactive_message_callback', function(bot, trigger) {
         if(message.callback_id == 'route_selection'){
         var dialog = bot.createDialog(
               'Title of dialog',
@@ -241,7 +241,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
              .addUrl('Website','url','http://botkit.ai');
 
 
-        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {
+        bot.replyWithDialog(trigger, dialog.asObject(), function(err, res) {
           // handle your errors!
         });
         }
