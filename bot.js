@@ -216,7 +216,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'accept_ride_request' && message.actions[0].name == "Yes"){
           bot.reply(message, 'Rider Accepted' + message.user); 
-          controller.storage.channels.all(function(err, user) {
+          /*controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               bot.reply(message, user[i].id);
               if(user[i].id == message.user){
@@ -227,7 +227,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
-          }); 
+          }); */
         }
       });
     
