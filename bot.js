@@ -240,10 +240,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
-    function startPrivateMessage(message) {
+    function startPrivateMessage(driver, passenger) {
       bot.api.conversations.open({
-        users: message.user
-        
+        users: driver + "," + passenger
       });
       }
     }
