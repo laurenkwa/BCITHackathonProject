@@ -206,7 +206,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.on('interactive_message_callback', function(bot, message) {
-        if(
+        if(message.callback_id == route_selection){
+         bot.reply(message, 'you chose a  
+        }
       });
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
