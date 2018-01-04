@@ -63,7 +63,7 @@ module.exports = function(controller) {
                             //convo.say("Got it.");
                             mapObject = JSON.parse(this.responseText);
                         } else {
-                          convo.whisper("Uh oh. JSON error. Try again.");
+                          convo.say("Uh oh. JSON error. Try again.");
                         }
                     };
                     xmlhttp.open("GET", jsonMap, false);
@@ -76,7 +76,7 @@ module.exports = function(controller) {
                     var points = polyline.points;
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
-                    convo.whisper(thumbnail);
+                    convo.whi(thumbnail);
                     convo.whisper('Does this look correct?', function (response, convo) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
