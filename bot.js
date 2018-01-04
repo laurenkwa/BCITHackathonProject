@@ -234,7 +234,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.hears();
+      controller.on('interactive_message_callback', function(bot, message) {
+        bot.reply(
+      });
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, clickButton);
       });
