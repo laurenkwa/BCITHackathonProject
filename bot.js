@@ -224,7 +224,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 if(user[i].id == message.user){
                   //bot.reply(message, 'works');
                   bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route.');
-                  startPrivateMessage(bot, user[i].id, message.actions[0].value);
+                  //startPrivateMessage(bot, user[i].id, message.actions[0].value);
                 }
               }
             }); 
@@ -242,14 +242,15 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
+    /*
     function startPrivateMessage(bot, driver, passenger) {
       bot.api.conversations.open({
-        token: process.env.slackToken,
+        token: process.env.legacyToken,
         users: driver + "," + passenger,
         text: "You can use this message to work out the details of your upcoming ride."
       });
       }
-    
+    */
     
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
@@ -259,7 +260,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 controller.storage.channels.get(user[i].id, function(err, user) {
-                  bot.reply(message, 'ok' + user.name);
+                  bot.reply(message, '' + user.name);
                 }); 
                 clickButton.text = "Accept Car Pool Ride Request From " + "<@" + message.user + ">";
                 clickButton.attachments[0].actions[0].value = message.user;
@@ -302,7 +303,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['get'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
         //controller.storage.channels.all(function(err, user) {bot.reply(message, 'ok' + user.length);});  
-        controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
+        controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, '' + user.name);});  
       });
       controller.hears(['all'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {

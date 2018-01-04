@@ -174,6 +174,7 @@ module.exports = function(controller) {
             var images = "";
             for(var i = 0; i < user.length; i++){
                 bot.say({
+                text: 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time,
                 channel: "C8NT4J1C7",
                 attachments: 
                   [{
@@ -185,6 +186,7 @@ module.exports = function(controller) {
 
 
         });
+      });
   
     /***** Creates drop down menu of all available routes *****/
     function routeMenu(bot, message, city, earlyTime, lateTime){
@@ -288,10 +290,12 @@ module.exports = function(controller) {
                     xmlhttp.send();
                     
                     var route = mapObject.routes[0];
-                    var regexPat = /,\s.*,/; 
+                    var regexPat = /,[^,]*,[^,]*,[^,]*$/; 
                     var cityString = mapObject.routes[0].legs[0].start_address;
                     var city = cityString.match(regexPat);
-                    bot.reply(message, 'ok' + cityString);
+                    city = city.splice(2, city.lastIndexOf(','));
+                                       
+                    bot.reply(message, 'test' + city);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     var driver = "";
