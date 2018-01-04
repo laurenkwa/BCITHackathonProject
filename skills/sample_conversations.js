@@ -24,7 +24,7 @@ module.exports = function(controller) {
                     convo.next();
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
-                    convo.say("https://www.google.com/maps/dir/?api=1&origin=" + origin + "&destination=" + destination);
+                    convo.say("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=Minsk&mode=driving&key=YOUR_API_KEY&destination=" + destination);
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
