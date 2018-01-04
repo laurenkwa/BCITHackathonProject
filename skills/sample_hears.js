@@ -34,7 +34,7 @@ module.exports = function(controller) {
               token: process.env.legacyToken,
               users: 'U5E31FZAB'
             });
-            bot.reply(message, "Hello");
+            message.reply(message, newConvo);
         });
 
     controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
