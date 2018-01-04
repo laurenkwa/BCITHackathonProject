@@ -63,7 +63,7 @@ module.exports = function(controller) {
                           convo.say('Well done!');
                           convo.next();
                         } else {
-                          convo
+                          
                           offerRide();
                         }
                     });
