@@ -53,10 +53,10 @@ module.exports = function(controller) {
                 {label:'4:00 pm',value:'16'},
                 {label:'5:00 pm',value:'17'},
                 {label:'6:00 pm',value:'18'},
-                {label:'7:00 pm',value:'0'},
-                {label:'8:00 pm',value:'00'},
-                {label:'9:00 pm',value:'00'},
-                {label:'10:00 pm',value:'00'}, 
+                {label:'7:00 pm',value:'19'},
+                {label:'8:00 pm',value:'20'},
+                {label:'9:00 pm',value:'21'},
+                {label:'10:00 pm',value:'22'}, 
                 {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'});
               //.addText('Time of Departure','Time','0:00 - 24:00');
