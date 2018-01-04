@@ -298,10 +298,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             bot.reply(message, '' + user[i].seats);
             if(parseInt(user[i].seats) > 0){
-              user[i].seats = parseInt(user[i].seats) - 1;
-              controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
               var object = { text: user[i].name, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
+              user[i].seats = parseInt(user[i].seats) - 1;
+              bot.reply
+              controller.storage.channels.save(user[i], function(err, user) {});
             }
           }
           bot.reply(message, dropDownList);
