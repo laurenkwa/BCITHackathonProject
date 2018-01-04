@@ -237,7 +237,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   text: clickButton});
                 bot.say(
   {
-    text: 'my message text',
+    text: clickButton,
     channel: user[i].id // a valid slack channel, group, mpim, or im ID
   }
 );
