@@ -91,7 +91,7 @@ module.exports = function(controller) {
               'Route Selector',
               'callback_id',
               'Submit'
-            ).addText('Your Location','riderLocation','Your Address')
+            ).addText('Your City','riderLocation','Your Address')
               .addSelect('Select a Earliest Time','time',null,[
                 {label:'12:00 am',value:'00'},
                 {label:'1:00 am',value:'1'},
@@ -255,15 +255,6 @@ module.exports = function(controller) {
         channel: "C8NT4J1C7"
         });
       }
-  
-      
-      controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
-            bot.reply(message, "I hear you");
-            bot.message({
-            text: "Start your conversation.",
-            channel:bot.api.conversations.open({token: process.env.slackToken, users: 'U5E31FZAB'}).channel.id
-          });
-        });
   
 
 };
