@@ -111,7 +111,7 @@ module.exports = function(controller) {
       function alertChannel(bot, user) {
         bot.say({
         text: 'New ride offered: ' + user.name + " by " + user.driver 
-          + '\nSeats: ' + user.seats + 'Leaving:' + user.date + " at " + user.time + 
+          + '\nSeats: ' + user.seats + '\nLeaving:' + user.date + " at " + user.time + 
           "\n<" + user.image + "|Map preview>",
         channel: "C8NT4J1C7"
           
