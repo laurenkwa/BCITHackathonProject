@@ -84,6 +84,11 @@ module.exports = function(controller) {
           bot.dialogOk();
           offerRide(bot, message, submission); 
       });
+    
+    /***** Opens a route dialoge v *****/
+    function routeDialog(bot, message){
+
+    }
   
     /***** Creates drop down menu of all available routes *****/
     function routeMenu(bot, message){
@@ -222,13 +227,11 @@ module.exports = function(controller) {
       
       controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
             bot.reply(message, "I hear you");
-            var newConvo = bot.api.conversations.open({
-              token: process.env.slackToken,
-              users: 'U5E31FZAB'
-            });
+
           message.say({
             text: "Start your conversation.",
-            channel: newConvo.channel.id
+            channel:bot.api.conversations.open({token: process.env.slackToken, users: 'U5E31FZAB'
+            }).channel.id
           });
         });
   
