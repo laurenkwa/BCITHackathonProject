@@ -10,12 +10,12 @@ through the conversation are chosen based on the user's response.
 */
 
 var selectionButton = {
-    "text": "Would you like to create a new car pool route or find one??",
+    "text": "Would you like to create a new car pool route or find one?",
     "attachments": [
         {
             "text": "Choose?",
             "fallback": "Something went wrong",
-            "callback_id": "accept_ride_request",
+            "callback_id": "create_find",
             "color": "#3AA3E3",
             "attachment_type": "default",
             "actions": [
@@ -29,7 +29,7 @@ var selectionButton = {
                     "name": "Find",
                     "text": "Find",
                     "style": "Find",
-                    "type": "Find",
+                    "type": "button",
                     "value": "Find"
                 }
             ]
@@ -42,6 +42,15 @@ module.exports = function(controller) {
         bot.replyAcknowledge();
         bot.reply({text: '', channel: message.user}, selectionButton);
         //launchDialog(bot, message);
+      });
+    
+    controller.on('dialog_submission', function(bot, message) {
+          var submission = message.submission;
+          //bot.reply(message, 'Got it!');
+  
+          // call dialogOk or else Slack will think this is an error
+          bot.dialogOk();
+          offerRide(bot, message, submission); 
       });
   
     controller.on('dialog_submission', function(bot, message) {
