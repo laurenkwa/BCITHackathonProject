@@ -82,8 +82,8 @@ module.exports = function(controller) {
                     convo.say({
                       text: "Here's a map",
                       attachments: [{
-                        "image_url: thumbnail
-                      }],
+                        image_url: thumbnail
+                      }]
                     });
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
