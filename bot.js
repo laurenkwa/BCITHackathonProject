@@ -229,7 +229,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
       
-      
+      controller.hears(['dia'], 'direct_message,direct_mention,mention', function(bot, message) {
+        bot.reply(message, dialogBox);
+      });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
@@ -240,7 +242,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
           }
           bot.reply(message, dropDownList);
         });  
-        
       });
     
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
