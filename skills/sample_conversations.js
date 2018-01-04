@@ -64,6 +64,7 @@ module.exports = function(controller) {
                       while (!correct) {
                         if (response.text.toUppercase() == 'YES') {
                           correct = true;
+                          convo.say('Wel');
                           convo.next();
                         }
                       }
