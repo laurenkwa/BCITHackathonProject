@@ -33,7 +33,7 @@ module.exports = function(controller) {
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Date', 'Date', 'Date')
-              .addSelect('Select','select',null,[{label:'Foo',value:'foo'},{label:'Bar',value:'bar'}],{placeholder: 'Select One'})
+              .addSelect('Select','select',null,[{label:'Foo',value:'foo'}, {label:'Bar',value:'bar'}], {placeholder: 'Select One'})
               .addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
@@ -124,7 +124,7 @@ module.exports = function(controller) {
       function startPrivateMessage(bot) {
           bot.api.conversations.open({
             token: process.env.slackToken,
-            users: 'U5E31FZAB,U6YFZTGSG',
+            users: 'U5E31FZAB',
             text: "You can use this message to work out the details of your upcoming ride."
           });
       }
