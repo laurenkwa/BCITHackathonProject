@@ -84,7 +84,9 @@ module.exports = function(controller) {
         bot.dialogOk();
         offerRide(bot, message, submission); 
       }
-      
+      if(submission.callback_id == 'route_selector'){
+       routeMenu(bot, message); 
+      }
     });
     
     /***** Opens a route dialog box to choose time and location *****/
@@ -136,7 +138,7 @@ module.exports = function(controller) {
     }
   
     /***** Creates drop down menu of all available routes *****/
-    function routeMenu(bot, message){
+    function routeMenu(bot, message, date, time){
      controller.storage.channels.all(function(err, user) {
        dropDownList.attachments[0].actions[0].options.length = 0;
        var text = '';
@@ -240,9 +242,11 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + process.env.google_maps;
                     convo.say({
-                      attachments: 
+                        text: "great"
+                        channel: "C8NT4J1C7",
+                        attachments: 
                           [{
-                            "fallback": "\n<" + user.image + "|Map preview>",
+                            "fallback": "\n<" + thumbnail + "|Map preview>",
                             "image_url": user.image
                           }]
                     });
