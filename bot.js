@@ -256,7 +256,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 controller.storage.channels.get(user[i].id, function(err, user) {
-                  
+                  user
                   bot.reply(message, 'ok' + user.name);
                 }); 
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].driver;
