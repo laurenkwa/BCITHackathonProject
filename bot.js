@@ -227,7 +227,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         if(message.callback_id == 'route_selection'){
          bot.reply(message, 'You chose a route!'); 
         }
-      });*/
+      });
     
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;

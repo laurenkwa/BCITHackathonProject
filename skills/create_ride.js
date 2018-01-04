@@ -26,16 +26,14 @@ module.exports = function(controller) {
   
     controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Got it!' + submission.Destination);
+        bot.reply(message, 'Got it!');
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
-        offerRide();
+        offerRide(bot, message, submission);
       });
   
-    controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
-      offerRide();
-      function offerRide() {
+      function offerRide(bot, message) {
               bot.startConversation(message, function(err, convo) {
 
               convo.ask('Where will you start driving from?', function(response, convo) {
@@ -93,7 +91,7 @@ module.exports = function(controller) {
                           convo.next();
                           alertChannel();
                         } else {
-                          offerRide();
+                          offerRide(bot, message);
                         }
                     });
                   });
