@@ -106,9 +106,9 @@ module.exports = function(controller) {
    // });
 
   controller.hears(['channel'], 'direct_mention', function(bot, message) {
-    bot.create
-    bot.say({
-      text: "I hear you."
+    bot.createConversation(message, function(err, convo) {
+      convo.say("I hear you!");
+      
     });
   });
 

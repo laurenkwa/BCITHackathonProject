@@ -216,7 +216,17 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'accept_ride_request' && message.actions[0].selected_options[0].name == "Yes"){
           bot.reply(message, 'Rider Accepted' + message.actions[0].selected_options[0].value); 
-          bot.reply({text: '', channel: message.actions[0].selected_options[0].value}, clickButton); 
+          controller.storage.channels.all(function(err, user) {
+            for(var i = 0; i < user.length; i++){
+              if(user[i].name == message.id){
+                bot.reply(user[i].id, user[i].id);
+                clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
+                clickButton.attachments[0].actions[0].value = message.actions[0].selected_options[0].value;
+                clickButton.attachments[0].actions[1].value = message.actions[0].selected_options[0].value;
+                bot.reply({text: '', channel: user[i].id}, clickButton);
+              }
+            }
+          }); 
         }
       });
     
