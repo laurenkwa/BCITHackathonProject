@@ -39,6 +39,7 @@ module.exports = function(controller) {
         
     }
       function offerRide(bot, message, submission) {
+              var messageBackup = message;
               bot.startConversation(message, function(err, convo) {
             
                   var origin = submission.StartLocation;
@@ -101,7 +102,7 @@ module.exports = function(controller) {
                             });
                           });
                         } else {
-                          launchDialog(bot, message);
+                          launchDialog(bot, messageBackup);
                         }
                     });
                   });
