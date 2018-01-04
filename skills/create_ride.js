@@ -202,7 +202,7 @@ module.exports = function(controller) {
            routes++;
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
            var object = { text: string, value: user[i].name };
-           text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
+           text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + "\n<" + user[i].image + "|Map preview>" + "\n\n";
            dropDownList.attachments[0].actions[0].options.push(object);
          }
        }

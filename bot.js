@@ -297,13 +297,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       /***** Basic saving and loading of data *****/
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, message.user);
-        controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
+        controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {});
       });
       controller.hears(['get'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, message.channel);
         //controller.storage.channels.all(function(err, user) {bot.reply(message, 'ok' + user.length);});  
-        controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, '' + user.name);});  
+        controller.storage.channels.get(message.user, function(err, user) {});  
       });
       controller.hears(['all'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
@@ -311,11 +309,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             string+= '[' + user[i].id + ',' + user[i].name + '] ';
           }
-          bot.reply(message, user.length + string);
         });  
       });
       controller.hears(['delete'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, message.user);
         controller.storage.channels.delete(message.user, function(err){});
       });
   } else {
