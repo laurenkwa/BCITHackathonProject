@@ -118,9 +118,8 @@ module.exports = function(controller) {
       }
   
       
-      controller.hears(['privateMessage'], 'direct_message,direct_mention,mention', function(bot, message) {
-                    bot.reply(message, message.user);
-
+      controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
+            bot.reply(message, "I hear you");
         });
   
       function startPrivateMessage(bot, driver, passenger) {
