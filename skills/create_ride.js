@@ -11,7 +11,7 @@ through the conversation are chosen based on the user's response.
 
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
-        bot.replyAcknowledge;
+        bot.replyAcknowledge();
         launchDialog(bot, message);
       });
   
