@@ -252,7 +252,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
     
-      /*
+      /***** Creates drop down menu of all available routes *****/
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
@@ -264,6 +264,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
         });  
       });
     
+    
+      /***** Basic saving and loading of data *****/
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
         controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
