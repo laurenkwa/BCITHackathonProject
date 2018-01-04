@@ -93,16 +93,15 @@ module.exports = function(controller) {
               'Submit'
             ).addSelect('Select Your City','city',null,[
                 {label:'Vancouver',value:''},
+                {label:'Burnaby',value:''},
                 {label:'Abbotsford',value:''},
                 {label:'Mission',value:''},
                 {label:'New Westminister',value:''},
                 {label:'North Vancouver',value:''},
                 {label:'Richmond',value:''},
-                {label:'',value:''},
-                {label:'',value:''},
-                {label:'',value:''},
-                {label:'',value:''},
-                {label:'11:00 pm',value:'23'}
+                {label:'Surrey',value:''},
+                {label:'Whistler',value:''},
+                {label:'Other',value:'Other'}
               ], {placeholder: 'Select One'})
               .addSelect('Select a Earliest Time','time',null,[
                 {label:'12:00 am',value:'00'},
