@@ -78,8 +78,9 @@ module.exports = function(controller) {
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     var name = route.summary;
+                    var driver = "";
                     bot.api.users.info({user: message.user}, (error, response) => {
-                        var driver = response.user;
+                        driver = response.user;
                     })
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say({
@@ -92,7 +93,7 @@ module.exports = function(controller) {
                           convo.say('Great. I\'ll tell the rideshare channel.');
                           //convo.next();
                           controller.storage.channels.delete(message.user, function(err){
-                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver:message.user.name}, function(err, user) {
+                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: driver}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.driver); alertChannel(bot, user);});  
                             });
                           });
