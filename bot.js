@@ -217,9 +217,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
             var object = { text: user[i].name, value: user[i].name };
             dropDownList.attachments[0].actions[0].options.push(object);
           }
-          
+          bot.reply(message, dropDownList);
         });  
-        bot.reply(message, dropDownList);
+        
       });
     
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
