@@ -235,7 +235,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, dropDownList);
+        bot.reply(message, clickButton);
       });
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
