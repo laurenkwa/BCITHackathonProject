@@ -235,7 +235,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
                   channel: 'rideshare',
                   user: user[i].id,
                   text: "Pssst! You my friend, are a true Bot Champion!"});*/
-                bot.say(user[i].id, 'this works');
+                bot.say({user:user[i].id, text:'this works'});
               }
             }
           }); 
