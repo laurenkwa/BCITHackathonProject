@@ -52,35 +52,7 @@ This bot demonstrates many of the core features of Botkit:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-var scrollDialog = {
-    "label": "Meal preferences",
-    "type": "select",
-    "name": "meal_preferences",
-    "placeholder": "Select a meal preference",
-    "value": "vegan",
-    "options": [
-        {
-            "label": "Hindu (Indian) vegetarian",
-            "value": "hindu"
-        },
-        {
-            "label": "Strict vegan",
-            "value": "vegan"
-        },
-        {
-            "label": "Kosher",
-            "value": "kosher"
-        },
-        {
-            "label": "Just put it in a burrito",
-            "value": "burrito"
-        },
-        {
-            "label": "Other",
-            "value": "other"
-        }
-    ]
-}
+
 
 var dropDownList = {
     "text": "What route would you like to take?",
