@@ -160,7 +160,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           bot.reply(message, user.length + string);
         });  
       });
-      controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['del'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           for(var i = 0; i < user.length; i++){
             controller.storage.channels.delete(user[i].id, function(err){});
