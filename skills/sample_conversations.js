@@ -28,18 +28,16 @@ module.exports = function(controller) {
                     convo.say(jsonMap);
                     
                     var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        document.getElementById("demo").innerHTML = myObj.name;
-    }
-};
-xmlhttp.open("GET", "json_demo.txt", true);
-xmlhttp.send();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var mapObject = JSON.parse(jsonMap);
+                        }
+                    };
+                    xmlhttp.open("GET", jsonMap, true);
+                    xmlhttp.send();
                     
                     
                     
-                    var mapObject = JSON.parse(jsonMap);
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
