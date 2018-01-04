@@ -18,7 +18,7 @@ module.exports = function(controller) {
             ).addText('Start Location','Start Location','Your Address')
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
-              .addText('Time of Departure','Time of Departure','0:00 - 24:00');
+              .addText('Time of Departure','TimeofDeparture','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
       });
