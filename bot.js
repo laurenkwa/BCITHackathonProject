@@ -98,7 +98,7 @@ var clickButton = {
         {
             "text": "Accept?",
             "fallback": "Something went wrong",
-            "callback_id": "wopr_game",
+            "callback_id": "Accept Ride Request",
             "color": "#3AA3E3",
             "attachment_type": "default",
             "actions": [
@@ -113,8 +113,7 @@ var clickButton = {
                     "text": "No",
                     "style": "danger",
                     "type": "button",
-                    "value": "No",
-                  
+                    "value": "No"
                 }
             ]
         }
