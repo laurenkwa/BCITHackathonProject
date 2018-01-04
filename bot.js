@@ -98,7 +98,7 @@ var clickButton = {
         {
             "text": "Accept?",
             "fallback": "Something went wrong",
-            "callback_id": "Accept Ride Request",
+            "callback_id": "accept_ride_request",
             "color": "#3AA3E3",
             "attachment_type": "default",
             "actions": [
@@ -214,7 +214,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
-        if(message.callback_id == 'route_selection'){
+        if(message.callback_id == 'accept_ride_request' && message.actions[0].selected_option){
           bot.reply(message, 'You chose a route!' + message.actions[0].selected_options[0].value); 
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
