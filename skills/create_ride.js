@@ -84,7 +84,7 @@ module.exports = function(controller) {
                           controller.storage.channels.save({id: message.user, name:name, image:thumbnail});
                           controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name);});  
                           convo.next();
-                          alertChannel();
+                          alertChannel(bot, submission);
                         } else {
                           offerRide(bot, message, submission);
                         }
@@ -95,8 +95,11 @@ module.exports = function(controller) {
           //});
       }
         
-      function alertChannel() {
-        
+      function alertChannel(bot, submission) {
+        bot.say({
+        text: "Hello World!",
+        channel: 'C0XXXXXXX'
+        });
       }
 
    // });
