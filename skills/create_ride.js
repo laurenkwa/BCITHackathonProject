@@ -85,7 +85,7 @@ module.exports = function(controller) {
         offerRide(bot, message, submission); 
       }
       if(submission.callback_id == 'route_selector'){
-       routeMenu(bot, message); 
+       routeMenu(bot, message, submission.City, submission.Time); 
       }
     });
     
@@ -138,7 +138,7 @@ module.exports = function(controller) {
     }
   
     /***** Creates drop down menu of all available routes *****/
-    function routeMenu(bot, message, date, time){
+    function routeMenu(bot, message, city, time){
      controller.storage.channels.all(function(err, user) {
        dropDownList.attachments[0].actions[0].options.length = 0;
        var text = '';
@@ -242,12 +242,11 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=" + process.env.google_maps;
                     convo.say({
-                        text: "great"
-                        channel: "C8NT4J1C7",
+                        text: "great",
                         attachments: 
                           [{
                             "fallback": "\n<" + thumbnail + "|Map preview>",
-                            "image_url": user.image
+                            "image_url": thumbnail
                           }]
                     });
                     convo.ask('Does this look correct?', function (response, convo) {
