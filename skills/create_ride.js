@@ -91,15 +91,15 @@ module.exports = function(controller) {
                     });
                   });
 
-              });
-          });
+              //});
+          //});
       }
         
       function alertChannel() {
         
       }
 
-    });
+   // });
 
 
     controller.hears(['question'], 'direct_message,direct_mention', function(bot, message) {
