@@ -298,7 +298,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
-          bot.reply(message, '');
+          bot.reply(message, '' + user[i].date);
           for(var i = 0; i < user.length; i++){
             if(parseInt(user[i].seats) > 0){
               var string = user[i].name + '  ~  Seats: ' + user[i].seats + '  ~  ' + user[i].date + ' at ' + user[i].time;
