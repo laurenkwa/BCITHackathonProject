@@ -142,11 +142,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
-        controller.storage.channels.save({id: message.user, name:'Bob'}, function(err, user) {bot.reply(message, 'saved' + message);});
+        controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
       });
-      controller.hears(['gets'], 'direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['get'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
         controller.storage.channels.all(function(err, user) {bot.reply(message, 'ok' + user.length);});  
         //controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'ok' + user.name);});  
@@ -161,6 +161,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         });  
       });
       controller.hears(['del'], 'direct_message,direct_mention,mention', function(bot, message) {
+        bot.reply(message, message.user);
         controller.storage.channels.delete(message.user, function(err){});
       });
   } else {
