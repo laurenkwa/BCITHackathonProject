@@ -47,7 +47,7 @@ module.exports = function(controller) {
                       destination = 'BCIT Burnaby campus';
                     }
                     
-                    convo.say('Here\'s your map from ' + destination + );
+                    convo.say('Here\'s your map from ' + origin + ' to ' + destination);
 
                     //convo.say('Great, let\'s go to ' + destination);
                     destination = destination + "Vancouver BC";
@@ -63,7 +63,7 @@ module.exports = function(controller) {
                             //convo.say("Got it.");
                             mapObject = JSON.parse(this.responseText);
                         } else {
-                          convo.say("Uh oh.");
+                          convo.say("Uh oh. JSON error. Try again.");
                         }
                     };
                     xmlhttp.open("GET", jsonMap, false);
