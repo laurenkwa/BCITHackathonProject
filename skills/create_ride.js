@@ -85,9 +85,9 @@ module.exports = function(controller) {
           offerRide(bot, message, submission); 
       });
     
-    /***** Opens a route dialoge v *****/
+    /***** Opens a route dialog box to choose time and location *****/
     function routeDialog(bot, message){
-
+      
     }
   
     /***** Creates drop down menu of all available routes *****/
@@ -145,9 +145,9 @@ module.exports = function(controller) {
                 {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'});
 
-        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
-        
+      bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
     }
+  
       function offerRide(bot, message, submission) {
               bot.startConversation(message, function(err, convo) {
             
@@ -227,11 +227,9 @@ module.exports = function(controller) {
       
       controller.hears(['private'], 'direct_message,direct_mention,mention', function(bot, message) {
             bot.reply(message, "I hear you");
-
-          message.say({
+            bot.say({
             text: "Start your conversation.",
-            channel:bot.api.conversations.open({token: process.env.slackToken, users: 'U5E31FZAB'
-            }).channel.id
+            channel:bot.api.conversations.open({token: process.env.slackToken, users: 'U5E31FZAB'}).channel.id
           });
         });
   
