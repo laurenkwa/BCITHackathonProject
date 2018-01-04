@@ -161,9 +161,11 @@ if (!process.env.clientId || !process.env.clientSecret) {
         });  
       });
       controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
-        for(var i = 0; i < user.length; i++){
-            controller.storage.channels.delete(user
+        controller.storage.channels.all(function(err, user) {
+          for(var i = 0; i < user.length; i++){
+            controller.storage.channels.delete(user[i].id, function(err){});
           }
+        });
       });
   } else {
       console.log('~~~~~~~~~~');
