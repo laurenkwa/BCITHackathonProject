@@ -234,8 +234,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
                 bot.sendEphemeral({
                   channel: user[i].id,
                   user: user[i].id,
-                  text: clickButton});
+                  text: "Pssst! You my friend, are a true Bot Champion!"});
                 //bot.say({user:user[i].id, text:'this works'});
+                
               }
             }
           }); 
