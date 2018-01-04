@@ -68,6 +68,7 @@ module.exports = function(controller) {
                           controller.storage.channels.save({id: message.user, name:name, image:thumbnail});
                           controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name);});  
                           convo.next();
+                          alertChannel();
                         } else {
                           offerRide();
                         }
@@ -78,7 +79,8 @@ module.exports = function(controller) {
           });
       }
         
-      
+      function alertChannel() {
+      }
 
     });
 
