@@ -271,6 +271,8 @@ module.exports = function(controller) {
                     xmlhttp.send();
                     
                     var route = mapObject.routes[0];
+                    var regexPat = /,\s.*,/; 
+                    var city = mapObject.routes[0].legs[0].start_address;
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
                     var driver = "";
