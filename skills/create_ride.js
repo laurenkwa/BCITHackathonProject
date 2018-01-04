@@ -174,7 +174,7 @@ module.exports = function(controller) {
         });
   
       function startPrivateMessage(bot) {
-          bot.api.conversations.open({
+          var newConvo =bot.api.conversations.open({
             token: process.env.slackToken,
             users: 'U5E31FZAB',
           });
