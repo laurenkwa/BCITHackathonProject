@@ -228,11 +228,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
          bot.reply(message, 'You chose a route!'); 
         }
       });*/
-      
-    slashCommand.replyPrivate();
     
-      controller.on('sl', function(bot, message) {
-        if(message.callback_id == 'route_selection'){
+      controller.on('slash_command', function(bot, message) {
+        if(message == 'creatroute'){
           bot.reply(message, 'You chose a route!'); 
         var dialog = bot.createDialog(
               'Title of dialog',
