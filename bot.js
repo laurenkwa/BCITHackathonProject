@@ -264,6 +264,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.dialogOk();
       });
     
+    /**
       /****** Slash command for creating new route, opens dialog box *****/
       controller.on('slash_command', function(bot, message) {
         var dialog = bot.createDialog(
