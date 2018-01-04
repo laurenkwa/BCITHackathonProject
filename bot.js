@@ -211,8 +211,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           var array = [];
-          for(var i = 0; i < 5; i++){
-            var text = { "text": user[i].message, "value": i };
+          for(var i = 0; i < user.length; i++){
+            var text = { "text": user[i].name, "value": user[i].name };
+            bot.reply(message, text.text
             dropDownList.attachments[0].actions[0].options.push(text);
           }
           
