@@ -47,20 +47,20 @@ module.exports = function(controller) {
                       destination = 'BCIT Burnaby campus';
                     }
                     
-                    
-                    convo.say('Great, let\'s go to ' + destination);
+                    convo.say('Here\'s your map from ' + destination + );
+
+                    //convo.say('Great, let\'s go to ' + destination);
                     destination = destination + "Vancouver BC";
                     origin = origin + " Vancouver BC";
-                    convo.say('Here\'s your map.');
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
-                    convo.say(jsonMap);
+                    //convo.say(jsonMap);
                     var mapObject;
                     var XMLHttpRequest = require("../xmlhttprequest.js").XMLHttpRequest;
                     var xmlhttp = new XMLHttpRequest();
                     convo.say("Let's get started.");
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4) {
-                            convo.say("Got it.");
+                            //convo.say("Got it.");
                             mapObject = JSON.parse(this.responseText);
                         } else {
                           convo.say("Uh oh.");
