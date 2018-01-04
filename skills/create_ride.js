@@ -118,7 +118,9 @@ module.exports = function(controller) {
       }
   
       
-
+      controller.hears(['privateMessage'], 'direct_message,direct_mention,mention', function(bot, message) {
+            bot.say("I hear you.");
+        });
   
       function startPrivateMessage(bot, driver, passenger) {
           bot.api.conversations.open({

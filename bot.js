@@ -301,7 +301,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           bot.reply(message, '');
           for(var i = 0; i < user.length; i++){
             if(parseInt(user[i].seats) > 0){
-              var string = user[i].name + '  ~  Seats: ' + user[i].seats + '/n' + user[i].date + ' at ' + user[i].time;
+              var string = user[i].name + '  ~  Seats: ' + user[i].seats + '  ~  ' + user[i].date + ' at ' + user[i].time;
               var object = { text: string, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
             }
