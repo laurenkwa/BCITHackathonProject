@@ -241,6 +241,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
     
     function startPrivateMessage() {
+      
     }
     
       /****** Sends acceptence message to route owner upon route selection *****/
@@ -260,14 +261,14 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
-      /***** New route submitted *****/
+      /***** New route submitted ****
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
         bot.reply(message, 'Your route has been created and you will be notified if riders wish to carpool');
 
         bot.dialogOk();
       });
-    
+    */
     /**
       //Slash command for creating new route, opens dialog box
       controller.on('slash_command', function(bot, message) {
