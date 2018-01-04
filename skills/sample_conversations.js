@@ -61,7 +61,7 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
-                          convo.say('Well done!');
+                          convo.say('W');
                           convo.next();
                         } else {
                           offerRide();
