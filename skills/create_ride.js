@@ -92,15 +92,15 @@ module.exports = function(controller) {
               'callback_id',
               'Submit'
             ).addSelect('Select Your City','city',null,[
-                {label:'Vancouver',value:''},
-                {label:'Burnaby',value:''},
-                {label:'Abbotsford',value:''},
-                {label:'Mission',value:''},
-                {label:'New Westminister',value:''},
-                {label:'North Vancouver',value:''},
-                {label:'Richmond',value:''},
-                {label:'Surrey',value:''},
-                {label:'Whistler',value:''},
+                {label:'Vancouver',value:'Vancouver'},
+                {label:'Burnaby',value:'Burnaby'},
+                {label:'Abbotsford',value:'Abbotsford'},
+                {label:'Mission',value:'Mission'},
+                {label:'New Westminister',value:'New Westminister'},
+                {label:'North Vancouver',value:'North Vancouver'},
+                {label:'Richmond',value:'Richmond'},
+                {label:'Surrey',value:'Surrey'},
+                {label:'Whistler',value:'Whistler'},
                 {label:'Other',value:'Other'}
               ], {placeholder: 'Select One'})
               .addSelect('Select a Earliest Time','time',null,[
@@ -268,28 +268,8 @@ module.exports = function(controller) {
           [{
             
             "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "pretext": "Optional text that appears above the attachment block",
-            "author_name": "Bobby Tables",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "http://flickr.com/icons/bobby.jpg",
-            "title": "Slack API Documentation",
-            "title_link": "https://api.slack.com/",
-            "text": "Optional text that appears within the attachment",
-            "fields": [
-                {
-                    "title": "Priority",
-                    "value": "High",
-                    "short": false
-                }
-            ],
-            "image_url": "http://my-website.com/path/to/image.jpg",
-            "thumb_url": "http://example.com/path/to/thumb.png",
-            "footer": "Slack API",
-            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-            "ts": 123456789
-            image_url: user.image
-        }]
+            "image_url": user.image
+          }]
         });
       }
   
