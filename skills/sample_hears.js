@@ -28,20 +28,12 @@ module.exports = function(controller) {
     });
 
 
-    controller.hears(['^uptime','^debug'], 'direct_message,direct_mention', function(bot, message) {
-
-        bot.createConversation(message, function(err, convo) {
-            if (!err) {
-                convo.setVar('uptime', formatUptime(process.uptime()));
-                convo.setVar('convos', stats.convos);
-                convo.setVar('triggers', stats.triggers);
-
-                convo.say('My main process has been online for {{vars.uptime}}. Since booting, I have heard {{vars.triggers}} triggers, and conducted {{vars.convos}} conversations.');
-                convo.activate();
-            }
+    controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
+            bot.say(bot.api.conversations.open({
+              token: process.env.legacyToken,
+              users: 'U5E31FZAB',
+            }).channel.id);
         });
-
-    });
 
     controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
         if (message.match[1]) {
