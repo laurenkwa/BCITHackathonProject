@@ -217,6 +217,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           var array = [];
           for(var i = 0; i < 5; i++){
+            var text = {"text":
             dropDownList.attachments[0].actions[0].options.push({
                             "text": "Hearts",
                             "value": "hearts"
