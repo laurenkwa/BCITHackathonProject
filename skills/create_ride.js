@@ -91,7 +91,7 @@ module.exports = function(controller) {
               'Route Selector',
               'callback_id',
               'Submit'
-            ).addSelect('Select Your City','city',null,[
+            ).addSelect('Select Your City','City',null,[
                 {label:'Vancouver',value:'Vancouver'},
                 {label:'Burnaby',value:'Burnaby'},
                 {label:'Abbotsford',value:'Abbotsford'},
@@ -103,7 +103,7 @@ module.exports = function(controller) {
                 {label:'Whistler',value:'Whistler'},
                 {label:'Other',value:'Other'}
               ], {placeholder: 'Select One'})
-              .addSelect('Select a Earliest Time','time',null,[
+              .addSelect('Select a Earliest Time','Time',null,[
                 {label:'12:00 am',value:'00'},
                 {label:'1:00 am',value:'1'},
                 {label:'2:00 am',value:'2'},
