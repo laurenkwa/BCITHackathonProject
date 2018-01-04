@@ -80,7 +80,7 @@ module.exports = function(controller) {
                     var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say({
-                      text: "Here's a map",
+                      text: thumbnail | map,
                       attachments: [{
                         image_url: thumbnail
                       }]
