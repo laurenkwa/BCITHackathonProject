@@ -241,7 +241,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
     
     function startPrivateMessage(message) {
-      bot.api.conversations.open(message, function(err, convo) {});
+      bot.api.conversations.open({
+        
+        
+        message, function(err, convo) {});
       }
     }
     
