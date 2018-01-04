@@ -60,7 +60,7 @@ module.exports = function(controller) {
                     convo.say(thumbnail);
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
-                        if (correct == 'YES') {
+                        if (correct.toUpperCase() == 'YES') {
                           convo.say('Well done!');
                           convo.next();
                         } else {
