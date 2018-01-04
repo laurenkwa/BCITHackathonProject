@@ -212,10 +212,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
     
-      
+      /***** Sends confirmation to the rider if they are accepted  *****/
       controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'accept_ride_request' && message.actions[0].name == "Yes"){
-          bot.reply(message, 'Rider Accepted' + message.actions[0].name); 
+          bot.reply(message, 'Rider Accepted' + message.actions[0].value); 
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].id == message.user){
@@ -235,8 +235,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.actions[0].selected_options[0].value){
                 clickButton.text = "Accept Car Pool Ride Request From " + user[i].id;
-                clickButton.attachments[0].actions[0].value = message.id;
-                clickButton.attachments[0].actions[1].value = message.id;
+                clickButton.attachments[0].actions[0].value = message.user;
+                clickButton.attachments[0].actions[1].value = message.user;
                 bot.reply({text: '', channel: user[i].id}, clickButton);
               }
             }
