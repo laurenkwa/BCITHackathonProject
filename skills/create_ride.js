@@ -74,7 +74,6 @@ module.exports = function(controller) {
                     xmlhttp.open("GET", jsonMap, false);
                     xmlhttp.send();
                     
-                    
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
