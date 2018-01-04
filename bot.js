@@ -234,7 +234,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
               'Route Selector',
               'callback_id',
               'Submit'
-            ).addText('Text','text','some text')
+            ).addText('Text','Start Location','Your Address')
+              .addText('Text','Start Location','Your Address'
               .addSelect('Select','select',null,[{label:'Foo',value:'foo'},{label:'Bar',value:'bar'}],{placeholder: 'Select One'})
              .addTextarea('Textarea','textarea','some longer text',{placeholder: 'Put words here'})
              .addUrl('Website','url','http://botkit.ai');
