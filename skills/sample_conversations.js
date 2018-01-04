@@ -28,6 +28,7 @@ module.exports = function(controller) {
                     convo.say(jsonMap);
                     var mapObject;
                     var xmlhttp = new XMLHttpRequest();
+                    convo.say("Let's get started.");
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             convo.say("Got it.");

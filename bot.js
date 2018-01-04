@@ -194,6 +194,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
+      controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
+        bot.reply(message, object);
+      });
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
         controller.storage.channels.save({id: message.user, name:message.text}, function(err, user) {bot.reply(message, 'saved');});
