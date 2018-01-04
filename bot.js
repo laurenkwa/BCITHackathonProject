@@ -242,6 +242,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
     function startPrivateMessage(bot, driver, passenger) {
       bot.api.conversations.open({
+        token: 8,
         users: driver + "," + passenger,
         text: "You can use this message to work out the details of your upcoming ride."
       });
@@ -301,7 +302,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             bot.reply(message, '' + user[i].seats);
             if(parseInt(user[i].seats) > 0){
-              var object = { text: user[i].name, value: user[i].name };
+              var object = { text: user[i].name, value: user[i].name + '  ~  Seats: ' + user[i].seats };
               dropDownList.attachments[0].actions[0].options.push(object);
             }
           }
