@@ -96,7 +96,7 @@ module.exports = function(controller) {
       }
         
       function alertChannel(bot, submission) {
-        var rideshareChannel = bot.apichannels.list.
+        //var rideshareChannel = bot.apichannels.list.
         bot.say({
         text: "Hello World!",
         //channel:

@@ -214,8 +214,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       
       controller.on('interactive_message_callback', function(bot, message) {
-        if(message.callback_id == 'accept_ride_request'/* && message.actions[0].selected_options[0].name == "Yes"*/){
-          bot.reply(message, 'Rider Accepted' + message.actions[0].selected_options[0].value); 
+        if(message.callback_id == 'accept_ride_request' && message.actions[0].selected_options[0].name == "Yes"){
+          bot.reply(message, 'Rider Accepted'); 
           controller.storage.channels.all(function(err, user) {
             for(var i = 0; i < user.length; i++){
               if(user[i].name == message.user){
