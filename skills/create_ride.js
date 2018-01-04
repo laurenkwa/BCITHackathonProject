@@ -12,6 +12,19 @@ through the conversation are chosen based on the user's response.
 module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
         bot.replyAcknowledge;
+        launchDialog(bot, message);
+      });
+  
+    controller.on('dialog_submission', function(bot, message) {
+          var submission = message.submission;
+          //bot.reply(message, 'Got it!');
+  
+          // call dialogOk or else Slack will think this is an error
+          bot.dialogOk();
+          offerRide(bot, message, submission); 
+      });
+  
+    function launchDialog(bot, message) {
         var dialog = bot.createDialog(
               'Route Selector',
               'callback_id',
@@ -23,19 +36,7 @@ module.exports = function(controller) {
               .addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
-      });
-  
-    controller.on('dialog_submission', function(bot, message) {
-          launchDialog(bot, message);
-      });
-  
-    function launchDialog(bot, message) {
-        var submission = message.submission;
-        //bot.reply(message, 'Got it!');
-
-        // call dialogOk or else Slack will think this is an error
-        bot.dialogOk();
-        offerRide(bot, message, submission); 
+        
     }
       function offerRide(bot, message, submission) {
               bot.startConversation(message, function(err, convo) {
