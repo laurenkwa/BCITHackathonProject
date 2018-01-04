@@ -77,11 +77,12 @@ module.exports = function(controller) {
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
-                    var name = route.summary;
                     var driver = "";
                     bot.api.users.info({user: message.user}, (error, response) => {
                         let {name} = response.user;
+                        driver = name;
                     })
+                    var name = route.summary;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say({
                       text: "<" + thumbnail + "|Map preview>",
