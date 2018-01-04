@@ -240,12 +240,12 @@ if (!process.env.clientId || !process.env.clientSecret) {
         }
       });
     
-    function startPrivateMessage(driver, passenger) {
+    function startPrivateMessage(bot, driver, passenger) {
       bot.api.conversations.open({
         users: driver + "," + passenger
       });
       }
-    }
+    
     
       /****** Sends acceptence message to route owner upon route selection *****/
       controller.on('interactive_message_callback', function(bot, message) {
