@@ -20,7 +20,6 @@ module.exports = function(controller) {
                   if (origin.toUpperCase() == 'BCIT') {
                     origin = 'BCIT Burnaby campus';
                   }
-                  origin = origin + " Vancouver BC";
                   convo.say('Cool, let\'s start at ' + origin);
                   convo.next();
                   convo.ask('Where will you drive to?', function(response, convo) {
@@ -31,10 +30,11 @@ module.exports = function(controller) {
                       destination = 'BCIT Burnaby campus';
                     }
                     
-                    destination = destination + "Vancouver BC";
                     
                     convo.next();
                     convo.say('Great, let\'s go to ' + destination);
+                    destination = destination + "Vancouver BC";
+                    origin = origin + " Vancouver BC";
                     convo.say('Here\'s your map.');
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(jsonMap);
