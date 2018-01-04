@@ -230,10 +230,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });*/
     
       controller.on('slash_command', function(bot, message) {
-        //if(message == 'creatroute'){
-          bot.reply(message, 'You chose a route!'); 
         var dialog = bot.createDialog(
-              'Title of dialog',
+              'Route Selector',
               'callback_id',
               'Submit'
             ).addText('Text','text','some text')
@@ -244,8 +242,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {
           // handle your errors!
-        });
-        //}
+        })
       });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {

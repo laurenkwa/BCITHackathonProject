@@ -80,6 +80,7 @@ module.exports = function(controller) {
       }
         
       function alertChannel() {
+        
       }
 
     });
