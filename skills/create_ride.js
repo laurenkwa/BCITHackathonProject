@@ -87,9 +87,8 @@ module.exports = function(controller) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name);});  
                             });
                           });
-                            convo.next();
                         } else {
-                          offerRide(bot, name);
+                          offerRide(bot, message, submission);
                         }
                     });
                   });
