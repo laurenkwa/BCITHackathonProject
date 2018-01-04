@@ -59,7 +59,6 @@ module.exports = function(controller) {
                 {label:'10:00 pm',value:'22'}, 
                 {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'});
-              //.addText('Time of Departure','Time','0:00 - 24:00');
 
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
         
@@ -150,8 +149,9 @@ module.exports = function(controller) {
           bot.api.conversations.open({
             token: process.env.slackToken,
             users: 'U5E31FZAB',
-            text: "You can use this message to work out the details of your upcoming ride."
           });
+          bot.say(            text: "You can use this message to work out the details of your upcoming ride."
+
       }
 
 };
