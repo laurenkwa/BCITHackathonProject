@@ -46,6 +46,8 @@ module.exports = function(controller) {
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
+                    
+                    var thumbNail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=" + points + 
                     convo.say(points);
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
