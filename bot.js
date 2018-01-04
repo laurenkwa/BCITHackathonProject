@@ -223,14 +223,14 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // You can tie into the execution of the script using the functions
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
-      controller.on('interactive_message_callback', function(bot, message) {
+      /*controller.on('interactive_message_callback', function(bot, message) {
         if(message.callback_id == 'route_selection'){
          bot.reply(message, 'You chose a route!'); 
         }
-      });
+      });*/
       
-      controller.hears(['dia'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, 'o');
+      controller.hears('interactive_message_callback', function(bot, message) {
+        if(message.callback_id == 'route_selection'){
         var dialog = bot.createDialog(
               'Title of dialog',
               'callback_id',
@@ -244,6 +244,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         bot.replyWithDialog(message, dialog.asObject(), function(err, res) {
           // handle your errors!
         });
+        }
       });
     
       controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
