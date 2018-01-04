@@ -10,6 +10,21 @@ through the conversation are chosen based on the user's response.
 */
 
 module.exports = function(controller) {
+  controller.on('slash_command', function(bot, message) {
+        var dialog = bot.createDialog(
+              'Route Selector',
+              'callback_id',
+              'Submit'
+            ).addText('Start Location','Start Location','Your Address')
+              .addText('Destination','Destination','Destination Address')
+              .addText('Seats','Seats','Number of Seats Available')
+              .addText('Time of Departure','Time of Departure','0:00 - 24:00');
+
+        bot.replyWithDialog(message, dialog.asObject(), function(err, res) {})
+      });
+  
+  
+  
     controller.hears(['offer'], 'direct_message,direct_mention', function(bot, message) {
       offerRide();
       function offerRide() {

@@ -231,7 +231,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
       controller.on('dialog_submission', function(bot, message) {
         var submission = message.submission;
-        bot.reply(message, 'Got it!' + m);
+        bot.reply(message, 'Got it!' + message.StartLocation);
 
         // call dialogOk or else Slack will think this is an error
         bot.dialogOk();
@@ -242,7 +242,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
               'Route Selector',
               'callback_id',
               'Submit'
-            ).addText('Start Location','Start Location','Your Address')
+            ).addText('Start Location','StartLocation','Your Address')
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Time of Departure','Time of Departure','0:00 - 24:00');
