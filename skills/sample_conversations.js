@@ -55,14 +55,14 @@ module.exports = function(controller) {
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
-                    
+                    var name;
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(thumbnail);
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
                         if (correct.toUpperCase() == 'YES') {
                           convo.say('Great. I\'ll tell the rideshare channel.');
-                          controller.storage.channels.save({id: message.user, image:message.thumbnail}, function(err, user) {bot.reply(message, 'saved');});
+                          controller.storage.channels.save({id: message.user, image:thumbnail, }, function(err, user) {bot.reply(message, 'saved');});
                           convo.next();
                         } else {
                           offerRide();
