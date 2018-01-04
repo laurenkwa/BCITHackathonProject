@@ -173,7 +173,7 @@ module.exports = function(controller) {
        dropDownList.attachments[0].actions[0].options.length = 0;
        var text = '';
        for(var i = 0; i < user.length; i++){
-         //bot.reply(message, '' + user[i].time);
+         bot.reply(message, '' + user[i].twentyFourTime);
          if(parseInt(user[i].seats) > 0 
             && parseInt(earlyTime) < parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime < lateTime)
            ){

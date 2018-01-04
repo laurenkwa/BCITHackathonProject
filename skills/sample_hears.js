@@ -30,6 +30,11 @@ module.exports = function(controller) {
 
     controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
             bot.reply(message, "Hi");
+            var newConvo = bot.api.conversations.open({
+              token: process.env.legacyToken,
+              users: 'U5E31FZAB'
+            });
+            bot.reply(message, "Hello");
         });
 
     controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
