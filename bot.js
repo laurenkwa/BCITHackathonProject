@@ -215,7 +215,6 @@ if (!process.env.clientId || !process.env.clientSecret) {
           dropDownList.attachments[0].actions[0].options.length = 0;
           for(var i = 0; i < user.length; i++){
             var object = { text: user[i].name, value: user[i].name };
-            bot.reply(message, object);
             dropDownList.attachments[0].actions[0].options.push(object);
           }
           
