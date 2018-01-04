@@ -216,7 +216,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           var array = [];
-          for(var i = 0; i < user.length; i++){
+          for(var i = 0; i < 5; i++){
             array[i] = i;
           }
           dropDownList.attachments.actions.options = array;
