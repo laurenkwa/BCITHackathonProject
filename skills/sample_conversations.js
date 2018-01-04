@@ -38,7 +38,7 @@ module.exports = function(controller) {
                           convo.say("Uh oh.");
                         }
                     };
-                    xmlhttp.open("GET", jsonMap, true);
+                    xmlhttp.open("GET", jsonMap, false);
                     xmlhttp.send();
                     
                     
