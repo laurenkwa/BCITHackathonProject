@@ -1,7 +1,7 @@
 <?php
     include("includes/header.php");
     extract($_POST);
-    $file = "offer.json";
+    $file = "offer.js";
     $json = json_decode(file_get_contents($file, TRUE), TRUE);
     $json[] = $_POST;
     $json = json_encode($json);

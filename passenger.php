@@ -18,7 +18,7 @@ include("includes/header.php");
 
 
     extract($_POST);
-    $file = "passenger.json";
+    $file = "passenger.js";
     $json = json_decode(file_get_contents($file, TRUE), TRUE);
     $json[] = $_POST;
     $json = json_encode($json);
@@ -36,18 +36,17 @@ include("includes/header.php");
     var locations;
     locations = [{lat : <?php echo $passenger_lat; ?>, lng : <?php echo $passenger_lng; ?>}, {lat : 49.1665898, lng : -123.133569}, {lat : 49.2993349, lng : -122.891689}]
     
-//    $.ajax({
-//				url: "http://cartoonapi.azurewebsites.net/api/cartoon/",
-//				type: "GET",
-//				dataType: 'json',
-//				error: function (x, y, z) {
-//					alert(x + '\n' + y + '\n' + z);
-//				},
-//				success: function (data) {
-//					var json = data;
-//                    console.log(json);
-//				}
-//			});
+    $.ajax({
+				url: "http://ride-share.azurewebsites.net/offer.js",
+				type: "GET",
+				dataType: 'json',
+				error: function (x, y, z) {
+					alert(x + '\n' + y + '\n' + z);
+				},
+				success: function (data) {
+                    console.log(data);
+				}
+			});
     function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
