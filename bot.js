@@ -210,6 +210,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
          bot.reply(message, 'You chose a route!'); 
         }
       });
+    
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
         controller.storage.channels.all(function(err, user) {
           dropDownList.attachments[0].actions[0].options.length = 0;
