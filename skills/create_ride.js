@@ -70,7 +70,7 @@ module.exports = function(controller) {
              if(message.actions[0].name == "Create"){
                launchDialog(bot, message);
              }else{
-               
+               routeMenu(bot, message);
              }
           }
       });
@@ -225,7 +225,6 @@ module.exports = function(controller) {
               token: process.env.slackToken,
               users: 'U5E31FZAB'
             });
-          message.say("Hello");
           message.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
