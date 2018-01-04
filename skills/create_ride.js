@@ -25,6 +25,7 @@ module.exports = function(controller) {
       });
   
     controller.on('dialog_submission', function(bot, message) {
+          
           launchDialog(bot, message);
       });
   
