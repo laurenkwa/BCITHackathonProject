@@ -135,7 +135,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
     require("./skills/" + file)(controller);
   });
   
-  var object = {
+  var dropDownList = {
     "text": "Would you like to play a game?",
     "response_type": "in_channel",
     "attachments": [
@@ -195,7 +195,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
       controller.hears(['game'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, object);
+        bot.reply(message, dropDownList);
       });
       controller.hears(['save'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
