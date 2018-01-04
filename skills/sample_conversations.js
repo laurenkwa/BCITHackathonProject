@@ -25,6 +25,7 @@ module.exports = function(controller) {
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+                        convo.say(jsonMap);
                     var mapObject = JSON.parse(jsonMap);
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
