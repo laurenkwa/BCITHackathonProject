@@ -161,7 +161,7 @@ module.exports = function(controller) {
               .addText('Destination','Destination','Destination Address')
               .addText('Seats','Seats','Number of Seats Available')
               .addText('Date', 'Date', 'Date')
-              .addSelect('Select a Departure Time','time',null,[
+              .addSelect('Select a Departure Time','Time',null,[
                 {label:'12:00 am',value:'00'},
                 {label:'1:00 am',value:'1'},
                 {label:'2:00 am',value:'2'},
