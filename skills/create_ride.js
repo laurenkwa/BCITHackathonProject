@@ -57,7 +57,7 @@ module.exports = function(controller) {
                     //convo.say('Great, let\'s go to ' + destination);
                     destination = destination + "Vancouver BC";
                     origin = origin + " Vancouver BC";
-                    var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=";
+                    var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=" + process.env.google_maps;
                     //convo.say(jsonMap);
                     var mapObject;
                     var XMLHttpRequest = require("../xmlhttprequest.js").XMLHttpRequest;

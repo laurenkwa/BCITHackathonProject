@@ -298,7 +298,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           for(var i = 0; i < user.length; i++){
             bot.reply(message, '' + user[i].seats);
             if(parseInt(user[i].seats) > 0){
-              user[i].seats = user[i].se
+              user[i].seats = parseInt(user[i].seats) - 1;
               var object = { text: user[i].name, value: user[i].name };
               dropDownList.attachments[0].actions[0].options.push(object);
             }
