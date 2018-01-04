@@ -67,12 +67,7 @@ var dropDownList = {
                     "name": "route_list",
                     "text": "Pick a route...",
                     "type": "select",
-                    "options": [
-                        {
-                            "text": "Hearts",
-                            "value": "hearts"
-                        }
-                    ]
+                    "options": []
                 }
             ]
         }
@@ -217,7 +212,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         controller.storage.channels.all(function(err, user) {
           var array = [];
           for(var i = 0; i < 5; i++){
-            var text = { "text": i, "value": i };
+            var text = { "text": user[i].message, "value": i };
             dropDownList.attachments[0].actions[0].options.push(text);
           }
           
