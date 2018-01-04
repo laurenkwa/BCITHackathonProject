@@ -67,6 +67,7 @@ module.exports = function(controller) {
     
     controller.on('interactive_message_callback', function(bot, message) {
           if(message.callback_id == 'create_find'){
+
              if(message.actions[0].name == "Create"){
                launchDialog(bot, message);
              }else{
