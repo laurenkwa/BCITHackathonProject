@@ -218,10 +218,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           var array = [];
           for(var i = 0; i < 5; i++){
             var text = { "text": i, "value": i };
-            dropDownList.attachments[0].actions[0].options.push({
-                            "text": "Hearts",
-                            "value": "hearts"
-                        });
+            dropDownList.attachments[0].actions[0].options.push(text);
           }
           
         });  
