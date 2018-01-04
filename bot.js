@@ -144,7 +144,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
   if (process.env.studio_token) {
       controller.hears(['saves'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
-        controller.storage.channels.save({id: message.user, name:'Bob'}, function(err, user) {bot.reply(message, 'saved');});
+        controller.storage.channels.save({id: message.user, name:'Bob'}, function(err, user) {bot.reply(message, 'saved' + message);});
       });
       controller.hears(['gets'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
@@ -161,7 +161,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
         });  
       });
       controller.hears(['del'], 'direct_message,direct_mention,mention', function(bot, message) {
-        controller.storage.channels.delete(message.u, function(err){});
+        controller.storage.channels.delete(message.user, function(err){});
       });
   } else {
       console.log('~~~~~~~~~~');
