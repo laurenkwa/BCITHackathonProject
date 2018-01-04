@@ -18,7 +18,7 @@ module.exports = function(controller) {
               convo.ask('Where will you start driving from?', function(response, convo) {
                   var origin = response.text;
                   if (origin.toUpperCase() == 'BCIT') {
-                    
+                    origin = 'BCIT 
                   }
                   convo.say('Cool, let\'s start at ' + origin);
                   convo.next();
@@ -63,8 +63,7 @@ module.exports = function(controller) {
               });
           });
       }
-      
-      
+        
       
 
     });
