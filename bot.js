@@ -65,7 +65,7 @@ var dropDownList = {
             "actions": [
                 {
                     "name": "route_list",
-                    "text": "Pick a game...",
+                    "text": "Pick a route...",
                     "type": "select",
                     "options": [
                         {
