@@ -212,18 +212,30 @@ if (!process.env.clientId || !process.env.clientSecret) {
   // controller.studio.before, controller.studio.after and controller.studio.validate
   if (process.env.studio_token) {
     
-      /***** Sends confirmation to the rider if they are accepted  *****/
+      /***** Sends confirmation to the rider if they are accepted or not *****/
       controller.on('interactive_message_callback', function(bot, message) {
-        if(message.callback_id == 'accept_ride_request' && message.actions[0].name == "Yes"){
-          bot.reply(message, 'Rider Accepted' + message.actions[0].value); 
-          controller.storage.channels.all(function(err, user) {
-            for(var i = 0; i < user.length; i++){
-              if(user[i].id == message.user){
-                bot.reply(message, 'works');
-                bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route');
+        if(message.callback_id == 'accept_ride_request'){
+          if(message.actions[0].name == "Yes"){
+            bot.reply(message, 'Rider Accepted' + message.actions[0].value); 
+            controller.storage.channels.all(function(err, user) {
+              for(var i = 0; i < user.length; i++){
+                if(user[i].id == message.user){
+                  bot.reply(message, 'works');
+                  bot.reply({text: '', channel: message.actions[0].value}, 'You have been accepted to car pool on the ' + user[i].name + ' route');
+                }
               }
-            }
-          }); 
+            }); 
+          }else{
+            bot.reply(message, 'Rider Declined' + message.actions[0].value); 
+            controller.storage.channels.all(function(err, user) {
+              for(var i = 0; i < user.length; i++){
+                if(user[i].id == message.user){
+                  bot.reply(message, 'works');
+                  bot.reply({text: '', channel: message.actions[0].value}, 'You have been declined to car pool on the ' + user[i].name + ' route');
+                }
+              }
+            }); 
+          }
         }
       });
     
