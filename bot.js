@@ -242,7 +242,8 @@ if (!process.env.clientId || !process.env.clientSecret) {
     
     function startPrivateMessage(bot, driver, passenger) {
       bot.api.conversations.open({
-        users: driver + "," + passenger
+        users: driver + "," + passenger,
+        text: "You can use this message to work out the details of your upcoming ride."
       });
       }
     
