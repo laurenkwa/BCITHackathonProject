@@ -26,6 +26,19 @@ module.exports = function(controller) {
                     convo.say('Here\'s your map.');
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(jsonMap);
+                    
+                    var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.name;
+    }
+};
+xmlhttp.open("GET", "json_demo.txt", true);
+xmlhttp.send();
+                    
+                    
+                    
                     var mapObject = JSON.parse(jsonMap);
                     var route = mapObject.routes[0];
                     var polyline = route.overview_polyline;
@@ -45,24 +58,6 @@ module.exports = function(controller) {
       
       
       
-      function loadJSON(path, success, error)
-  {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function()
-      {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                  if (success)
-                      success(JSON.parse(xhr.responseText));
-              } else {
-                  if (error)
-                      error(xhr);
-              }
-          }
-      };
-      xhr.open("GET", path, true);
-    xhr.send();
-}
 
     });
 
