@@ -58,13 +58,13 @@ var dropDownList = {
     "attachments": [
         {
             "text": "Choose a route",
-            "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+            "fallback": "Sorry, an error occured.",
             "color": "#3AA3E3",
             "attachment_type": "default",
-            "callback_id": "game_selection",
+            "callback_id": "route_selection",
             "actions": [
                 {
-                    "name": "games_list",
+                    "name": "route_list",
                     "text": "Pick a game...",
                     "type": "select",
                     "options": [
