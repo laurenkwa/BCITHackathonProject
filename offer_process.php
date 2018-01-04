@@ -6,7 +6,7 @@
     $json[] = $_POST;
     $json = json_encode($json);
     file_put_contents($file, $json);
-    var_dump($_POST);
+    //var_dump($_POST);
 ?>
 <div class="jumbotron text-center">
         <br/>
