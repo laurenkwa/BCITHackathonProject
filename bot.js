@@ -93,11 +93,11 @@ var dialogBox = {
 }
 
 var clickButton = {
-    "text": "Would you like to play a game?",
+    "text": "Ride?",
     "attachments": [
         {
-            "text": "Choose a game to play",
-            "fallback": "You are unable to choose a game",
+            "text": "Accept?",
+            "fallback": "Something went wrong",
             "callback_id": "wopr_game",
             "color": "#3AA3E3",
             "attachment_type": "default",
