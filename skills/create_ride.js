@@ -41,12 +41,15 @@ module.exports = function(controller) {
   controller.on('slash_command', function(bot, message) {
         bot.replyAcknowledge();
         bot.reply({text: '', channel: message.user}, selectionButton);
-        //launchDialog(bot, message);
       });
     
     controller.on('interactive_message_callback', function(bot, message) {
           if(message.callback_id == 'create_find'){
-             
+             if(message.actions[0].name == "Create"){
+               launchDialog(bot, message);
+             }else{
+               
+             }
           }
       });
   
@@ -179,10 +182,10 @@ module.exports = function(controller) {
             bot.reply(message, "I hear you");
             var newConvo = bot.api.conversations.open({
               token: process.env.slackToken,
-              users: 'U5E31FZAB',
+              users: 'U5E31FZAB'
             });
-          message.say(newConvo);
-          message.say({
+          //bot.say(newConvo);
+          bot.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
           });
