@@ -335,7 +335,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
           bot.reply(message, user.length + string);
         });  
       });
-      controller.hears(['del'], 'direct_message,direct_mention,mention', function(bot, message) {
+      controller.hears(['delete'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.user);
         controller.storage.channels.delete(message.user, function(err){});
       });
