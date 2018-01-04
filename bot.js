@@ -235,7 +235,9 @@ if (!process.env.clientId || !process.env.clientSecret) {
               'callback_id',
               'Submit'
             ).addText('Text','Start Location','Your Address')
-              .addText('Text','Start Location','Your Address'
+              .addText('Text','Destination','Destination Address')
+              .addText('Text','Seats','Number of Seats Available')
+              .addText('Text','Time ','Number of Seats Available')
               .addSelect('Select','select',null,[{label:'Foo',value:'foo'},{label:'Bar',value:'bar'}],{placeholder: 'Select One'})
              .addTextarea('Textarea','textarea','some longer text',{placeholder: 'Put words here'})
              .addUrl('Website','url','http://botkit.ai');
