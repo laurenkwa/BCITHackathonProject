@@ -27,8 +27,9 @@ module.exports = function(controller) {
                     var jsonMap = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin.replace(/ /g, "%20") + "&destination=" + destination.replace(/ /g, "%20") + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     var mapObject = JSON.parse(jsonMap);
                     var route = mapObject.routes[0];
-                    var ->overview_polyline->points
-                    convo.say(route);
+                    var polyline = route.overview_polyline;
+                    var points = polyline.points;
+                    convo.say(points);
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
