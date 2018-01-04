@@ -241,8 +241,7 @@ if (!process.env.clientId || !process.env.clientSecret) {
       });
     
     function startPrivateMessage(message) {
-      message.user = [{
-      bot.startPrivateConversation(message, function(err, convo) {});
+      bot.api.conversations.open(message, function(err, convo) {});
       }
     }
     
