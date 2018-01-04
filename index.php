@@ -21,7 +21,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script src="driverMap.js" type="text/javascript"></script>
+    <!-- <script src="driverMap.js" type="text/javascript"></script> -->
     <title>Ride-Share</title>
 
 </head>
@@ -46,35 +46,35 @@
         <div class="tab-content">
             <div id="driver" class="tab-pane fade in active">
                 <h3>Offer a driver</h3>
-                <form class="form-horizontal" id="driverForm" action="" method="post">
+                <form class="form-horizontal" id="driverForm" method="post" action="offer_process.php">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_username">Username: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" id="driver_username" />
+                            <input class="form-control" type="text" name="driver_username" id="driver_username" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_time">Time: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" id="driver_time" />
+                            <input class="form-control" type="text" name="driver_time" id="driver_time" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_start">Start From: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" id="driver_start" />
+                            <input class="form-control" type="text" name="driver_start" id="driver_start" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_end">Destination: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" id="driver_end" />
+                            <input class="form-control" type="text" name="driver_end" id="driver_end" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_seats">No. of seats available: </label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="driver_seats">
+                            <select class="form-control" name="driver_seats" id="driver_seats">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
