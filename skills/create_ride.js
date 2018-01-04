@@ -81,7 +81,7 @@ module.exports = function(controller) {
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say({
                       text: thumbnail,
-                      unfurl_media: true;
+                      unfurl_media: true
                     });
                     convo.ask('Does this look correct?', function (response, convo) {
                       var correct = response.text;
