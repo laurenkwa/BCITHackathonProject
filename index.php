@@ -1,34 +1,53 @@
 <?php
-
+include("includes/header.php");
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <!-- <script src="driverMap.js" type="text/javascript"></script> -->
-    <title>Ride-Share</title>
-
-</head>
-
-
-
-<body>
+<script>
+function getCood(){
+    var origin = document.getElementById("driver_start").value;
+    $(function () {
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origin + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+			
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'json',
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            },
+            success: function (data) {
+                var lat = data.results[0].geometry.location.lat;
+                var lng = data.results[0].geometry.location.lng;
+                $("#driver_lat").attr("value", lat);
+                $("#driver_lng").attr("value", lng);
+            }
+        });
+    })
+}
+    
+function getCoodP(){
+    var origin = document.getElementById("passenger_start").value;
+    $(function () {
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origin + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+			
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'json',
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            },
+            success: function (data) {
+                var lat = data.results[0].geometry.bounds.northeast.lat;
+                var lng = data.results[0].geometry.bounds.northeast.lng;
+                $("#passenger_lat").attr("value", lat);
+                $("#passenger_lng").attr("value", lng);
+            }
+        });
+    })
+}
+</script>
     <div class="jumbotron text-center">
         <h1>Ride Share</h1>
         <p>Needs a ride? find one here!</p>
@@ -82,11 +101,12 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="driver_lat" id="driver_lat" />
+                    <input type="hidden" name="driver_lng" id="driver_lng" />
                     <div class="col-sm-10 col-sm-offset-2">
-                        <input type="submit" onclick="driverMap();" class="btn btn-success" id="driver_submit">
+                        <input type="submit" onMouseDown="getCood();" class="btn btn-success" id="driver_submit">
                     </div>
                 </form>
-                <iframe id="googleMap" width="100" height="750" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
@@ -115,14 +135,15 @@
                             <input class="form-control" type="text" id="passenger_end" name="passenger_end" />
                         </div>
                     </div>
+                    <input type="hidden" name="passenger_lat" id="passenger_lat" />
+                    <input type="hidden" name="passenger_lng" id="passenger_lng" />
                     <div class="col-sm-10 col-sm-offset-2">
-                        <button type="submit" class="btn btn-success" name="passenger_submit" id="passenger_submit">Submit</button>
+                        <button onMouseDown="getCoodP();" type="submit" class="btn btn-success" id="passenger_submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</body>
-
-
-</html>
+<?php
+    include("includes/foot.php");
+?>
