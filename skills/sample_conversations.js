@@ -55,11 +55,11 @@ module.exports = function(controller) {
                     convo.ask('Does this look correct?', function (response, convo) {
                       convo.next();
                       var correct = false;
-                      if (response.text.toUpperCase() == 'NO') {
-                        offerRide();
-                      } else if (response.text.toUppercase() == 'YES') {
-                        cor
-                      } 
+                      while (!correct) {
+                        if (response.text.toUppercase() == 'YES') {
+                          correct = true;
+                        }
+                      }
                     });
                   });
 
