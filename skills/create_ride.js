@@ -61,33 +61,6 @@ var selectionButton = {
     ]
 }
 
-var correctButton = {
-    "text": "Does this look correct?",
-    "attachments": [
-        {
-            "text": "Choose?",
-            "fallback": "Something went wrong",
-            "callback_id": "create_correct",
-            "color": "#3AA3E3",
-            "attachment_type": "default",
-            "actions": [
-                {
-                    "name": "Yes",
-                    "text": "Yes",
-                    "type": "button",
-                    "value": "Yes"
-                },
-                {
-                    "name": "No",
-                    "text": "No",
-                    "type": "button",
-                    "value": "No"
-                }
-            ]
-        }
-    ]
-}
-
 module.exports = function(controller) {
   
 
@@ -222,9 +195,10 @@ module.exports = function(controller) {
        var text = '';
        var routes = 0;
        for(var i = 0; i < user.length; i++){
-         bot.reply(message, '' + user[i].twentyFourTime + '~' + earlyTime + '~' + lateTime);
+         bot.reply(message, '' + city + '~' + user[i].city);
          if(parseInt(user[i].seats) > 0 
             && parseInt(earlyTime) <= parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime) < parseInt(lateTime)
+            && city == user[i].city || city == "Other"
            ){
            routes ++;
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
@@ -319,9 +293,10 @@ module.exports = function(controller) {
                     var route = mapObject.routes[0];
                     var regexPat = /,[^,]*,[^,]*,[^,]*$/; 
                     var cityString = mapObject.routes[0].legs[0].start_address;
-                    var city = cityString.match(regexPat);
+                    var city = String(cityString.match(regexPat));
                     city = city.slice(2, city.length - 1);
-                    //city = city.slice(0, city.indexOf(','));
+                    city = city.slice(0, city.indexOf(','));
+                    regexPat;
                     bot.reply(message, 'test' + city);
                     var polyline = route.overview_polyline;
                     var points = polyline.points;
@@ -348,13 +323,13 @@ module.exports = function(controller) {
                             var time = (parseInt(submission.Time) <= 12) 
                               ? ((submission.Time == '00') ? '12' : submission.Time) + ':00 am' 
                               : (parseInt(submission.Time) - 12) + ':00 pm';
-                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: '<@' + message.user + '>', seats:submission.Seats, time: time, twentyFourTime:submission.Time, date:submission.Date}, function(err, user) {
+                            controller.storage.channels.save({id: message.user, name: name, image: thumbnail, driver: '<@' + message.user + '>', seats:submission.Seats, time: time, twentyFourTime:submission.Time, date:submission.Date, city: city}, function(err, user) {
                               controller.storage.channels.get(message.user, function(err, user) {bot.reply(message, 'New route created: ' + user.name); alertChannel(bot, user);});  
                             });
                           });
                         } else {
-                          convo.next();
                           convo.say('Oh no. Confirm your locations and then call me again.');
+                          convo.next();
                         }
                     });
                   });
