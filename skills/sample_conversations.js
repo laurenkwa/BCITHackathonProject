@@ -31,6 +31,8 @@ module.exports = function(controller) {
                       destination = 'BCIT Burnaby campus';
                     }
                     
+                    destination = destination + "Vancouver BC";
+                    
                     convo.next();
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
