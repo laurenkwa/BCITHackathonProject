@@ -62,6 +62,27 @@ module.exports = function(controller) {
           offerRide(bot, message, submission); 
       });
   
+    function routeMenu(bot, message){
+     /***** Creates drop down menu of all available routes *****/
+     controller.hears(['menu'], 'direct_message,direct_mention,mention', function(bot, message) {
+       controller.storage.channels.all(function(err, user) {
+         dropDownList.attachments[0].actions[0].options.length = 0;
+         var text = '';
+         for(var i = 0; i < user.length; i++){
+           //bot.reply(message, '' + user[i].time);
+           if(parseInt(user[i].seats) > 0){
+             var string = user[i].name + '  ~  Seats: ' + user[i].seats;
+             var object = { text: string, value: user[i].name };
+             text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
+             dropDownList.attachments[0].actions[0].options.push(object);
+           }
+         }
+         dropDownList.attachments[0].text = text;
+         bot.reply(message, dropDownList);
+        });  
+     }); 
+    }
+  
     function launchDialog(bot, message) {
         var dialog = bot.createDialog(
               'Route Selector',
@@ -184,8 +205,8 @@ module.exports = function(controller) {
               token: process.env.slackToken,
               users: 'U5E31FZAB'
             });
-          //bot.say(newConvo);
-          bot.say({
+          message.say("Hello");
+          message.say({
             text: "Start your conversation.",
             channel: newConvo.channel.id
           });
