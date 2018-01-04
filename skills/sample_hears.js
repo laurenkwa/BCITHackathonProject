@@ -29,7 +29,7 @@ module.exports = function(controller) {
 
 
     controller.hears(['private'], 'direct_message,direct_mention', function(bot, message) {
-            bot.reply(bot.api.conversations.open({
+            bot.reply(message, bot.api.conversations.open({
               token: process.env.legacyToken,
               users: 'U5E31FZAB',
             }));

@@ -74,7 +74,7 @@ module.exports = function(controller) {
             if(message.actions[0].name == "Create"){
               launchDialog(bot, message);
             }else{
-              routeMenu(bot, message);
+              routeDialog(bot, message);
             }
           }
       });
