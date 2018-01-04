@@ -59,11 +59,11 @@ module.exports = function(controller) {
                     var thumbnail = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&path=enc:" + encodeURI(points) + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
                     convo.say(thumbnail);
                     convo.ask('Does this look correct?', function (response, convo) {
-                        if ((response.text).toUppercase() == 'YES') {
+                      var correct = response.text;
+                        if (correct == 'YES') {
                           convo.say('Well done!');
                           convo.next();
                         } else {
-                          
                           offerRide();
                         }
                     });
