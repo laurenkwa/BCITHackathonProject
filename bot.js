@@ -154,7 +154,10 @@ if (!process.env.clientId || !process.env.clientSecret) {
       controller.hears(['all'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, message.channel);
         controller.storage.channels.all(function(err, user) {
-          for(var i = 0; i < user.length;
+          var string;
+          for(var i = 0; i < user.length; i++){
+            string+=user[i].name;
+          }
         });  
       });
   } else {

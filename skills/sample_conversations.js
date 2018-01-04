@@ -25,7 +25,8 @@ module.exports = function(controller) {
                     convo.say('Great, let\'s go to ' + destination);
                     convo.say('Here\'s your map.');
                     convo.say("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
-                    convo.say({
+                    convo.ask('Does this look correct?', function (response, convo) {
+                    convo.addMessage({
     "attachments": [
         {
             "fallback": "Required plain-text summary of the attachment.",
@@ -35,7 +36,7 @@ module.exports = function(controller) {
         }
     ]
 });
-                    convo.ask('Does this look correct?', function (response, convo) {
+                    });
                       convo.next();
                       if (response.text == 'no' || response.text == 'No' || response.text == 'NO') {
                         convo.say('Okay, let\'s try again.');
