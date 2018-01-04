@@ -35,7 +35,7 @@ module.exports = function(controller) {
               .addText('Date', 'Date', 'Date')
               .addSelect('Select','select',null,[
                 {label:'12:00 am',value:'00'}, 
-                {label:'1:00 am',value:'01'}
+                {label:'11:00 pm',value:'23'}
               ], {placeholder: 'Select One'});
               //.addText('Time of Departure','Time','0:00 - 24:00');
 
