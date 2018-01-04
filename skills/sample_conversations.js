@@ -27,17 +27,14 @@ module.exports = function(controller) {
                     convo.say("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&mode=driving&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
                     convo.addMessage({
                         text: 'Cheese! It is not for everyone.',
-
-                attachments: [
-                    {
-                        "fallback": "Required plain-text summary of the attachment.",
-                        "text": "Optional text that appears within the attachment",
-                        "image_url": "http://my-website.com/path/to/image.jpg",
-                      "thumb_url": "http://example.com/path/to/thumb.png"
-                  }
-              ]
-          }
-
+                        attachments: [
+                            {
+                                "fallback": "Map.",
+                                "image_url": "http://my-website.com/path/to/image.jpg",
+                                "thumb_url": "http://example.com/path/to/thumb.png"
+                            }
+                        ]
+                  
                     },'no_thread');
                     
                     
