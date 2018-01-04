@@ -9,6 +9,8 @@ through the conversation are chosen based on the user's response.
 
 */
 
+
+
 var dropDownList = {
     "text": "What route would you like to take?",
     "response_type": "in_channel",
@@ -172,11 +174,13 @@ module.exports = function(controller) {
      controller.storage.channels.all(function(err, user) {
        dropDownList.attachments[0].actions[0].options.length = 0;
        var text = '';
+       var routes = 0;
        for(var i = 0; i < user.length; i++){
-         bot.reply(message, '' + user[i].twentyFourTime + '~ + early');
+         bot.reply(message, '' + user[i].twentyFourTime + '~' + earlyTime + '~' + lateTime);
          if(parseInt(user[i].seats) > 0 
-            && parseInt(earlyTime) < parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime < lateTime)
+            && parseInt(earlyTime) <= parseInt(user[i].twentyFourTime) && parseInt(user[i].twentyFourTime) < parseInt(lateTime)
            ){
+           routes ++;
            var string = user[i].name + '  ~  Seats: ' + user[i].seats;
            var object = { text: string, value: user[i].name };
            text += 'Route ' + user[i].name + ' by ' + user[i].driver + '\nWith ' + user[i].seats + ' seats on  ' + user[i].date + ' at ' + user[i].time + '\n\n';
@@ -184,6 +188,9 @@ module.exports = function(controller) {
          }
        }
        dropDownList.attachments[0].text = text;
+       if(routes == 0){
+         dropDownList.text = 'Sorry, there are no available routes'; 
+       }
        bot.reply(message, dropDownList);
       });
     }
