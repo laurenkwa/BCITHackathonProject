@@ -98,7 +98,7 @@ module.exports = function(controller) {
       function alertChannel(bot, submission) {
         bot.say({
         text: "Hello World!",
-        channel: 'C0XXXXXXX'
+        channel: channels.list
         });
       }
 
