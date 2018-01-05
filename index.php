@@ -1,5 +1,5 @@
 <?php
-
+include("includes/header.php");
 
 
 ?>
@@ -29,9 +29,57 @@
 
 
 <body>
+<script>
+function getCood(){
+    var origin = document.getElementById("driver_start").value;
+    $(function () {
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origin + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+			
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'json',
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            },
+            success: function (data) {
+                var lat = data.results[0].geometry.location.lat;
+                var lng = data.results[0].geometry.location.lng;
+                $("#driver_lat").attr("value", lat);
+                $("#driver_lng").attr("value", lng);
+            }
+        });
+    })
+}
+    
+function getCoodP(){
+    var origin = document.getElementById("passenger_start").value;
+    $(function () {
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + origin + "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY";
+			
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'json',
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            },
+            success: function (data) {
+                var lat = data.results[0].geometry.bounds.northeast.lat;
+                var lng = data.results[0].geometry.bounds.northeast.lng;
+                $("#passenger_lat").attr("value", lat);
+                $("#passenger_lng").attr("value", lng);
+            }
+        });
+    })
+}
+</script>
     <div class="jumbotron text-center">
-        <h1>Ride Share</h1>
-        <p>Needs a ride? find one here!</p>
+        <br/>
+        <a href="index.php"><h1>Ride Share</h1></a>
+        <p>Need a ride? Find one here!</p>
+        <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
+  
     </div>
     <div class="container">
         <ul class="nav nav-tabs">
@@ -145,11 +193,12 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="driver_lat" id="driver_lat" />
+                    <input type="hidden" name="driver_lng" id="driver_lng" />
                     <div class="col-sm-10 col-sm-offset-2">
-                        <input type="submit" onclick="driverMap();" class="btn btn-success" id="driver_submit">
+                        <input type="submit" onMouseDown="getCood();" class="btn btn-success" id="driver_submit">
                     </div>
                 </form>
-                <!-- <iframe id="googleMap" width="100" height="750" frameborder="0" style="border:0" allowfullscreen></iframe> -->
             </div>
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
@@ -178,14 +227,15 @@
                             <input class="form-control" type="text" id="passenger_end" name="passenger_end" />
                         </div>
                     </div>
+                    <input type="hidden" name="passenger_lat" id="passenger_lat" />
+                    <input type="hidden" name="passenger_lng" id="passenger_lng" />
                     <div class="col-sm-10 col-sm-offset-2">
-                        <button type="submit" class="btn btn-success" name="passenger_submit" id="passenger_submit">Submit</button>
+                        <button onMouseDown="getCoodP();" type="submit" class="btn btn-success" id="passenger_submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</body>
-
-
-</html>
+<?php
+    include("includes/foot.php");
+?>

@@ -1,54 +1,85 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="driverMap.js" type="text/javascript"></script>
-    <title>Ride-Share</title>
-</head>
+<?php
+include("includes/header.php");
+?>
 
 
 
-<body>
-    <div class="jumbotron text-center">
-        <h1>Ride Share</h1>
-        <p>Needs a ride? find one here!</p>
+
+<div class="jumbotron text-center">
+        <br/>
+        <a href="index.php"><h1>Ride Share</h1></a>
+        <p>Need a ride? Find one here!</p>
+        <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
     </div>
-    
-    <?php
-        if(isset($_POST)) {
-            echo "Hi, " . $_POST["passenger_username"] . "!";
-            
-           
-        extract($_POST);
-        $file = "passenger.json";
-        $json = json_decode(file_get_contents($file, TRUE), TRUE);
-        $json[] = $_POST;
-        $json = json_encode($json);
-        file_put_contents($file, $json);
-        
+<div>
+    <div id="map"  style="text-align: center; width: 1000px; height: 750px;"></div>
+</div>
+<?php
+    if(isset($_POST)) {
+        echo "Hi, " . $_POST["passenger_username"] . "!";
 
-            
-    
-            
-        }
-    
-    ?>
 
-</body>
+    extract($_POST);
+    $file = "passenger.json";
+    $json = json_decode(file_get_contents($file, TRUE), TRUE);
+    $json[] = $_POST;
+    $json = json_encode($json);
+    file_put_contents($file, $json);
+    //var_dump($_POST);
 
-</html>
+
+
+
+
+    }
+    
+?>
+<script type="text/javascript">
+    var locations;
+    locations = [{lat : <?php echo $passenger_lat; ?>, lng : <?php echo $passenger_lng; ?>}, {lat : 49.1665898, lng : -123.133569}, {lat : 49.2993349, lng : -122.891689}]
+    
+    $.ajax({
+				url: "http://ride-share.azurewebsites.net/offer",
+				type: "GET",
+				dataType: 'json',
+				error: function (x, y, z) {
+					alert(x + '\n' + y + '\n' + z);
+				},
+				success: function (data) {
+                    console.log(data);
+				}
+			});
+    function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 9,
+          center: {lat: 49.1665898, lng: -123.133569}
+        });
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'A12';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY&callback=initMap" type="text/javascript"></script>
+<?php
+    include("includes/foot.php");
+?>
