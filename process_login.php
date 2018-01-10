@@ -28,6 +28,7 @@ if ($result['ok']) {
     $_SESSION['team_id'] = $result['team']['id'];
     header('Location: index.php');
 } else {
+    echo($result);
     echo('an error has occured, please try again');
 }
 ?>
