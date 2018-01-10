@@ -12,13 +12,13 @@ $options = array(
 );
 $context  = stream_context_create($options);
 // $result = file_get_contents($url, false, $context);
-$result = json_decode($context);
+$result = json_decode($context, TRUE);
 
 // var_dump($result);
-if ($result.ok) {
-    $user_name = $result.user.name;
-    $user_id = $result.user.id;
-    $team_id = $result.team.id;
+if ($result['ok']) {
+    $user_name = $result['user']['name'];
+    $user_id = $result['user']['id'];
+    $team_id = $result['team']['id'];
     echo($user_name . $user_id . $team_id);
 }
 ?>
