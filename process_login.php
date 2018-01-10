@@ -1,7 +1,7 @@
 <?php
 session_start();
 $url = 'https://slack.com/api/oauth.access';
-$data = array('client_id' => '155127176102.293670961635', 'client_secret' => '27321abc0621b516a63e0bbaf80d390a', 'code' => $_GET['code']);
+$data = array('client_id' => '293788574964.293935676385', 'client_secret' => '6c57ee01b0601eca4c39633d27277492', 'code' => $_GET['code']);
 
 // access OAuth
 $options = array(
