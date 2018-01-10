@@ -22,5 +22,8 @@ if ($result['ok']) {
     $_SESSION['user_name'] = $result['user']['name'];
     $_SESSION['user_id'] = $result['user']['id'];
     $_SESSION['team_id'] = $result['team']['id'];
+    header('Location: index.php');
+} else {
+    echo('an error has occured, please try again');
 }
 ?>

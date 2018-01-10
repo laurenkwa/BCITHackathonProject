@@ -4,8 +4,7 @@
   <p>Need a ride? Find one here!</p>
   <?php
   if (isset($_SESSION['access_token'])) {
-    $username = $_SESSION['user_name'];
-    echo('<p>Welcome to Ride-Share, $username!</p>');
+    echo('<p>Welcome to Ride-Share, ' . $_SESSION['user_name'] . '!</p>');
   } else {
     echo('<p><a href="https://slack.com/oauth/authorize?client_id=293788574964.293935676385&amp;scope=identity.basic&amp;redirect_uri=https%3A%2F%2Fride-share.azurewebsites.net%2Fprocess_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"></a></p>');
   }
