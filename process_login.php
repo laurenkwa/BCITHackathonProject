@@ -11,10 +11,13 @@ $options = array(
     )
 );
 $context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-if ($result === FALSE) { /* Handle error */ }
+// $result = file_get_contents($url, false, $context);
+$result = json_decode($context);
+print($result);
+print($result['ok']);
+print($result.ok);
+// var_dump($result);
+if ($result['ok']) {
 
-var_dump($result);
-echo($result);
-    // header("Location: https://slack.com/api/oauth.access/?client_id=293788574964.293935676385&client_secret=6c57ee01b0601eca4c39633d27277492&code=$_GET['code']");
+}
 ?>
