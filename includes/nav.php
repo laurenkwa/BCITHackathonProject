@@ -5,7 +5,7 @@
   <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
 
 </div>
-<div class="text-center" style="background-color: #eee;">
+<div class="text-center" style="background-color: #eee;padding: 10px;">
   <?php
   if (isset($_SESSION['access_token'])) {
     echo('<p>Welcome to Ride-Share, <span style="font-weight: bold;">' . $_SESSION['user_name'] . '</span>!</p>');
