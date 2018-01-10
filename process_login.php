@@ -12,7 +12,7 @@ $options = array(
 );
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
-// $result = json_decode($context, TRUE);
+$result = json_decode($result, TRUE);
 
 var_dump($result);
 if ($result['ok']) {
