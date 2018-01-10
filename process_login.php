@@ -15,6 +15,10 @@ $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 $result = json_decode($result, TRUE);
 
+if (isset($_GET['error'])) {
+    header('Location: index.php');
+}
+
 // var_dump($result);
 // handle the returned JSON object
 if ($result['ok']) {
