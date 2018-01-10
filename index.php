@@ -1,34 +1,9 @@
 <?php
-include("includes/header.php");
+session_start();
+include("includes/header.html");
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="driverMap.js" type="text/javascript"></script>
-    <title>Ride-Share</title>
-
-</head>
-
-
-
-<body>
 <script>
 function getCood(){
     var origin = document.getElementById("driver_start").value;
@@ -74,14 +49,8 @@ function getCoodP(){
     })
 }
 </script>
-    <div class="jumbotron text-center">
-        <br/>
-        <a href="index.php"><h1>Ride Share</h1></a>
-        <p>Need a ride? Find one here!</p>
-        <p><a href="https://slack.com/oauth/authorize?client_id=293788574964.293935676385&scope=identity.basic&redirect_uri=https%3A%2F%2Fride-share.azurewebsites.net%2Fprocess_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a></p>
-        <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
-  
-    </div>
+<?php include("includes/nav.php"); ?>
+    
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="active">
@@ -238,5 +207,5 @@ function getCoodP(){
         </div>
     </div>
 <?php
-    include("includes/foot.php");
+    include("includes/footer.html");
 ?>
