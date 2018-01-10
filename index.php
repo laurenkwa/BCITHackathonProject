@@ -78,6 +78,7 @@ function getCoodP(){
         <br/>
         <a href="index.php"><h1>Ride Share</h1></a>
         <p>Need a ride? Find one here!</p>
+        <p><a href="https://slack.com/oauth/authorize?client_id=293788574964.293935676385&scope=users:read&redirect_uri=https://ride-share.azurewebsites.net/process_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a></p>
         <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
   
     </div>
