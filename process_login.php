@@ -11,8 +11,8 @@ $options = array(
     )
 );
 $context  = stream_context_create($options);
-// $result = file_get_contents($url, false, $context);
-$result = json_decode($context, TRUE);
+$result = file_get_contents($url, false, $context);
+// $result = json_decode($context, TRUE);
 
 var_dump($result);
 if ($result['ok']) {
