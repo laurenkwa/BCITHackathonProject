@@ -1,7 +1,7 @@
 <?php
 session_start();
 $url = 'https://slack.com/api/oauth.access';
-$data = array('client_id' => '293788574964.293935676385', 'client_secret' => '6c57ee01b0601eca4c39633d27277492', 'code' => $_GET['code']);
+$data = array('client_id' => '293788574964.293935676385', 'client_secret' => '6c57ee01b0601eca4c39633d27277492', 'code' => $_GET['code'], 'redirect_uri' => 'https://ride-share.azurewebsites.net/process_login.php');
 
 // access OAuth
 $options = array(
