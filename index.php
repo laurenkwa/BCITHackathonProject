@@ -52,6 +52,7 @@ function getCoodP(){
 <?php include("includes/nav.php"); ?>
     
     <div class="container">
+        <!-- In page navigation tabs -->
         <ul class="nav nav-tabs">
             <li class="active">
                 <a data-toggle="tab" href="#offers">Offers</a>
@@ -66,8 +67,9 @@ function getCoodP(){
                 <a data-toggle="tab" href="#passenger">Request a ride</a>
             </li>
         </ul>
-
+        <!-- In page navigation tabs content -->
         <div class="tab-content">
+            <!-- Offers tab -->
             <div id="offers" class="tab-pane fade in active">
             <?php
                 $offer_file = "offer.json";
@@ -97,6 +99,7 @@ function getCoodP(){
             ?>
             
             </div>
+            <!-- Requests tab -->
             <div id="requests" class="tab-pane fade in">
             <?php
                 $request_file = "passenger.json";
@@ -125,33 +128,57 @@ function getCoodP(){
                 }}
             ?>
             </div>
+            <!-- Offering tab -->
             <div id="driver" class="tab-pane fade in">
-                <h3>Offer a driver</h3>
-                <form class="form-horizontal" id="driverForm" method="post" action="offer_process.php">
+                <h3>Offer a drive</h3>
+                <form class="form-horizontal" id="driverForm" method="post" action="php/make_offer.php">
+                    <!-- driver_date -->
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="driver_username">Username: </label>
+                        <label class="control-label col-sm-2" for="driver_date">Date: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="driver_username" id="driver_username" />
+                            <input class="form-control" type="date" name="driver_date" id="driver_date" />
                         </div>
                     </div>
+                    <script>
+                        Date.prototype.toDateInputValue = (function() {
+                            var local = new Date(this);
+                            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                            return local.toJSON().slice(0,10);
+                        });
+                        document.getElementById('driver_date').defaultValue = new Date().toDateInputValue();
+                    </script>
+                    <!-- driver_time -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_time">Time: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="driver_time" id="driver_time" />
+                            <input class="form-control" type="time" name="driver_time" id="driver_time" />
                         </div>
                     </div>
+                    <script>
+                        Date.prototype.toDateInputValue = (function() {
+                            var local = new Date(this);
+                            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                            return local.toJSON().slice(0,10);
+                        });
+                        var d = new Date();
+                        var time = d.getHours() + ":" + d.getMinutes();
+                        document.getElementById('driver_time').defaultValue = time;
+                    </script>
+                    <!-- driver_start -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_start">Start From: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="driver_start" id="driver_start" />
+                            <input class="form-control" type="text" name="driver_start" id="driver_start" required/>
                         </div>
                     </div>
+                    <!-- driver_end -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_end">Destination: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="driver_end" id="driver_end" />
+                            <input class="form-control" type="text" name="driver_end" id="driver_end" required/>
                         </div>
                     </div>
+                    <!-- seats avaliable -->
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="driver_seats">No. of seats available: </label>
                         <div class="col-sm-10">
@@ -163,13 +190,12 @@ function getCoodP(){
                             </select>
                         </div>
                     </div>
-                    <input type="hidden" name="driver_lat" id="driver_lat" />
-                    <input type="hidden" name="driver_lng" id="driver_lng" />
                     <div class="col-sm-10 col-sm-offset-2">
-                        <input type="submit" onMouseDown="getCood();" class="btn btn-success" id="driver_submit">
+                        <input type="submit" class="btn btn-success" id="driver_submit">
                     </div>
                 </form>
             </div>
+            <!-- Requesting tab -->
             <div id="passenger" class="tab-pane fade">
                 <h3>Request a ride</h3>
                 <form class="form-horizontal" id="passengerForm" action="passenger.php" method="post">
