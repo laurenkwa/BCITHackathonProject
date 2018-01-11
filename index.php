@@ -155,13 +155,17 @@ function getCoodP(){
                         </div>
                     </div>
                     <script>
-                        Date.prototype.toDateInputValue = (function() {
-                            var local = new Date(this);
-                            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-                            return local.toJSON().slice(0,10);
-                        });
                         var d = new Date();
-                        var time = d.getHours() + ":" + d.getMinutes();
+                        var hours = d.getHours().toString();
+                        if (hours.length == 1) {
+                            hours = "0" + hours;
+                        }
+                        var minutes = d.getMinutes().toString();
+                        if (minutes.length == 1) {
+                            minutes = "0" + minutes;
+                        }
+                        var time = hours + ":" + minutes;
+                        console.log(time);
                         document.getElementById('driver_time').defaultValue = time;
                     </script>
                     <!-- driver_start -->
