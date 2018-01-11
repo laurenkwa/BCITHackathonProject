@@ -42,7 +42,7 @@ class Database {
      * @return boolean -> TRUE on success and FALSE on failure
      */
     function removeNode($ele, $name, $value) {
-        $item = searchNode($ele, $name, $value);
+        $item = $this->searchNode($ele, $name, $value);
         // return if no match item is found
         if (!$item) return FALSE;
         // remove the node from DOM
