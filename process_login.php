@@ -16,7 +16,8 @@ $result = file_get_contents($url, false, $context);
 $result = json_decode($result, TRUE);
 
 if (isset($_GET['error'])) {
-    header('Location: index.php');
+    header('Location: php/error.php?code=4');
+    exit();
 }
 
 // var_dump($result);
@@ -26,6 +27,19 @@ if ($result['ok']) {
     $_SESSION['user_name'] = $result['user']['name'];
     $_SESSION['user_id'] = $result['user']['id'];
     $_SESSION['team_id'] = $result['team']['id'];
+
+    $file = "./xmls/users.xml";
+    $database = new Database($file);
+
+    // add a new offer
+    $user = $database->putIfAbsent("user", "id", $_SESSION['user_id']);
+    $user->addAttribute("name", $_SESSION['user_name']);
+    $user->addChild("requestlist");
+    $user->addChild("receivedlist");
+    $user->addChild("notification");
+
+    $database->saveDatabase();
+
     header('Location: index.php');
 } else {
     var_dump($result);

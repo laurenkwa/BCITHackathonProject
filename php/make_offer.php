@@ -6,10 +6,10 @@ function __autoload($className){
 } 
 
 // redirect to home page if the user is not logged in
-if (!isset($_SESSION['access_token'])) {
-    // header("Location: ./../index.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ./../php/error.php?code=1");
+    exit();
 }
-
 // echo "<pre>";
 // print_r($_POST);
 // echo "</pre>";
@@ -22,8 +22,8 @@ $database->getXML()->attributes()->count = $database->getXML()->attributes()->co
 // add a new offer
 $offer = $database->addNode("offer");
 $offer->addAttribute("id", $database->getXML()->attributes()->count);
-$offer->addChild("userid", "HARDCODED"); // $_SESSION['user_id']
-$offer->addChild("username", "HARDCODED"); // $_SESSION['user_name']
+$offer->addChild("userid",$_SESSION['user_id']); 
+$offer->addChild("username", $_SESSION['user_name']); 
 $offer->addChild("date", $_POST['driver_date']);
 $offer->addChild("time", $_POST['driver_time']);
 $offer->addChild("start", $_POST['driver_start']);
@@ -39,5 +39,6 @@ $offer->addChild("riders")->addAttribute("count", 0);
 $database->saveDatabase();
 
 // redirection
-// header("Location: ./../index.php");
+header("Location: ./../index.php");
+
 ?>

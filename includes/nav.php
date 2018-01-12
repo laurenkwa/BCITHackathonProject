@@ -7,7 +7,7 @@
 </div>
 <div class="text-center" style="background-color: #efdede;padding: 10px; margin-bottom: 10px;">
   <?php
-  if (isset($_SESSION['access_token'])) {
+  if (isset($_SESSION['user_id'])) {
     echo('<p>Welcome to Ride-Share, <span style="font-weight: bold;">' . $_SESSION['user_name'] . '</span>!</p>');
     echo('<p><a href="logout.php" class="btn btn-danger">Log out</a></p>');
   } else {

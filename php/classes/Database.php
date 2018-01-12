@@ -50,6 +50,15 @@ class Database {
         return TRUE;
     }
 
+    function putIfAbsent($ele, $name, $value) {
+        $node = $this->searchNode($ele, $name, $value);
+        if ($node == FALSE) {
+            $node = $this->addNode($ele);
+            $node->addAttribute($name, $value);
+        }
+        return $node;
+    }
+
     function size() {
         return $this->_xml->count();
     }

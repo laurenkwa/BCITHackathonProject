@@ -6,7 +6,7 @@ function __autoload($className){
 } 
 
 if (!isset($_GET['id'])) {
-    header("Location: index.php");
+    header("Location: php/error.php?code=2");
 }
 $offer_id = $_GET['id'];
 $file = "./xmls/offers.xml";
@@ -14,28 +14,29 @@ $database = new Database($file);
 
 $offer = $database->searchNode("offer", "id", $offer_id);
 if ($offer == FALSE) {
-    header("Location: index.php");
+    header("Location: php/error.php?code=3");
+    exit();
+} else {
+    include("includes/header.html");
+    include("includes/nav.php");
+
+    echo "<div class=\"container text-center\">";
+    echo "<div class=\"row seg\">";
+    echo "<div class=\"col-md-5\">";
+    echo "<p><strong>Driver: </strong>" . $offer->username ."</p>";
+    echo "<p><strong>Depart From: </strong>" . $offer->start ."</p>";
+    echo "<p><strong>Seats Available: </strong>" . $offer->seats ."</p>";
+    echo "</div>";
+    echo "<div class=\"col-md-5\">";
+    echo "<p><strong>Time: </strong>" . $offer->time ." " . $offer->date ."</p>";
+    echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
+    echo "</div>";
+    echo "<div class=\"col-md-2\">";
+    echo "<p><a href=\"#\"><button class=\"btn btn-success\">Reserve a seat</button></a></p>";
+    echo "<p><a href=\"#\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
+    echo "</div>";
+    echo "</div>";
 }
-
-include("includes/header.html");
-include("includes/nav.php");
-
-echo "<div class=\"container text-align\">";
-echo "<div class=\"row seg\">";
-echo "<div class=\"col-md-5\">";
-echo "<p><strong>Driver: </strong>" . $offer->username ."</p>";
-echo "<p><strong>Depart From: </strong>" . $offer->start ."</p>";
-echo "<p><strong>Seats Available: </strong>" . $offer->seats ."</p>";
-echo "</div>";
-echo "<div class=\"col-md-5\">";
-echo "<p><strong>Time: </strong>" . $offer->time ." " . $offer->date ."</p>";
-echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
-echo "</div>";
-echo "<div class=\"col-md-2\">";
-echo "<p><a href=\"#\"><button class=\"btn btn-success\">Reserve a seat</button></a></p>";
-echo "<p><a href=\"#\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
-echo "</div>";
-echo "</div>";
 ?>
 <div class="embed-responsive embed-responsive-16by9">
 <iframe id="googleMap" class="embed-responsive-item" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -50,3 +51,5 @@ echo "</div>";
     });
 </script>
 </div>
+
+<?php include("includes/footer.html"); ?>
