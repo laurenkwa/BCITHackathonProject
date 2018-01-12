@@ -33,7 +33,7 @@
             }
         ?>
         </p>
-        <h3><a href="./../index.php">You will be redirected to the homepage in 3 seconds, Click here if nothing happens in 3 seconds</a></h3>
+        <h3><a href="./../index.php">You will be redirected to the homepage in 3 seconds, Click here if nothing happens</a></h3>
     </div>
 </div>
 
