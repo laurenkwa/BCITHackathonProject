@@ -1,11 +1,11 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="padding: 10px;">
   <br/>
   <a href="index.php"><h1>Ride Share</h1></a>
   <p>Need a ride? Find one here!</p>
   <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
 
 </div>
-<div class="text-center" style="background-color: #eee;padding: 10px; margin-bottom: 10px;">
+<div class="text-center" style="background-color: #efdede;padding: 10px; margin-bottom: 10px;">
   <?php
   if (isset($_SESSION['access_token'])) {
     echo('<p>Welcome to Ride-Share, <span style="font-weight: bold;">' . $_SESSION['user_name'] . '</span>!</p>');

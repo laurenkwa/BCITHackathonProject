@@ -8,7 +8,6 @@ class Database {
         $xml = simplexml_load_string($xmlDoc) or die("Error: Cannot create object " . __LINE__);
         $this->_xml = $xml;
         $this->_file = $file;
-        echo "Database created<br>";
     }
 
     function addNode($name) {
@@ -51,10 +50,16 @@ class Database {
         return TRUE;
     }
 
+    function size() {
+        return $this->_xml->count();
+    }
+
+    function children() {
+        return $this->_xml->children();
+    }
+
     function saveDatabase() {
-        if ($this->_xml->saveXML($this->_file)) {
-            echo "Completed successfully<br>";
-        } else {
+        if (!($this->_xml->saveXML($this->_file))) {
             echo "Error occurs when saving the ". $this->_file . "<br>";
         }
     }

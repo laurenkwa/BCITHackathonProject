@@ -29,6 +29,7 @@ $offer->addChild("time", $_POST['driver_time']);
 $offer->addChild("start", $_POST['driver_start']);
 $offer->addChild("end", $_POST['driver_end']);
 $offer->addChild("seats", $_POST['driver_seats']);
+$offer->addChild("riders")->addAttribute("count", 0);
 
 // echo "<pre>";
 // print_r($database->getXML());

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<list count="0">
+<list count="2">
 
-</list>
+<offer id="1"><userid>HARDCODED</userid><username>HARDCODED</username><date>2018-01-11</date><time>16:02</time><start>Burnaby</start><end>BCIT</end><seats>1</seats></offer><offer id="2"><userid>HARDCODED</userid><username>HARDCODED</username><date>2018-01-11</date><time>16:26</time><start>广州</start><end>BCIT</end><seats>1</seats></offer></list>
