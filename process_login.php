@@ -16,7 +16,7 @@ $result = file_get_contents($url, false, $context);
 $result = json_decode($result, TRUE);
 
 if (isset($_GET['error'])) {
-    header('Location: ./error.php?code=4');
+    header('Location: ./php/error.php?code=4');
     exit();
 }
 
@@ -28,7 +28,7 @@ if ($result['ok']) {
     $_SESSION['user_id'] = $result['user']['id'];
     $_SESSION['team_id'] = $result['team']['id'];
 
-    $file = "./../xmls/users.xml";
+    $file = "./xmls/users.xml";
     $database = new Database($file);
 
     // add a new offer
@@ -40,11 +40,11 @@ if ($result['ok']) {
 
     $database->saveDatabase();
 
-    header('Location: ./../index.php');
+    header('Location: ./index.php');
     exit();
 } else {
     var_dump($result);
-    header('Location: ./error.php?code=5');
+    header('Location: ./php/error.php?code=5');
     exit();
 }
 ?>

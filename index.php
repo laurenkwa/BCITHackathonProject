@@ -96,7 +96,7 @@ include("includes/header.html");
                 </form>
             </div>
             <?php } else {
-                echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">Please Log in to post offer a drive!</div></div>";
+                echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">Please Log in to post a offer!</div></div>";
             } ?>
         </div>
     </div>
