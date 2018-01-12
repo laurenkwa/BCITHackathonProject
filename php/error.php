@@ -25,6 +25,9 @@
                 case 4:
                     echo "Fatal error, please contact the adminstrator as soon as possible";
                     break;
+                case 5:
+                    echo "Unable to sign in with slack";
+                    break;
                 default:
                     echo "What brings you here? This is an unusal error";
             }

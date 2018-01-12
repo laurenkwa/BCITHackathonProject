@@ -43,7 +43,7 @@ if ($result['ok']) {
     header('Location: ./../index.php');
 } else {
     var_dump($result);
-    header('Location: ./error.php?code=4');
+    header('Location: ./error.php?code=5');
     exit();
 }
 ?>
