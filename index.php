@@ -26,6 +26,7 @@ include("includes/header.html");
             </div>
             <!-- Offering tab -->
             <div id="driver" class="tab-pane fade in">
+            <?php if (isset($_SESSION['user_id'])) { ?>
                 <h3>Offer a drive</h3>
                 <form class="form-horizontal" id="driverForm" method="post" action="php/make_offer.php">
                     <!-- driver_date -->
@@ -94,6 +95,9 @@ include("includes/header.html");
                     </div>
                 </form>
             </div>
+            <?php } else {
+                echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">Please Log in to post offer a drive!</div></div>";
+            } ?>
         </div>
     </div>
 <?php

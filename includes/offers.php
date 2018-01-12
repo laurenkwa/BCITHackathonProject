@@ -21,7 +21,7 @@
             echo "</div>";
             echo "<div class=\"col-md-2\">";
             echo "<p><a href=\"php/offerdetails.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-primary\">More details</button></a></p>";
-            if ($_SESSION['user_id'] != $offer->userid)
+            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $offer->userid)
             echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
             echo "</div>";
             if ($offer->seats < 1)
