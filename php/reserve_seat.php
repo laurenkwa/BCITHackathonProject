@@ -57,8 +57,6 @@ $driver->receivedlist->addChild("received", $requestID);
 $driver->notification->addChild("msg", "You have received an request from " . $rider->attributes()->name . " for the driver offer id: " . $request->offer_id);
 // add to rider's user data
 $rider->requestlist->addChild("request", $requestID);
-// decrement the seats number available
-$offer->seats = $offer->seats - 1;
 
 // echo "<pre>";
 // print_r($userDatabase->getXML());

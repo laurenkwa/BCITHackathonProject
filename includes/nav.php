@@ -1,6 +1,6 @@
 <div class="jumbotron text-center" style="padding: 10px;">
   <br/>
-  <a href="index.php"><h1>Ride Share</h1></a>
+  <a href="/index.php"><h1>Ride Share</h1></a>
   <p>Need a ride? Find one here!</p>
   <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
 

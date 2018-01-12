@@ -20,7 +20,7 @@ if ($offer == FALSE) {
     include("./../includes/header.html");
     include("./../includes/nav.php");
 
-    echo "<div class=\"container text-center\">";
+    echo "<div class=\"container\">";
     echo "<div class=\"row seg\">";
     echo "<div class=\"col-md-5\">";
     echo "<p><strong>Driver: </strong>" . $offer->username ."</p>";
@@ -32,7 +32,9 @@ if ($offer == FALSE) {
     echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
     echo "</div>";
     echo "<div class=\"col-md-2\">";
+    if ($_SESSION['user_id'] != $offer->userid && $offer->seats > 0)
     echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
+    else if ($_SESSION['user_id'] == $offer->userid)
     echo "<p><a href=\"#\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
