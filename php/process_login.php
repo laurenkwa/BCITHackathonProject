@@ -1,7 +1,7 @@
 <?php
 session_start();
 $url = 'https://slack.com/api/oauth.access';
-$data = array('client_id' => '155127176102.293670961635', 'client_secret' => '27321abc0621b516a63e0bbaf80d390a', 'code' => $_GET['code'], 'redirect_uri' => 'https://ride-share.azurewebsites.net/process_login.php');
+$data = array('client_id' => '155127176102.293670961635', 'client_secret' => '27321abc0621b516a63e0bbaf80d390a', 'code' => $_GET['code'], 'redirect_uri' => 'https://ride-share.azurewebsites.net/php/process_login.php');
 
 // access OAuth
 $options = array(
@@ -16,7 +16,7 @@ $result = file_get_contents($url, false, $context);
 $result = json_decode($result, TRUE);
 
 if (isset($_GET['error'])) {
-    header('Location: php/error.php?code=4');
+    header('Location: ./error.php?code=4');
     exit();
 }
 
@@ -40,9 +40,10 @@ if ($result['ok']) {
 
     $database->saveDatabase();
 
-    header('Location: index.php');
+    header('Location: ./../index.php');
 } else {
     var_dump($result);
-    echo('an error has occured, please try again');
+    header('Location: ./error.php?code=4');
+    exit();
 }
 ?>

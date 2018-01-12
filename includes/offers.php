@@ -1,6 +1,6 @@
 <?php
     function __autoload($className){
-        require_once("classes/$className.php");
+        require_once("php/classes/$className.php");
     } 
     
     $file = "./xmls/offers.xml";
@@ -20,7 +20,7 @@
             echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
             echo "</div>";
             echo "<div class=\"col-md-2\">";
-            echo "<p><a href=\"offerdetails.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-default\">More details</button></a></p>";
+            echo "<p><a href=\"php/offerdetails.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-default\">More details</button></a></p>";
             echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
             echo "</div>";
             echo "</div>";

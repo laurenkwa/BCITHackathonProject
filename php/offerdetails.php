@@ -2,14 +2,14 @@
 session_start();
 
 function __autoload($className){
-    require_once("php/classes/$className.php");
+    require_once("classes/$className.php");
 } 
 
 if (!isset($_GET['id'])) {
-    header("Location: php/error.php?code=2");
+    header("Location: error.php?code=2");
 }
 $offer_id = $_GET['id'];
-$file = "./xmls/offers.xml";
+$file = "./../xmls/offers.xml";
 $database = new Database($file);
 
 $offer = $database->searchNode("offer", "id", $offer_id);
@@ -17,8 +17,8 @@ if ($offer == FALSE) {
     header("Location: php/error.php?code=3");
     exit();
 } else {
-    include("includes/header.html");
-    include("includes/nav.php");
+    include("./../includes/header.html");
+    include("./../includes/nav.php");
 
     echo "<div class=\"container text-center\">";
     echo "<div class=\"row seg\">";
@@ -32,7 +32,7 @@ if ($offer == FALSE) {
     echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
     echo "</div>";
     echo "<div class=\"col-md-2\">";
-    echo "<p><a href=\"#\"><button class=\"btn btn-success\">Reserve a seat</button></a></p>";
+    echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
     echo "<p><a href=\"#\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
@@ -52,4 +52,7 @@ if ($offer == FALSE) {
 </script>
 </div>
 
-<?php include("includes/footer.html"); ?>
+<?php 
+include("./../includes/reserve_modal.html");
+include("./../includes/footer.html"); 
+?>

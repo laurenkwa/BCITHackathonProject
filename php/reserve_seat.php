@@ -25,6 +25,10 @@ $requestFile = "./../xmls/requests.xml";
 $requestDatabase = new Database($requestFile);
 
 $offer = $offerDatabase->searchNode("offer", "id", $_POST['id']);
+if ($offer->seats < 1) {
+    header("Location: ./error.php?code=2");
+    exit();
+}
 // load both the driver's and the rider's user data
 $driver = $userDatabase->searchNode("user", "id", $offer->userid->__toString());
 $rider = $userDatabase->searchNode("user", "id", $_SESSION['user_id']);
@@ -53,6 +57,8 @@ $driver->receivedlist->addChild("received", $requestID);
 $driver->notification->addChild("msg", "You have received an request from " . $rider->attributes()->name . " for the driver offer id: " . $request->offer_id);
 // add to rider's user data
 $rider->requestlist->addChild("request", $requestID);
+// decrement the seats number available
+$offer->seats = $offer->seats - 1;
 
 // echo "<pre>";
 // print_r($userDatabase->getXML());
@@ -61,6 +67,7 @@ $rider->requestlist->addChild("request", $requestID);
 // save the modification
 $userDatabase->saveDatabase();
 $requestDatabase->saveDatabase();
+$offerDatabase->saveDatabase();
 
 // redirection
 header("Location: ./../index.php");

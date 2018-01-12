@@ -21,7 +21,7 @@ include("includes/header.html");
             <!-- Offers tab -->
             <div id="offers" class="tab-pane fade in active">
 
-            <?php include("./php/offers.php"); ?>
+            <?php include("./includes/offers.php"); ?>
             
             </div>
             <!-- Offering tab -->
