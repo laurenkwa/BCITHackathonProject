@@ -21,6 +21,9 @@ if (isset($_GET['error'])) {
 }
 
 echo('Data Received');
+echo('<pre>');
+var_dump($result);
+echo('</pre>');
 
 // var_dump($result);
 // handle the returned JSON object
