@@ -35,16 +35,22 @@ if ($result['ok']) {
     $_SESSION['team_id'] = $result['team']['id'];
 
     $file = "./../xmls/users.xml";
+    echo(__LINE__);
     $database = new Database($file);
+    echo(__LINE__);
 
     // add a new offer
     $user = $database->putIfAbsent("user", "id", $_SESSION['user_id']);
+    echo(__LINE__);
     $user->addAttribute("name", $_SESSION['user_name']);
+    echo(__LINE__);
     $user->addChild("requestlist");
     $user->addChild("receivedlist");
     $user->addChild("notification");
+    echo(__LINE__);
 
     $database->saveDatabase();
+    echo(__LINE__);
 
     echo('Going back to homepage');
     header('Location: ./../index.php');
