@@ -12,7 +12,6 @@
     echo('<p><a href="php/logout.php" class="btn btn-danger">Log out</a></p>');
   } else {
     echo('<p><a href="https://slack.com/oauth/authorize?client_id=155127176102.293670961635&scope=identity.basic&redirect_uri=https://ride-share.azurewebsites.net/php/process_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"></a></p>');
-    echo('<a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=155127176102.293670961635&redirect_uri=https://ride-share.azurewebsites.net/php/login.php"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>');
   }
   ?>
 </div>

@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+function __autoload($className){
+    require_once("classes/$className.php");
+} 
 
 $url = 'https://slack.com/api/oauth.access';
 $data = array('client_id' => '155127176102.293670961635', 'client_secret' => '27321abc0621b516a63e0bbaf80d390a', 'code' => $_GET['code'], 'redirect_uri' => 'https://ride-share.azurewebsites.net/php/process_login.php');
@@ -40,22 +40,16 @@ if ($result['ok']) {
     $_SESSION['team_id'] = $result['team']['id'];
 
     $file = "./../xmls/users.xml";
-    echo(__LINE__);
     $database = new Database($file);
-    echo(__LINE__);
 
     // add a new offer
     $user = $database->putIfAbsent("user", "id", $_SESSION['user_id']);
-    echo(__LINE__);
     $user->addAttribute("name", $_SESSION['user_name']);
-    echo(__LINE__);
     $user->addChild("requestlist");
     $user->addChild("receivedlist");
     $user->addChild("notification");
-    echo(__LINE__);
 
     $database->saveDatabase();
-    echo(__LINE__);
 
     echo('Going back to homepage');
     header('Location: ./../index.php');
