@@ -40,6 +40,7 @@ if ($result['ok']) {
 
     $database->saveDatabase();
 
+    echo('Logged in Successfully');
     header('Location: ./../index.php');
     exit();
 } else {
