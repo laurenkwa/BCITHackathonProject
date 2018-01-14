@@ -20,6 +20,8 @@ if (isset($_GET['error'])) {
     exit();
 }
 
+echo('Data Received');
+
 // var_dump($result);
 // handle the returned JSON object
 if ($result['ok']) {
