@@ -12,9 +12,9 @@ $offer_id = $_GET['id'];
 $file = "./../xmls/offers.xml";
 $database = new Database($file);
 
-$offer = $database->searchNode("offer", "id", $offer_id);
+$offer = $database->searchNodes("/list/offer", NULL, array("id" => $offer_id))[0];
 if ($offer == FALSE) {
-    header("Location: php/error.php?code=3");
+    header("Location: error.php?code=3");
     exit();
 } else {
     include("./../includes/header.html");
@@ -35,7 +35,7 @@ if ($offer == FALSE) {
     if ($_SESSION['user_id'] != $offer->userid && $offer->seats > 0)
     echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
     else if ($_SESSION['user_id'] == $offer->userid)
-    echo "<p><a href=\"#\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
+    echo "<p><a href=\"cancel_offer.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
 }

@@ -5,6 +5,11 @@ function __autoload($className){
     require_once("classes/$className.php");
 } 
 
+if (isset($_SESSION['user_id'])) {
+    header("Location: ./error.php?code=0");
+    exit();
+}
+
 $url = 'https://slack.com/api/oauth.access';
 $data = array('client_id' => '155127176102.293670961635', 'client_secret' => '27321abc0621b516a63e0bbaf80d390a', 'code' => $_GET['code'], 'redirect_uri' => 'https://ride-share.azurewebsites.net/php/process_login.php');
 
@@ -43,11 +48,12 @@ if ($result['ok']) {
     $database = new Database($file);
 
     // add a new offer
-    $user = $database->putIfAbsent("user", "id", $_SESSION['user_id']);
-    $user->addAttribute("name", $_SESSION['user_name']);
-    $user->addChild("requestlist");
-    $user->addChild("receivedlist");
-    $user->addChild("notification");
+    $user = $database->putIfAbsent("user", NULL, array("id" => $_SESSION['user_id'], "name" => $_SESSION['user_name']));
+    if ($user) {
+        $user->addChild("requestlist");
+        $user->addChild("receivedlist");
+        $user->addChild("notification");
+    }
 
     $database->saveDatabase();
 

@@ -24,14 +24,14 @@ $offerDatabase = new Database($offerFile);
 $requestFile = "./../xmls/requests.xml";
 $requestDatabase = new Database($requestFile);
 
-$offer = $offerDatabase->searchNode("offer", "id", $_POST['id']);
+$offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_POST['id']))[0];
 if ($offer->seats < 1) {
     header("Location: ./error.php?code=2");
     exit();
 }
 // load both the driver's and the rider's user data
-$driver = $userDatabase->searchNode("user", "id", $offer->userid->__toString());
-$rider = $userDatabase->searchNode("user", "id", $_SESSION['user_id']);
+$driver = $userDatabase->searchNodes("/list/user", NULL, array("id" => $offer->userid->__toString()))[0];
+$rider = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']))[0];
 if ($driver == FALSE || $rider == FALSE) {
     header("Location: ./error.php?code=4");
     exit();
@@ -46,7 +46,7 @@ $requestID = $requestDatabase->getXML()->attributes()->count;
 // add a new request
 $request = $requestDatabase->addNode("request");
 $request->addAttribute("id", $requestID);
-$request->addChild("offer_id", $_POST['id']);
+$request->addAttribute("offer_id", $_POST['id']);
 $request->addChild("driver_id", $driver->attributes()->id);
 $request->addChild("rider_id", $rider->attributes()->id);
 $request->addChild("request_time", $dt->format("Y-m-d H:i:s"));
