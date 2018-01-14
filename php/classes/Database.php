@@ -24,9 +24,33 @@ class Database {
      * @return SimpleXMLElement -> Returns FALSE if no match item is found
      */
     function searchNode($ele, $name, $value) {
-        foreach($this->_xml->children() as $item) {
+        return $this->searchNodeByAttr($this->_xml, $ele, $name, $value);
+    }
+
+    function searchNodeByAttr($root, $ele, $name, $value) {
+        foreach ($root->children() as $item) {
             if($item->getName() == $ele && $item[$name] == $value) {
                 return $item;
+            }
+        }
+        return FALSE;
+    }
+
+    function searchNode2($ele, $name, $value) {
+        return $this->searchNodeByChild($this->_xml, $ele, $name, $value);
+    }
+
+    function searchNodeByChild($root, $ele, $name, $value, $flag = TRUE) {
+        foreach($root->children() as $item) {
+            if($item->getName() == $ele) {
+                foreach ($item->children() as $item2) {
+                    if ($item2->getName() == $name && $item2->__toString() == $value) {
+                        if ($flag)
+                            return $item;
+                        else 
+                            return $item2;
+                    }
+                }
             }
         }
         return FALSE;
@@ -43,6 +67,24 @@ class Database {
     function removeNode($ele, $name, $value) {
         $item = $this->searchNode($ele, $name, $value);
         // return if no match item is found
+        if (!$item) return FALSE;
+        // remove the node from DOM
+        $dom = dom_import_simplexml($item);
+        $dom->parentNode->removeChild($dom);
+        return TRUE;
+    }
+
+    function removeNode2($ele, $name, $value) {
+        $item = $this->searchNode2($ele, $name, $value);
+        // return if no match item is found
+        if (!$item) return FALSE;
+        // remove the node from DOM
+        $dom = dom_import_simplexml($item);
+        $dom->parentNode->removeChild($dom);
+        return TRUE;
+    }
+
+    function removeChild($item) {
         if (!$item) return FALSE;
         // remove the node from DOM
         $dom = dom_import_simplexml($item);
