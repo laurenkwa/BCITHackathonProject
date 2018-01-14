@@ -25,18 +25,18 @@ $requestFile = "./../xmls/requests.xml";
 $requestDatabase = new Database($requestFile);
 
 // remove the offer
-$offer = $offerDatabase->searchNode("offer", "id", $_GET['id']);
+$offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_GET['id']))[0];
 if ($offer == FALSE) {
     header("Location: ./error.php?code=2");
     exit();
 } else if ($offer->userid == $_SESSION['user_id']) {
-    $offerDatabase->removeNode("offer", "id", $_GET['id']);
+    $offerDatabase->removeNodes("/list/offer", NULL, array("id" => $_GET['id']))[0];
 }
 
-while ($request = $requestDatabase->searchNode2("request", "offer_id", $_GET['id'])) {
+foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" => $_GET['id'])) as $request) {
     $requestDatabase->removeChild($request); 
-    $node = $userDatabase->searchNodeByChild($userDatabase->getXML()->user, "requestlist", "request", $_GET['id'], FALSE);
-    $userDatabase->removeChild($node);
+    $userDatabase->removeNodes("/list/user/requestlist/request", $_GET['id']);
+    $userDatabase->removeNodes("/list/user/receivedlist/received", $_GET['id']);
 }
 
 // echo "<pre>";

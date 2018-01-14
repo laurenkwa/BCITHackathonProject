@@ -16,72 +16,42 @@ class Database {
     }
 
     /**
-     * remove a node with the given attribute and value.
-     * 
-     * @param ele -> name of the element
-     * @param name -> the name of the attribute
-     * @param value -> the value of the attribute
-     * @return SimpleXMLElement -> Returns FALSE if no match item is found
+     * @param path Ex. when searches <a><b><c>, input 'a/b/c'
+     * @param attr must be a dict (attr => value, ...)
+     * @return array of SimpleXMLelements
      */
-    function searchNode($ele, $name, $value) {
-        return $this->searchNodeByAttr($this->_xml, $ele, $name, $value);
-    }
-
-    function searchNodeByAttr($root, $ele, $name, $value) {
-        foreach ($root->children() as $item) {
-            if($item->getName() == $ele && $item[$name] == $value) {
-                return $item;
-            }
-        }
-        return FALSE;
-    }
-
-    function searchNode2($ele, $name, $value) {
-        return $this->searchNodeByChild($this->_xml, $ele, $name, $value);
-    }
-
-    function searchNodeByChild($root, $ele, $name, $value, $flag = TRUE) {
-        foreach($root->children() as $item) {
-            if($item->getName() == $ele) {
-                foreach ($item->children() as $item2) {
-                    if ($item2->getName() == $name && $item2->__toString() == $value) {
-                        if ($flag)
-                            return $item;
-                        else 
-                            return $item2;
+    function searchNodes($path, $value = NULL, $attr = NULL) {
+        $result = $this->_xml->xpath($path);
+        $matches = [];
+        foreach ($result as $node) {
+            if ($attr) {
+                foreach (array_keys($attr) as $key) { 
+                    $flag = ($value != NULL && $node->__toString() == $value) || $value == NULL; 
+                    if ($node->attributes()[$key] != $attr[$key]) {
+                        $flag = false;
+                        break;
                     }
                 }
+                if ($flag) $matches[] = $node;
+            } else {
+                if (($value != NULL && $node->__toString() == $value) || $value == NULL)
+                        $matches[] = $node;
             }
         }
-        return FALSE;
+        return $matches;
     }
 
     /**
-     * remove a node with the given attribute and value.
-     * 
-     * @param ele -> name of the element
-     * @param name -> the name of the attribute
-     * @param value -> the value of the attribute
-     * @return boolean -> TRUE on success and FALSE on failure
+     * @param path Ex. when searches <a><b><c>, input 'a/b/c'
+     * @param attr must be a dict (attr => value, ...)
+     * @return array of SimpleXMLelements
      */
-    function removeNode($ele, $name, $value) {
-        $item = $this->searchNode($ele, $name, $value);
-        // return if no match item is found
-        if (!$item) return FALSE;
-        // remove the node from DOM
-        $dom = dom_import_simplexml($item);
-        $dom->parentNode->removeChild($dom);
-        return TRUE;
-    }
-
-    function removeNode2($ele, $name, $value) {
-        $item = $this->searchNode2($ele, $name, $value);
-        // return if no match item is found
-        if (!$item) return FALSE;
-        // remove the node from DOM
-        $dom = dom_import_simplexml($item);
-        $dom->parentNode->removeChild($dom);
-        return TRUE;
+    function removeNodes($path, $value = NULL, $attr = NULL) {
+        $result = $this->searchNodes($path, $value, $attr);
+        foreach ($result as $node) {
+            $dom = dom_import_simplexml($node);
+            $dom->parentNode->removeChild($dom);
+        }
     }
 
     function removeChild($item) {
@@ -92,11 +62,20 @@ class Database {
         return TRUE;
     }
 
-    function putIfAbsent($ele, $name, $value) {
-        $node = $this->searchNode($ele, $name, $value);
-        if ($node == FALSE) {
-            $node = $this->addNode($ele);
-            $node->addAttribute($name, $value);
+    function putIfAbsent($name, $value = NULL, $attr = NULL) {
+        $node = $this->searchNodes($name, $value, $attr);
+        if (empty($node)) {
+            if ($value == NULL) 
+                $node = $this->addNode($name);
+            else
+                $node = $this->addNode($name, $value);
+            if ($attr != NULL) {
+                foreach (array_keys($attr) as $key) {
+                    $node->addAttribute($key, $attr[$key]);
+                }
+            }
+        } else {
+            $node = NULL;
         }
         return $node;
     }

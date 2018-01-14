@@ -12,9 +12,9 @@ $offer_id = $_GET['id'];
 $file = "./../xmls/offers.xml";
 $database = new Database($file);
 
-$offer = $database->searchNode("offer", "id", $offer_id);
+$offer = $database->searchNodes("/list/offer", NULL, array("id" => $offer_id))[0];
 if ($offer == FALSE) {
-    header("Location: php/error.php?code=3");
+    header("Location: error.php?code=3");
     exit();
 } else {
     include("./../includes/header.html");
