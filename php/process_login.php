@@ -28,6 +28,7 @@ echo('</pre>');
 // var_dump($result);
 // handle the returned JSON object
 if ($result['ok']) {
+    echo('Logged in Successfully');
     $_SESSION['access_token'] = $result['access_token'];
     $_SESSION['user_name'] = $result['user']['name'];
     $_SESSION['user_id'] = $result['user']['id'];
@@ -45,7 +46,7 @@ if ($result['ok']) {
 
     $database->saveDatabase();
 
-    echo('Logged in Successfully');
+    echo('Going back to homepage');
     header('Location: ./../index.php');
     exit();
 } else {
