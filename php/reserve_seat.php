@@ -74,7 +74,8 @@ $request->addChild("msg", $_POST['msg']);
 // add to driver's user data
 $driver->receivedlist->addChild("received", $requestID);
 $msg = $driver->notification->addChild("msg", "<strong>" . $rider->attributes()->name . 
-"</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . "</strong> <a href=\"#\">offer #" . $_POST['id'] . "</a>");
+"</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . 
+"</strong> <a href=\"/php/offerdetails.php?id=" . $_POST['id'] . "\">offer #" . $_POST['id'] . "</a>");
 $msg->addAttribute("title", "You have received a request");
 $msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));
 // add to rider's user data
