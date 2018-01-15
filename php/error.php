@@ -28,12 +28,18 @@
                 case 5:
                     echo "Unable to sign in with slack";
                     break;
+                case 6:
+                    echo "You have already reserve a seat for this ride.";
+                    break;
+                case 7:
+                    echo "You cannot reserve a seat for your own offer";
+                    break;
                 default:
                     echo "What brings you here? This is an unusal error";
             }
         ?>
         </p>
-        <h3><a href="./../index.php">You will be redirected to the homepage in 3 seconds, Click here if nothing happens</a></h3>
+        <h3><a href="./../index.php">You will be redirected to the homepage in 3 seconds, Click here if it does not</a></h3>
     </div>
 </div>
 

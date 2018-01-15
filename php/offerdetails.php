@@ -5,6 +5,18 @@ function __autoload($className){
     require_once("classes/$className.php");
 } 
 
+function isAlreadyReserved($id) {
+    $file = "./../xmls/requests.xml";
+    $database = new Database($file);
+    $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
+    foreach ($result as $node) {
+        if ($node->rider_id->__toString() == $_SESSION['user_id']) {
+            return true;
+        }
+    }
+    return false;
+}
+
 if (!isset($_GET['id'])) {
     header("Location: error.php?code=2");
 }
@@ -32,10 +44,12 @@ if ($offer == FALSE) {
     echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
     echo "</div>";
     echo "<div class=\"col-md-2\">";
-    if ($_SESSION['user_id'] != $offer->userid && $offer->seats > 0)
-    echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
+    if (!isset($_SESSION['user_id']))
+        echo "<p class=\"text-center bg-primary\">To reserve a seat, please sign in.</p>";
+    else if ($_SESSION['user_id'] != $offer->userid && !isAlreadyReserved($offer->attributes()->id) && $offer->seats > 0)
+        echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
     else if ($_SESSION['user_id'] == $offer->userid)
-    echo "<p><a href=\"cancel_offer.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
+        echo "<p><a href=\"cancel_offer.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
 }

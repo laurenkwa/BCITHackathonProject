@@ -5,14 +5,28 @@ function __autoload($className){
     require_once("classes/$className.php");
 } 
 
+function isAlreadyReserved($id) {
+    $file = "./../xmls/requests.xml";
+    $database = new Database($file);
+    $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
+    foreach ($result as $node) {
+        if ($node->rider_id->__toString() == $_SESSION['user_id']) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ./error.php?code=1");
     exit();
 }
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
+
+if (isAlreadyReserved($_POST['id'])) {
+    header("Location: ./error.php?code=6");
+    exit();
+}
 
 // Open up a database using this file
 $userFile = "./../xmls/users.xml";
@@ -32,6 +46,10 @@ if ($offer->seats < 1) {
 // load both the driver's and the rider's user data
 $driver = $userDatabase->searchNodes("/list/user", NULL, array("id" => $offer->userid->__toString()))[0];
 $rider = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']))[0];
+if ($driver->attributes()->id == $_SESSION['user_id']) {
+    header("Location: ./error.php?code=7");
+    exit();
+}
 if ($driver == FALSE || $rider == FALSE) {
     header("Location: ./error.php?code=4");
     exit();
@@ -57,10 +75,6 @@ $driver->receivedlist->addChild("received", $requestID);
 $driver->notification->addChild("msg", "You have received an request from " . $rider->attributes()->name . " for the driver offer id: " . $request->offer_id);
 // add to rider's user data
 $rider->requestlist->addChild("request", $requestID);
-
-// echo "<pre>";
-// print_r($userDatabase->getXML());
-// echo "</pre>";
 
 // save the modification
 $userDatabase->saveDatabase();

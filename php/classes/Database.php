@@ -94,7 +94,7 @@ class Database {
         }
     }
 
-    public function getXML() {
+    function getXML() {
         return $this->_xml;
     }
 }
