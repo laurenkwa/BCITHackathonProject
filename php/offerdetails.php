@@ -46,7 +46,7 @@ if ($offer == FALSE) {
     echo "<div class=\"col-md-2\">";
     if (!isset($_SESSION['user_id']))
         echo "<p class=\"text-center bg-primary\">To reserve a seat, please sign in.</p>";
-    else if ($_SESSION['user_id'] != $offer->userid && !isAlreadyReserved($offer->attributes()->id) && $offer->seats > 0)
+    else if ($_SESSION['user_id'] != $offer->userid && !isAlreadyReserved($offer->attributes()->id->__toString()) && $offer->seats > 0)
         echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
     else if ($_SESSION['user_id'] == $offer->userid)
         echo "<p><a href=\"cancel_offer.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";

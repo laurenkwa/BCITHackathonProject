@@ -1,6 +1,8 @@
 .seg {
     padding-top: 15px;
     padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 10px;
     background-color: #009aff0f;
     border: 1px solid #337ab7;

@@ -70,9 +70,13 @@ $request->addChild("rider_id", $rider->attributes()->id);
 $request->addChild("request_time", $dt->format("Y-m-d H:i:s"));
 $request->addChild("msg", $_POST['msg']);
 
+
 // add to driver's user data
 $driver->receivedlist->addChild("received", $requestID);
-$driver->notification->addChild("msg", "You have received an request from " . $rider->attributes()->name . " for the driver offer id: " . $request->offer_id);
+$msg = $driver->notification->addChild("msg", "<strong>" . $rider->attributes()->name . 
+"</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . "</strong> <a href=\"#\">offer #" . $_POST['id'] . "</a>");
+$msg->addAttribute("title", "You have received a request");
+$msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));
 // add to rider's user data
 $rider->requestlist->addChild("request", $requestID);
 

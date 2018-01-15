@@ -26,7 +26,11 @@ $result = file_get_contents($url, false, $context);
 $result = json_decode($result, TRUE);
 
 if (isset($_GET['error'])) {
-    header('Location: ./error.php?code=4');
+    if ($_GET['error'] == 'access_denied') {
+        header('Location: ./error.php?code=8');
+    } else {
+        header('Location: ./error.php?code=4');
+    }
     exit();
 }
 

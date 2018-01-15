@@ -34,6 +34,9 @@
                 case 7:
                     echo "You cannot reserve a seat for your own offer";
                     break;
+                case 8:
+                    echo "Access Denied";
+                    break;
                 default:
                     echo "What brings you here? This is an unusal error";
             }
