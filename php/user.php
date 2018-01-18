@@ -23,8 +23,7 @@
 
     $user = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']));
     if (empty($user)) {
-        var_dump($user);
-        // header("Location: ./error.php?code=4");
+        header("Location: ./error.php?code=4");
     } else {
         $user = $user[0];
     }
