@@ -55,14 +55,13 @@
                 echo "</div>";
                 echo "</div>";
                 echo "<div class=\"row\">";
-                echo "<div class=\"col-md-12\" style=\"font-size: small;padding-left: 40px;\">";
+                echo "<div class=\"col-md-12\" style=\"font-size: small; padding-left: 40px;\">";
                 echo $msg->__toString();
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
             ?>
-            
         </div>
         </div>
         <div class="panel panel-primary">
@@ -72,9 +71,11 @@
             </h4>
         </div>
         <div id="offers" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div class="panel-body">
+            <?php
+
+            ?>
+            </div>
         </div>
         </div>
         <div class="panel panel-primary">

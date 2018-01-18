@@ -34,7 +34,7 @@ if ($offer == FALSE) {
 }
 
 foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" => $_GET['id'])) as $request) {
-    $requestDatabase->removeChild($request); 
+    $requestDatabase::removeChild($request); 
     $userDatabase->removeNodes("/list/user/requestlist/request", $_GET['id']);
     $userDatabase->removeNodes("/list/user/receivedlist/received", $_GET['id']);
 }
