@@ -54,7 +54,7 @@ class Database {
         }
     }
 
-    function removeChild($item) {
+    static function removeChild($item) {
         if (!$item) return FALSE;
         // remove the node from DOM
         $dom = dom_import_simplexml($item);
@@ -96,6 +96,30 @@ class Database {
 
     function getXML() {
         return $this->_xml;
+    }
+}
+
+class Node {
+    private $_path;
+    private $_value;
+    private $_attr;
+
+    public function __construct($path, $value, $attr) {
+        $this->_path = $path;
+        $this->_value = $value;
+        $this->_attr = $attr;
+    }
+
+    public function getPath() {
+        return $this->_path;
+    }
+
+    public function getValue() {
+        return $this->_value;
+    }
+
+    public function getAttr() {
+        return $this->_attr;
     }
 }
 ?>
