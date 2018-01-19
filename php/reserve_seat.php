@@ -6,8 +6,8 @@ function __autoload($className){
 } 
 
 function isAlreadyReserved($id) {
-    $file = "./../xmls/requests.xml";
-    $database = new Database($file);
+    $file = "/xmls/requests.xml";
+    $database = Database::openFromFile($file);
     $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
     foreach ($result as $node) {
         if ($node->rider_id->__toString() == $_SESSION['user_id']) {
@@ -29,14 +29,14 @@ if (isAlreadyReserved($_POST['id'])) {
 }
 
 // Open up a database using this file
-$userFile = "./../xmls/users.xml";
-$userDatabase = new Database($userFile);
+$userFile = "/xmls/users.xml";
+$userDatabase = Database::openFromFile($userFile);
 
-$offerFile = "./../xmls/offers.xml";
-$offerDatabase = new Database($offerFile);
+$offerFile = "/xmls/offers.xml";
+$offerDatabase = Database::openFromFile($offerFile);
 
-$requestFile = "./../xmls/requests.xml";
-$requestDatabase = new Database($requestFile);
+$requestFile = "/xmls/requests.xml";
+$requestDatabase = Database::openFromFile($requestFile);
 
 $offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_POST['id']))[0];
 if ($offer->seats < 1) {
@@ -76,7 +76,6 @@ $driver->receivedlist->addChild("received", $requestID);
 $msg = $driver->notification->addChild("msg", "<strong>" . $rider->attributes()->name . 
 "</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . 
 "</strong> <a href=\"/php/offerdetails.php?id=" . $_POST['id'] . "\">offer #" . $_POST['id'] . "</a>");
-$msg->addAttribute("id", -1);
 $msg->addAttribute("checked", false);
 $msg->addAttribute("title", "You have received a request");
 $msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));

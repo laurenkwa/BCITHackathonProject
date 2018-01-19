@@ -15,8 +15,8 @@ if (!isset($_SESSION['user_id'])) {
 // echo "</pre>";
 
 // Open up a database using this file
-$file = "./../xmls/offers.xml";
-$database = new Database($file);
+$file = "/xmls/offers.xml";
+$database = Database::openFromFile($file);
 // increment the count attribute (total offers created including those deleted)
 $database->getXML()->attributes()->count = $database->getXML()->attributes()->count + 1;
 // add a new offer

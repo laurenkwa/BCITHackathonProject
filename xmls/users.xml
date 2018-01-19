@@ -2,7 +2,15 @@
 <list>
     <user id="ADMIN" name="admin">
         <requestlist/>
+        <receivedlist>
+        </receivedlist>
+        <notification count="0">
+        </notification>
+    </user>
+    <user id="ABCDE" name="admin">
+        <requestlist>
+        </requestlist>
         <receivedlist/>
-        <notification/>
+        <notification count="0"/>
     </user>
 </list>

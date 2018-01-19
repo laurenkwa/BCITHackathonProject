@@ -1,10 +1,11 @@
 <?php
 class User {
     private $_user;
+    private $_parser;
 
     function __construct($user) {
         $this->_user = $user;
-        
+        $this->_parser = Database::openFromNode($user);
     }
 
     function getName() {
@@ -15,16 +16,65 @@ class User {
         return $this->_user->attributes()->id;
     }
 
-    function getNotification() {
+    function addNotification($title, $msg) {
+        $this->_user->notification->attributes()->count = $this->_user->notification->attributes()->count + 1;
+        $msg = $this->_user->notification->addChild("msg", $msg);
+        $msg->addAttribute("id", $this->_user->notification->attributes()->count);
+        $msg->addAttribute("checked", false);
+        $msg->addAttribute("title", $title);
+        $dt = new DateTime();
+        $msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));
 
+        return $msg;
+    }
+
+    function getAllNotification($checked = NULL) {
+        if ($checked)
+            return $this->_parser->searchNodes("notification/msg", NULL, array("checked" => $checked));
+        else
+            return $this->_parser->searchNodes("notification/msg");
+    }
+
+    function getNotificationByID($id) {
+        $result = $this->_parser->searchNodes("notification/msg", NULL, array("id" => $id));
+        if (sizeof($result) == 1) {
+            return $result[0];
+        }
+        return NULL;
     }
 
     function addRequest($id) {
-        $this->_user->requestlist->addChild("request", $id);
+        return $this->_user->requestlist->addChild("request", $id);
+    }
+
+    function hasRequest($id) {
+        $result = $this->_parser->searchNodes("requestlist/request", $id);
+        if (sizeof($result) == 1) {
+            return $result[0];
+        }
+        return NULL;
     }
 
     function removeRequest($id) {
-        
+        $request = $this->hasRequest($id);
+        return Database::removeChild($request);
+    }
+
+    function addReceived($id) {
+        return $this->_user->receivedlist->addChild("received", $id);
+    }
+
+    function hasReceived($id) {
+        $result = $this->_parser->searchNodes("receivedlist/received", $id);
+        if (sizeof($result) == 1) {
+            return $result[0];
+        }
+        return NULL;
+    }
+
+    function removeReceived($id) {
+        $received = $this->hasReceived($id);
+        return Database::removeChild($received);
     }
 
 }

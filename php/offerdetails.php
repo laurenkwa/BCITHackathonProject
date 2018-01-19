@@ -6,8 +6,8 @@ function __autoload($className){
 } 
 
 function isAlreadyReserved($id) {
-    $file = "./../xmls/requests.xml";
-    $database = new Database($file);
+    $file = "/xmls/requests.xml";
+    $database = Database::openFromFile($file);
     $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
     foreach ($result as $node) {
         if ($node->rider_id->__toString() == $_SESSION['user_id']) {
@@ -21,8 +21,8 @@ if (!isset($_GET['id'])) {
     header("Location: error.php?code=2");
 }
 $offer_id = $_GET['id'];
-$file = "./../xmls/offers.xml";
-$database = new Database($file);
+$file = "/xmls/offers.xml";
+$database = Database::openFromFile($file);
 
 $offer = $database->searchNodes("/list/offer", NULL, array("id" => $offer_id))[0];
 if ($offer == FALSE) {

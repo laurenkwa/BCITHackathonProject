@@ -12,14 +12,14 @@
     }
 
     // Open up a database using this file
-    $userFile = "./../xmls/users.xml";
-    $userDatabase = new Database($userFile);
+    $userFile = "/xmls/users.xml";
+    $userDatabase = Database::openFromFile($userFile);
 
-    $offerFile = "./../xmls/offers.xml";
-    $offerDatabase = new Database($offerFile);
+    $offerFile = "/xmls/offers.xml";
+    $offerDatabase = Database::openFromFile($offerFile);
 
-    $requestFile = "./../xmls/requests.xml";
-    $requestDatabase = new Database($requestFile);
+    $requestFile = "/xmls/requests.xml";
+    $requestDatabase = Database::openFromFile($requestFile);
 
     $user = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']));
     if (empty($user)) {

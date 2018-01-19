@@ -15,14 +15,14 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
 // echo "</pre>";
 
 // Open up a database using this file
-$userFile = "./../xmls/users.xml";
-$userDatabase = new Database($userFile);
+$userFile = "/xmls/users.xml";
+$userDatabase = Database::openFromFile($userFile);
 
-$offerFile = "./../xmls/offers.xml";
-$offerDatabase = new Database($offerFile);
+$offerFile = "/xmls/offers.xml";
+$offerDatabase = Database::openFromFile($offerFile);
 
-$requestFile = "./../xmls/requests.xml";
-$requestDatabase = new Database($requestFile);
+$requestFile = "/xmls/requests.xml";
+$requestDatabase = Database::openFromFile($requestFile);
 
 // remove the offer
 $offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_GET['id']))[0];

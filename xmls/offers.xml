@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<list count="1">
-    <offer id="1">
+<list count="2">
+    <offer id="2">
         <userid>ADMIN</userid>
         <username>admin</username>
-        <date>2018-01-11</date>
-        <time>20:07</time>
-        <start>Burnaby</start>
-        <end>BCIT</end>
-        <seats>2</seats>
+        <date>2018-01-18</date>
+        <time>16:31</time>
+        <start>5899 Wilson Avenue</start>
+        <end>BCIT Burnaby</end>
+        <seats>1</seats>
         <riders count="0"/>
     </offer>
 </list>

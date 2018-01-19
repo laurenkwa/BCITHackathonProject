@@ -3,11 +3,20 @@ class Database {
     private $_xml;
     private $_file;
 
-    function __construct($file) {
-        $xmlDoc = file_get_contents($file);
-        $xml = simplexml_load_string($xmlDoc) or die("Error: Cannot create object " . __LINE__);
+    private function __construct($xml, $file = NULL) {
         $this->_xml = $xml;
         $this->_file = $file;
+    }
+
+    public static function openFromFile($file) {
+        $file = $_SERVER['DOCUMENT_ROOT'] . $file;
+        $xmlDoc = file_get_contents($file);
+        $xml = simplexml_load_string($xmlDoc) or die("Error: Cannot create object " . __LINE__);
+        return new Database($xml, $file);
+    }
+
+    public static function openFromNode($xml) {
+        return new Database($xml);
     }
 
     function addNode($name) {
@@ -99,27 +108,4 @@ class Database {
     }
 }
 
-class Node {
-    private $_path;
-    private $_value;
-    private $_attr;
-
-    public function __construct($path, $value, $attr) {
-        $this->_path = $path;
-        $this->_value = $value;
-        $this->_attr = $attr;
-    }
-
-    public function getPath() {
-        return $this->_path;
-    }
-
-    public function getValue() {
-        return $this->_value;
-    }
-
-    public function getAttr() {
-        return $this->_attr;
-    }
-}
 ?>

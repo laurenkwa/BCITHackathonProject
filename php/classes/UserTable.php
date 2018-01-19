@@ -12,7 +12,11 @@ class UserTable {
     }
 
     private function __construct() {
-        $this->_database = new Database($_SERVER['DOCUMENT_ROOT'] . static::$file);
+        $this->_database = Database::openFromFile(static::$file);
+    }
+
+    public function save() {
+        $this->_database->saveDatabase();
     }
 
     public function getUser($id) {
@@ -26,6 +30,15 @@ class UserTable {
             return NULL;
         } else {
             return new User($result[0]);
+        }
+    }
+
+    public function addUser($id, $name) {
+        $user = $this->_database->putIfAbsent("user", NULL, array("id" => $id, "name" => $name));
+        if ($user) {
+            $user->addChild("requestlist");
+            $user->addChild("receivedlist");
+            $user->addChild("notification")->addAttribute("count", 0);
         }
     }
 }

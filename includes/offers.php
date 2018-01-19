@@ -4,8 +4,8 @@
     } 
 
     function isAlreadyReserved($id) {
-        $file = "xmls/requests.xml";
-        $database = new Database($file);
+        $file = "/xmls/requests.xml";
+        $database = Database::openFromFile($file);
         $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
         foreach ($result as $node) {
             if ($node->rider_id->__toString() == $_SESSION['user_id']) {
@@ -15,8 +15,8 @@
         return false;
     }
     
-    $file = "./xmls/offers.xml";
-    $database = new Database($file);
+    $file = "/xmls/offers.xml";
+    $database = Database::openFromFile($file);
     if ($database->size() == 0) {
         echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">No offer has been posted</div></div>";
     } else {
