@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<list count="2">
-    <offer id="2">
+<list count="3">
+    <offer id="3">
         <userid>ADMIN</userid>
         <username>admin</username>
         <date>2018-01-18</date>
-        <time>16:31</time>
-        <start>5899 Wilson Avenue</start>
-        <end>BCIT Burnaby</end>
+        <time>18:27</time>
+        <start>Burnaby</start>
+        <end>Vancouver</end>
         <seats>1</seats>
         <riders count="0"/>
     </offer>

@@ -1,7 +1,8 @@
 <?php
 class UserTable {
-    static $instance;
-    static $file = '/xmls/users.xml';
+    public static $instance;
+    public static $file = '/xmls/users.xml';
+
     private $_database;
 
     public static function getInstance() {
@@ -17,6 +18,15 @@ class UserTable {
 
     public function save() {
         $this->_database->saveDatabase();
+    }
+
+    public function getAllUser() {
+        $result = $this->_database->searchNodes("/list/user");
+        $arr = [];
+        foreach ($result as $user) {
+            $arr[] = new User($user);
+        }
+        return $arr;
     }
 
     public function getUser($id) {
@@ -39,6 +49,21 @@ class UserTable {
             $user->addChild("requestlist");
             $user->addChild("receivedlist");
             $user->addChild("notification")->addAttribute("count", 0);
+        }
+        return new User($user);
+    }
+
+    public function removeAllRequest($id) {
+        $arr = $this->getAllUser();
+        foreach ($arr as $user) {
+            $user->removeRequest($id);
+        }
+    }
+
+    public function removeAllReceived($id) {
+        $arr = $this->getAllUser();
+        foreach ($arr as $user) {
+            $user->removeReceived($id);
         }
     }
 }

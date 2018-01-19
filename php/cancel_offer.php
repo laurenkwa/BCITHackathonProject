@@ -15,8 +15,7 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
 // echo "</pre>";
 
 // Open up a database using this file
-$userFile = "/xmls/users.xml";
-$userDatabase = Database::openFromFile($userFile);
+$userDatabase = UserTable::getInstance();
 
 $offerFile = "/xmls/offers.xml";
 $offerDatabase = Database::openFromFile($offerFile);
@@ -35,8 +34,8 @@ if ($offer == FALSE) {
 
 foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" => $_GET['id'])) as $request) {
     $requestDatabase::removeChild($request); 
-    $userDatabase->removeNodes("/list/user/requestlist/request", $_GET['id']);
-    $userDatabase->removeNodes("/list/user/receivedlist/received", $_GET['id']);
+    $userDatabase->removeAllRequest($_GET['id']);
+    $userDatabase->removeAllReceived($_GET['id']);
 }
 
 // echo "<pre>";
@@ -46,7 +45,7 @@ foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" =
 // save the modification
 $offerDatabase->saveDatabase();
 $requestDatabase->saveDatabase();
-$userDatabase->saveDatabase();
+$userDatabase->save();
 
 // redirection
 header("Location: ./../index.php");
