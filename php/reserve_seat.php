@@ -5,48 +5,31 @@ function __autoload($className){
     require_once("classes/$className.php");
 } 
 
-function isAlreadyReserved($id) {
-    $file = "./../xmls/requests.xml";
-    $database = new Database($file);
-    $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
-    foreach ($result as $node) {
-        if ($node->rider_id->__toString() == $_SESSION['user_id']) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ./error.php?code=1");
     exit();
 }
 
-if (isAlreadyReserved($_POST['id'])) {
+// Open up a database using this file
+$userDatabase = UserTable::getInstance();
+$offerDatabase = OfferTable::getInstance();
+$requestDatabase = RequestTable::getInstance();
+
+if ($requestDatabase->ifUserReserved($_POST['id'], $_SESSION['user_id'])) {
     header("Location: ./error.php?code=6");
     exit();
 }
 
-// Open up a database using this file
-$userFile = "./../xmls/users.xml";
-$userDatabase = new Database($userFile);
-
-$offerFile = "./../xmls/offers.xml";
-$offerDatabase = new Database($offerFile);
-
-$requestFile = "./../xmls/requests.xml";
-$requestDatabase = new Database($requestFile);
-
-$offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_POST['id']))[0];
-if ($offer->seats < 1) {
+$offer = $offerDatabase->getOffer($_POST['id']);
+if ($offer->getSeats() < 1) {
     header("Location: ./error.php?code=2");
     exit();
 }
 // load both the driver's and the rider's user data
-$driver = $userDatabase->searchNodes("/list/user", NULL, array("id" => $offer->userid->__toString()))[0];
-$rider = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']))[0];
-if ($driver->attributes()->id == $_SESSION['user_id']) {
+$driver = $userDatabase->getUser($offer->getDriverID());
+$rider = $userDatabase->getUser($_SESSION['user_id']);
+if ($driver->getID() == $_SESSION['user_id']) {
     header("Location: ./error.php?code=7");
     exit();
 }
@@ -57,36 +40,26 @@ if ($driver == FALSE || $rider == FALSE) {
 
 // append the request to rider's user data
 $dt = new DateTime();
-// $request = $rider->requestlist->addChild("request");
-// increment the count attribute (total offers created including those deleted)
-$requestDatabase->getXML()->attributes()->count = $requestDatabase->getXML()->attributes()->count + 1;
-$requestID = $requestDatabase->getXML()->attributes()->count;
-// add a new request
-$request = $requestDatabase->addNode("request");
-$request->addAttribute("id", $requestID);
-$request->addAttribute("offer_id", $_POST['id']);
-$request->addChild("driver_id", $driver->attributes()->id);
-$request->addChild("rider_id", $rider->attributes()->id);
-$request->addChild("request_time", $dt->format("Y-m-d H:i:s"));
-$request->addChild("msg", $_POST['msg']);
+$info = array(
+    "offer_id"      => $_POST['id'],
+    "driver_id"     => $driver->getID(),
+    "rider_id"      => $rider->getID(),
+    "msg"           => $_POST['msg']
+);
+$request = $requestDatabase->addRequest($info);
 
-
-// add to driver's user data
-$driver->receivedlist->addChild("received", $requestID);
-$msg = $driver->notification->addChild("msg", "<strong>" . $rider->attributes()->name . 
-"</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . 
+$driver->addNotification("You have received a request",
+"<strong>" . $rider->getName() . 
+"</strong> request a seat for the offer<br> From <strong>" . $offer->getStartLocation() . "</strong> to <strong>" . $offer->getDestination() . 
 "</strong> <a href=\"/php/offerdetails.php?id=" . $_POST['id'] . "\">offer #" . $_POST['id'] . "</a>");
-$msg->addAttribute("id", -1);
-$msg->addAttribute("checked", false);
-$msg->addAttribute("title", "You have received a request");
-$msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));
-// add to rider's user data
-$rider->requestlist->addChild("request", $requestID);
+
+$driver->addReceived($request->getID());
+$rider->addRequest($request->getID());
 
 // save the modification
-$userDatabase->saveDatabase();
-$requestDatabase->saveDatabase();
-$offerDatabase->saveDatabase();
+$userDatabase->save();
+$requestDatabase->save();
+$offerDatabase->save();
 
 // redirection
 header("Location: ./../index.php");

@@ -43,20 +43,10 @@ if ($result['ok']) {
     $_SESSION['user_id'] = $result['user']['id'];
     $_SESSION['team_id'] = $result['team']['id'];
 
-    $file = "./../xmls/users.xml";
-    $database = new Database($file);
+    $userTable = UserTable::getInstance();
+    $userTable->addUser($_SESSION['user_id'], $_SESSION['user_name']);
+    $userTable->save();
 
-    // add a new offer
-    $user = $database->putIfAbsent("user", NULL, array("id" => $_SESSION['user_id'], "name" => $_SESSION['user_name']));
-    if ($user) {
-        $user->addChild("requestlist");
-        $user->addChild("receivedlist");
-        $user->addChild("notification");
-    }
-
-    $database->saveDatabase();
-
-    echo('Going back to homepage');
     header('Location: ./../index.php');
     exit();
 } else {

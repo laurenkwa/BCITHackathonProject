@@ -10,43 +10,32 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
     header("Location: ./../php/error.php?code=1");
     exit();
 }
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
 
 // Open up a database using this file
-$userFile = "./../xmls/users.xml";
-$userDatabase = new Database($userFile);
-
-$offerFile = "./../xmls/offers.xml";
-$offerDatabase = new Database($offerFile);
-
-$requestFile = "./../xmls/requests.xml";
-$requestDatabase = new Database($requestFile);
+$userDatabase = UserTable::getInstance();
+$offerDatabase = OfferTable::getInstance();
+$requestDatabase = RequestTable::getInstance();
 
 // remove the offer
-$offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_GET['id']))[0];
+$offer = $offerDatabase->getOffer($_GET['id']);
 if ($offer == FALSE) {
     header("Location: ./error.php?code=2");
     exit();
-} else if ($offer->userid == $_SESSION['user_id']) {
-    $offerDatabase->removeNodes("/list/offer", NULL, array("id" => $_GET['id']))[0];
+} else if ($offer->getDriverID() == $_SESSION['user_id']) {
+    $offer->remove();
 }
 
-foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" => $_GET['id'])) as $request) {
-    $requestDatabase::removeChild($request); 
-    $userDatabase->removeNodes("/list/user/requestlist/request", $_GET['id']);
-    $userDatabase->removeNodes("/list/user/receivedlist/received", $_GET['id']);
+foreach ($requestDatabase->getRequestByOfferID($_GET['id']) as $request) {
+    $request->remove();
+    $userDatabase->removeAllRequest($_GET['id']);
+    $userDatabase->removeAllReceived($_GET['id']);
 }
 
-// echo "<pre>";
-// print_r($offerDatabase->getXML());
-// echo "</pre>";
 
 // save the modification
-$offerDatabase->saveDatabase();
-$requestDatabase->saveDatabase();
-$userDatabase->saveDatabase();
+$offerDatabase->save();
+$requestDatabase->save();
+$userDatabase->save();
 
 // redirection
 header("Location: ./../index.php");

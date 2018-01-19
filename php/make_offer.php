@@ -10,33 +10,23 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ./../php/error.php?code=1");
     exit();
 }
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
 
 // Open up a database using this file
-$file = "./../xmls/offers.xml";
-$database = new Database($file);
+$database = OfferTable::getInstance();
 // increment the count attribute (total offers created including those deleted)
-$database->getXML()->attributes()->count = $database->getXML()->attributes()->count + 1;
-// add a new offer
-$offer = $database->addNode("offer");
-$offer->addAttribute("id", $database->getXML()->attributes()->count);
-$offer->addChild("userid",$_SESSION['user_id']); 
-$offer->addChild("username", $_SESSION['user_name']); 
-$offer->addChild("date", $_POST['driver_date']);
-$offer->addChild("time", $_POST['driver_time']);
-$offer->addChild("start", $_POST['driver_start']);
-$offer->addChild("end", $_POST['driver_end']);
-$offer->addChild("seats", $_POST['driver_seats']);
-$offer->addChild("riders")->addAttribute("count", 0);
-
-// echo "<pre>";
-// print_r($database->getXML());
-// echo "</pre>";
+$info = array(
+    "userid"    => $_SESSION['user_id'],
+    "username"  => $_SESSION['user_name'],
+    "date"      => $_POST['driver_date'],
+    "time"      => $_POST['driver_time'],
+    "start"     => $_POST['driver_start'],
+    "end"       => $_POST['driver_end'],
+    "seats"     => $_POST['driver_seats']
+);
+$database->addOffer($info);
 
 // save the modification
-$database->saveDatabase();
+$database->save();
 
 // redirection
 header("Location: ./../index.php");

@@ -12,21 +12,13 @@
     }
 
     // Open up a database using this file
-    $userFile = "./../xmls/users.xml";
-    $userDatabase = new Database($userFile);
+    $userDatabase = UserTable::getInstance();
+    $offerDatabase = OfferTable::getInstance();
+    $requestDatabase = RequestTable::getInstance();
 
-    $offerFile = "./../xmls/offers.xml";
-    $offerDatabase = new Database($offerFile);
-
-    $requestFile = "./../xmls/requests.xml";
-    $requestDatabase = new Database($requestFile);
-
-    $user = $userDatabase->searchNodes("/list/user", NULL, array("id" => $_SESSION['user_id']));
+    $user = $userDatabase->getUser($_SESSION['user_id']);
     if (empty($user)) {
-        var_dump($user);
-        // header("Location: ./error.php?code=4");
-    } else {
-        $user = $user[0];
+        header("Location: ./error.php?code=4");
     }
 
     include("./../includes/header.html");
@@ -43,7 +35,7 @@
         <div id="notification" class="panel-collapse collapse in">
             <div class="panel-body">
             <?php
-            $msgs = $user->notification->children();
+            $msgs = $user->getAllNotification();
             foreach ($msgs as $msg) {
                 echo "<div class=\"row seg\">";
                 echo "<div class=\"row\">";
