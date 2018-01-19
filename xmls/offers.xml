@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<list count="3">
-    <offer id="3">
+<list count="7">
+    
+    <offer id="7">
         <userid>ADMIN</userid>
         <username>admin</username>
         <date>2018-01-18</date>
-        <time>18:27</time>
-        <start>Burnaby</start>
-        <end>Vancouver</end>
+        <time>19:50</time>
+        <start>Patterson</start>
+        <end>Parker Street</end>
         <seats>1</seats>
         <riders count="0"/>
     </offer>

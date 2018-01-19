@@ -21,10 +21,10 @@ if (!isset($_GET['id'])) {
     header("Location: error.php?code=2");
 }
 $offer_id = $_GET['id'];
-$file = "/xmls/offers.xml";
-$database = Database::openFromFile($file);
 
-$offer = $database->searchNodes("/list/offer", NULL, array("id" => $offer_id))[0];
+$database = OfferTable::getInstance();
+
+$offer = $database->getOffer($offer_id);
 if ($offer == FALSE) {
     header("Location: error.php?code=3");
     exit();
@@ -35,21 +35,21 @@ if ($offer == FALSE) {
     echo "<div class=\"container\">";
     echo "<div class=\"row seg\">";
     echo "<div class=\"col-md-5\">";
-    echo "<p><strong>Driver: </strong>" . $offer->username ."</p>";
-    echo "<p><strong>Depart From: </strong>" . $offer->start ."</p>";
-    echo "<p><strong>Seats Available: </strong>" . $offer->seats ."</p>";
+    echo "<p><strong>Driver: </strong>" . $offer->getDriverName() ."</p>";
+    echo "<p><strong>Depart From: </strong>" . $offer->getStartLocation() ."</p>";
+    echo "<p><strong>Seats Available: </strong>" . $offer->getSeats() ."</p>";
     echo "</div>";
     echo "<div class=\"col-md-5\">";
-    echo "<p><strong>Time: </strong>" . $offer->time ." " . $offer->date ."</p>";
-    echo "<p><strong>Destination: </strong>" . $offer->end ."</p>";
+    echo "<p><strong>Time: </strong>" . $offer->getTime() ." " . $offer->getDate() ."</p>";
+    echo "<p><strong>Destination: </strong>" . $offer->getDestination() ."</p>";
     echo "</div>";
     echo "<div class=\"col-md-2\">";
     if (!isset($_SESSION['user_id']))
         echo "<p class=\"text-center bg-primary\">To reserve a seat, please sign in.</p>";
-    else if ($_SESSION['user_id'] != $offer->userid && !isAlreadyReserved($offer->attributes()->id->__toString()) && $offer->seats > 0)
-        echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->attributes()->id .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
-    else if ($_SESSION['user_id'] == $offer->userid)
-        echo "<p><a href=\"cancel_offer.php?id=" . $offer->attributes()->id . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
+    else if ($_SESSION['user_id'] != $offer->getDriverID() && !isAlreadyReserved($offer->getID()) && $offer->getSeats() > 0)
+        echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->getID() .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
+    else if ($_SESSION['user_id'] == $offer->getDriverID())
+        echo "<p><a href=\"cancel_offer.php?id=" . $offer->getID() . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
 }
@@ -60,9 +60,9 @@ if ($offer == FALSE) {
 <script>
     $(function() {
         $("#googleMap").attr("src", "https://www.google.com/maps/embed/v1/directions?origin=" +
-        <?php echo("\"" . $offer->start . "\""); ?> +
+        <?php echo("\"" . $offer->getStartLocation() . "\""); ?> +
         "&destination=" +
-        <?php echo("\"" . $offer->end . "\""); ?> +
+        <?php echo("\"" . $offer->getDestination() . "\""); ?> +
         "&key=AIzaSyAh-wxnCsW7OZsqkWMHXLFtdjwLXo1PsqY");
     });
 </script>

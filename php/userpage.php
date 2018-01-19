@@ -13,9 +13,7 @@
 
     // Open up a database using this file
     $userDatabase = UserTable::getInstance();
-
-    $offerFile = "/xmls/offers.xml";
-    $offerDatabase = Database::openFromFile($offerFile);
+    $offerDatabase = OfferTable::getInstance();
 
     $requestFile = "/xmls/requests.xml";
     $requestDatabase = Database::openFromFile($requestFile);

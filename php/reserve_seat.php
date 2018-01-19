@@ -30,20 +30,18 @@ if (isAlreadyReserved($_POST['id'])) {
 
 // Open up a database using this file
 $userDatabase = UserTable::getInstance();
-
-$offerFile = "/xmls/offers.xml";
-$offerDatabase = Database::openFromFile($offerFile);
+$offerDatabase = OfferTable::getInstance();
 
 $requestFile = "/xmls/requests.xml";
 $requestDatabase = Database::openFromFile($requestFile);
 
-$offer = $offerDatabase->searchNodes("/list/offer", NULL, array("id" => $_POST['id']))[0];
-if ($offer->seats < 1) {
+$offer = $offerDatabase->getOffer($_POST['id']);
+if ($offer->getSeats() < 1) {
     header("Location: ./error.php?code=2");
     exit();
 }
 // load both the driver's and the rider's user data
-$driver = $userDatabase->getUser($offer->userid->__toString());
+$driver = $userDatabase->getUser($offer->getDriverID());
 $rider = $userDatabase->getUser($_SESSION['user_id']);
 if ($driver->getID() == $_SESSION['user_id']) {
     header("Location: ./error.php?code=7");
@@ -74,7 +72,7 @@ $request->addChild("msg", $_POST['msg']);
 $driver->addReceived($requestID);
 $driver->addNotification("You have received a request",
 "<strong>" . $rider->getName() . 
-"</strong> request a seat for the offer<br> From <strong>" . $offer->start->__toString() . "</strong> to <strong>" . $offer->end->__toString() . 
+"</strong> request a seat for the offer<br> From <strong>" . $offer->getStartLocation() . "</strong> to <strong>" . $offer->getDestination() . 
 "</strong> <a href=\"/php/offerdetails.php?id=" . $_POST['id'] . "\">offer #" . $_POST['id'] . "</a>");
 // add to rider's user data
 $rider->addRequest($requestID);
@@ -82,7 +80,7 @@ $rider->addRequest($requestID);
 // save the modification
 $userDatabase->save();
 $requestDatabase->saveDatabase();
-$offerDatabase->saveDatabase();
+$offerDatabase->save();
 
 // redirection
 header("Location: ./../index.php");

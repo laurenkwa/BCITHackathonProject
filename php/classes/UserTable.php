@@ -20,6 +20,10 @@ class UserTable {
         $this->_database->saveDatabase();
     }
 
+    public function size() {
+        return $this->_database->size();
+    }
+
     public function getAllUser() {
         $result = $this->_database->searchNodes("/list/user");
         $arr = [];

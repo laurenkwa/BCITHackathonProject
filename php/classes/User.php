@@ -9,11 +9,11 @@ class User {
     }
 
     function getName() {
-        return $this->_user->attributes()->name;
+        return $this->_user->attributes()->name->__toString();
     }
 
     function getID() {
-        return $this->_user->attributes()->id;
+        return $this->_user->attributes()->id->__toString();
     }
 
     function addNotification($title, $msg) {
@@ -30,9 +30,11 @@ class User {
 
     function getAllNotification($checked = NULL) {
         if ($checked)
-            return $this->_parser->searchNodes("notification/msg", NULL, array("checked" => $checked));
+            $arr = $this->_parser->searchNodes("notification/msg", NULL, array("checked" => $checked));
         else
-            return $this->_parser->searchNodes("notification/msg");
+            $arr = $this->_parser->searchNodes("notification/msg");
+        $arr = array_reverse($arr);
+        return $arr;
     }
 
     function getNotificationByID($id) {
