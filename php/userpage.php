@@ -14,9 +14,7 @@
     // Open up a database using this file
     $userDatabase = UserTable::getInstance();
     $offerDatabase = OfferTable::getInstance();
-
-    $requestFile = "/xmls/requests.xml";
-    $requestDatabase = Database::openFromFile($requestFile);
+    $requestDatabase = RequestTable::getInstance();
 
     $user = $userDatabase->getUser($_SESSION['user_id']);
     if (empty($user)) {

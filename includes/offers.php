@@ -2,25 +2,15 @@
     function __autoload($className){
         require_once("php/classes/$className.php");
     } 
-
-    function isAlreadyReserved($id) {
-        $file = "/xmls/requests.xml";
-        $database = Database::openFromFile($file);
-        $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
-        foreach ($result as $node) {
-            if ($node->rider_id->__toString() == $_SESSION['user_id']) {
-                return true;
-            }
-        }
-        return false;
-    }
     
-    $database = OfferTable::getInstance();
-    if ($database->size() == 0) {
+    $offerDatabase = OfferTable::getInstance();
+    $requestDatabase = RequestTable::getInstance();
+    
+    if ($offerDatabase->size() == 0) {
         echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">No offer has been posted</div></div>";
     } else {
-        echo "<div class=\"row\"><div class=\"col-md-12 text-center bg-primary\">" . $database->size() . " offer(s) available</div></div>";
-        foreach ($database->getAllOffer() as $offer) {
+        echo "<div class=\"row\"><div class=\"col-md-12 text-center bg-primary\">" . $offerDatabase->size() . " offer(s) available</div></div>";
+        foreach ($offerDatabase->getAllOffer() as $offer) {
             echo "<div class=\"row seg\">";
             echo "<div class=\"col-md-5\">";
             echo "<p><strong>Driver: </strong>" . $offer->getDriverName() ."</p>";
@@ -33,7 +23,7 @@
             echo "</div>";
             echo "<div class=\"col-md-2\">";
             echo "<p><a href=\"php/offerdetails.php?id=" . $offer->getID() . "\"><button class=\"btn btn-primary\">More details</button></a></p>";
-            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $offer->getDriverID() && !isAlreadyReserved($offer->getID()))
+            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $offer->getDriverID() && !$requestDatabase->ifUserReserved($offer->getID(), $_SESSION['user_id']))
                 echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->getID() .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
             echo "</div>";
             if ($offer->getSeats() < 1)

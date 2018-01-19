@@ -5,26 +5,15 @@ function __autoload($className){
     require_once("classes/$className.php");
 } 
 
-function isAlreadyReserved($id) {
-    $file = "/xmls/requests.xml";
-    $database = Database::openFromFile($file);
-    $result = $database->searchNodes("/list/request", NULL, array("offer_id" => $id));
-    foreach ($result as $node) {
-        if ($node->rider_id->__toString() == $_SESSION['user_id']) {
-            return true;
-        }
-    }
-    return false;
-}
-
 if (!isset($_GET['id'])) {
     header("Location: error.php?code=2");
 }
 $offer_id = $_GET['id'];
 
-$database = OfferTable::getInstance();
+$offerDatabase = OfferTable::getInstance();
+$requestDatabase = RequestTable::getInstance();
 
-$offer = $database->getOffer($offer_id);
+$offer = $offerDatabase->getOffer($offer_id);
 if ($offer == FALSE) {
     header("Location: error.php?code=3");
     exit();
@@ -46,7 +35,7 @@ if ($offer == FALSE) {
     echo "<div class=\"col-md-2\">";
     if (!isset($_SESSION['user_id']))
         echo "<p class=\"text-center bg-primary\">To reserve a seat, please sign in.</p>";
-    else if ($_SESSION['user_id'] != $offer->getDriverID() && !isAlreadyReserved($offer->getID()) && $offer->getSeats() > 0)
+    else if ($_SESSION['user_id'] != $offer->getDriverID() && !$requestDatabase->ifUserReserved($offer->getID(), $_SESSION['user_id']) && $offer->getSeats() > 0)
         echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->getID() .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
     else if ($_SESSION['user_id'] == $offer->getDriverID())
         echo "<p><a href=\"cancel_offer.php?id=" . $offer->getID() . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";

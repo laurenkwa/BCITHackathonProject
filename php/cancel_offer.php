@@ -13,11 +13,8 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
 
 // Open up a database using this file
 $userDatabase = UserTable::getInstance();
-
 $offerDatabase = OfferTable::getInstance();
-
-$requestFile = "/xmls/requests.xml";
-$requestDatabase = Database::openFromFile($requestFile);
+$requestDatabase = RequestTable::getInstance();
 
 // remove the offer
 $offer = $offerDatabase->getOffer($_GET['id']);
@@ -28,8 +25,8 @@ if ($offer == FALSE) {
     $offer->remove();
 }
 
-foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" => $_GET['id'])) as $request) {
-    $requestDatabase::removeChild($request); 
+foreach ($requestDatabase->getRequestByOfferID($_GET['id']) as $request) {
+    $request->remove();
     $userDatabase->removeAllRequest($_GET['id']);
     $userDatabase->removeAllReceived($_GET['id']);
 }
@@ -37,7 +34,7 @@ foreach ($requestDatabase->searchNodes("/list/request", NULL, array("offer_id" =
 
 // save the modification
 $offerDatabase->save();
-$requestDatabase->saveDatabase();
+$requestDatabase->save();
 $userDatabase->save();
 
 // redirection

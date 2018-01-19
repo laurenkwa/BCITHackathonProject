@@ -22,7 +22,7 @@ class User {
         $msg->addAttribute("id", $this->_user->notification->attributes()->count);
         $msg->addAttribute("checked", false);
         $msg->addAttribute("title", $title);
-        $dt = new DateTime();
+        $dt = new DateTime("now", new DateTimeZone('America/Vancouver'));
         $msg->addAttribute("time", $dt->format("Y-m-d H:i:s"));
 
         return $msg;
@@ -46,11 +46,11 @@ class User {
     }
 
     function addRequest($id) {
-        return $this->_user->requestlist->addChild("request", $id);
+        return $this->_user->requestlist->addChild("request")->addAttribute("id", $id);
     }
 
     function hasRequest($id) {
-        $result = $this->_parser->searchNodes("requestlist/request", $id);
+        $result = $this->_parser->searchNodes("requestlist/request", NULL, array("id" => $id));
         if (sizeof($result) == 1) {
             return $result[0];
         }
@@ -63,11 +63,11 @@ class User {
     }
 
     function addReceived($id) {
-        return $this->_user->receivedlist->addChild("received", $id);
+        return $this->_user->receivedlist->addChild("received")->addAttribute("id", $id);
     }
 
     function hasReceived($id) {
-        $result = $this->_parser->searchNodes("receivedlist/received", $id);
+        $result = $this->_parser->searchNodes("receivedlist/received", NULL, array("id" => $id));
         if (sizeof($result) == 1) {
             return $result[0];
         }
