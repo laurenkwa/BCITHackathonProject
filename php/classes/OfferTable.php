@@ -48,6 +48,17 @@ class OfferTable {
         }
     }
 
+    public function getOfferByDriverID($id) {
+        $result = $this->getAllOffer();
+        $arr = [];
+        foreach ($result as $offer) {
+            if ($offer->getDriverID() == $id) {
+                $arr[] = $offer;
+            }
+        }
+        return $arr;
+    }
+
     public function addOffer($info) {
         $this->_database->getXML()->attributes()->count = $this->_database->getXML()->attributes()->count + 1;
         $offer = $this->_database->addNode("offer");
@@ -60,6 +71,7 @@ class OfferTable {
         $offer->addChild("end", $info['end']);
         $offer->addChild("seats", $info['seats']);
         $offer->addChild("riders")->addAttribute("count", 0);
+        return new Offer($offer);
     }
 
     public function removeOffer($id) {

@@ -70,7 +70,6 @@ class RequestTable {
         $result = $this->getAllRequest();
         $arr = [];
         foreach ($result as $request) {
-            $request = new Request($request);
             if ($request->getDiverID() == $id) {
                 $arr[] = $request;
             }
@@ -82,7 +81,6 @@ class RequestTable {
         $result = $this->getAllRequest();
         $arr = [];
         foreach ($result as $request) {
-            $request = new Request($request);
             if ($request->getRiderID() == $id) {
                 $arr[] = $request;
             }

@@ -22,7 +22,7 @@
             echo "<p><strong>Destination: </strong>" . $offer->getDestination() ."</p>";
             echo "</div>";
             echo "<div class=\"col-md-2\">";
-            echo "<p><a href=\"php/offerdetails.php?id=" . $offer->getID() . "\"><button class=\"btn btn-primary\">More details</button></a></p>";
+            echo "<p><a href=\"/php/offerdetails.php?id=" . $offer->getID() . "\"><button class=\"btn btn-primary\">More details</button></a></p>";
             if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $offer->getDriverID() && !$requestDatabase->ifUserReserved($offer->getID(), $_SESSION['user_id']))
                 echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->getID() .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
             echo "</div>";

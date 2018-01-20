@@ -21,9 +21,13 @@ $offer = $offerDatabase->getOffer($_GET['id']);
 if ($offer == FALSE) {
     header("Location: ./error.php?code=2");
     exit();
-} else if ($offer->getDriverID() == $_SESSION['user_id']) {
-    $offer->remove();
 }
+if ($offer->getDriverID() != $_SESSION['user_id']) {
+    header("Location: ./error.php?code=2");
+    exit();
+}
+
+$offer->remove();
 
 foreach ($requestDatabase->getRequestByOfferID($_GET['id']) as $request) {
     $request->remove();
