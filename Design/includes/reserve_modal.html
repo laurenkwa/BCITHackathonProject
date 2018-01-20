@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade" id="reserve_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reserve a seat</h4>
+            </div>
+            <form class="form-horizontal" id="requestForm" method="post" action="/php/reserve_seat.php">
+                <div class="modal-body">
+                    <p>We'll <strong>notify the driver</strong> as soon as the reservation is made</p>
+                    <p>Please be awared that the driver has the right to <strong>refuse your request</strong></p>
+                    <br>
+                    <p>Leave a message for the driver!</p>
+                    <!-- driver_start -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="msg">Message: </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="msg" id="offer_msg" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-success" id="modal_submit">
+                </div>
+                <input type="text" id="offer_id" name="id" hidden />
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setupModal(id) {
+        document.getElementById('offer_msg').value = "";
+        document.getElementById('offer_id').value = id;
+    }
+</script>
