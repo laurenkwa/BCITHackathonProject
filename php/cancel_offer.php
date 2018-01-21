@@ -31,8 +31,8 @@ $offer->remove();
 
 foreach ($requestDatabase->getRequestByOfferID($_GET['id']) as $request) {
     $request->remove();
-    $userDatabase->removeAllRequest($_GET['id']);
-    $userDatabase->removeAllReceived($_GET['id']);
+    $userDatabase->removeAllRequest($request->getID());
+    $userDatabase->removeAllReceived($request->getID());
 }
 
 

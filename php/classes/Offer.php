@@ -44,12 +44,23 @@ class Offer {
         return $this->_offer->seats->__toString();
     }
 
-    function addRider() {
-
+    function addRider($id) {
+        $this->_offer->riders->attributes()->count = $this->_offer->riders->attributes()->count + 1;
+        $rider = $this->_offer->riders->addChild("rider");
+        $rider->addAttribute("id", $id);      
     }
 
-    function removeRider() {
+    function hasRider($id) {
+        $result = $this->_parser->searchNodes("riders/rider", NULL, array("id" => $id));
+        if (sizeof($result) == 1) {
+            return $result[0];
+        }
+        return NULL;
+    }
 
+    function removeRider($id) {
+        $rider = $this->hasRider($id);
+        return Database::removeChild($rider);
     }
 
 }

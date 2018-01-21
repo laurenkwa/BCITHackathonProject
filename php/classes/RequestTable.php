@@ -70,7 +70,7 @@ class RequestTable {
         $result = $this->getAllRequest();
         $arr = [];
         foreach ($result as $request) {
-            if ($request->getDiverID() == $id) {
+            if ($request->getDriverID() == $id) {
                 $arr[] = $request;
             }
         }

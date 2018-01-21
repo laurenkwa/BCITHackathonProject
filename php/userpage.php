@@ -90,8 +90,8 @@
                     echo "<p><strong>Destination: </strong>" . $offer->getDestination() ."</p>";
                     echo "</div>";
                     echo "<div class=\"col-md-2\">";
-                    echo "<p><a href=\"/php/offerdetails.php?id=" . $offer->getID() . "\"><button class=\"btn btn-primary\">More details</button></a></p>";
-                    echo "<p><a href=\"/php/cancel_offer.php?id=" . $offer->getID() . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
+                    echo "<p><a class=\"btn btn-primary\" type=\"button\" href=\"/php/offerdetails.php?id=" . $offer->getID() . "\">More details</a></p>";
+                    echo "<p><a class=\"btn btn-danger\" type=\"button\" href=\"/php/cancel_offer.php?id=" . $offer->getID() . "\">Cancel Offer</a></p>";
                     echo "</div>";
                 }
             }
@@ -116,9 +116,6 @@
                 echo "</div>";
             } else {
                 foreach ($result as $request){
-                    // echo "<pre>";
-                    // var_dump($request);
-                    // echo "</pre>";
                     $offer = $offerDatabase->getOffer($request->getOfferID());
                     echo "<div class=\"row seg\">";
                     echo "<div class=\"row\">";
@@ -127,7 +124,7 @@
                     | Driver: <strong>" . $offer->getDriverName() . "</strong>";
                     echo "</div>";
                     echo "<div class=\"col-md-2\">";
-                    echo "<a href=\"/php/offerdetails.php?id=" . $offer->getID() . "\"><button class=\"btn btn-primary\">More details</button></a>";
+                    echo "<p><a class=\"btn btn-primary\" type=\"button\" href=\"/php/offerdetails.php?id=" . $offer->getID() . "\">More details</a></p>";
                     echo "</div>";
                     echo "</div>";
                     echo "<div class=\"row\">";
@@ -139,7 +136,7 @@
                         echo "Message: " . $msg;
                     echo "</div>";
                     echo "<div class=\"col-md-2\">";                    
-                    echo "<p><a href=\"/php/cancel_request.php?id=" . $request->getID() . "\"><button class=\"btn btn-danger\">Cancel Request</button></a></p>";
+                    echo "<a class=\"btn btn-danger\" type=\"button\" href=\"/php/cancel_request.php?id=" . $request->getID() . "\">Cancel Request</a>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
@@ -156,9 +153,48 @@
             </h4>
         </div>
         <div id="received" class="panel-collapse collapse collapse in">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div class="panel-body">
+            <?php
+            $result = $requestDatabase->getRequestByDriver($_SESSION['user_id']);
+
+            if (sizeof($result) == 0) {
+                echo "<div class=\"row seg text-center\">";
+                echo "No Request";
+                echo "</div>";
+            } else {
+                foreach ($result as $request){
+                    $offer = $offerDatabase->getOffer($request->getOfferID());
+                    $rider = $userDatabase->getUser($request->getRiderID());
+                    echo "<div class=\"row seg\">";
+                    echo "<div class=\"row\">";
+                    echo "<div class=\"col-md-10\">";
+                    echo "From <strong>" . $offer->getStartLocation() . " </strong>to<strong> " . $offer->getDestination() . "</strong>
+                    | Rider: <strong>" . $rider->getName() . "</strong>";
+                    echo "</div>";
+                    echo "<div class=\"col-md-2\">";
+                    echo "<p><a class=\"btn btn-primary\" type=\"button\" href=\"/php/offerdetails.php?id=" . $offer->getID() . "\">More details</a></p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "<div class=\"row\">";
+                    echo "<div class=\"col-md-10\" style=\"font-size: small; padding-left: 40px;\">";
+                    $msg = $request->getMsg();
+                    if (empty($msg))
+                        echo "No message left";
+                    else
+                        echo "Message: " . $msg;
+                    echo "</div>";
+                    echo "<div class=\"col-md-2\">"; 
+                    echo "<div class\"btn-group\">";                   
+                    echo "<p><a class=\"btn btn-success\" type=\"button\" href=\"/php/accept_request.php?id=" . $request->getID() . "\">Accept Request</a></p>";
+                    echo "<p><a class=\"btn btn-danger\" type=\"button\" href=\"/php/cancel_request.php?id=" . $request->getID() . "\">Refuse Request</a></p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            }
+            ?>
+            </div>
         </div>
         </div>
     </div> 
