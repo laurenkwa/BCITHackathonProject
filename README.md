@@ -10,12 +10,8 @@ This project was created at the BCIT Inaugural Co-op Hackathon and won first pri
 Created By:
 
 Jenelle Yonkman
-
 Oliver Jang
-
 Rongyi Chen
-
 Cody Ning
-
 Lauren Kwa
 
