@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<list count="0">
+<list count="2">
 
-</list>
+<offer id="2"><userid>A</userid><username>admin</username><date>2018-01-21</date><time>11:23</time><start>Richmond</start><end>Vancouver</end><seats>1</seats><riders count="0"/></offer></list>

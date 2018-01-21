@@ -14,7 +14,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
     <div class="container" id="newRide">
         <header class="major">
             <h2>BCIT Carpool Services</h2>
-            <p>Find, book, or create a new ride!</p>
+            <p>Find or create a new ride!</p>
             <br/><br/>
             <a href="#"><button class="button alt">Back to Home</button></a>
         </header>
@@ -23,7 +23,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                 <section class="box">
                     <a href="index.php#createRide">
                         <img src="https://image.flaticon.com/icons/svg/599/599147.svg" height="100" width="100" />
-                        <br/><br/>
+                        <br/><br/><br/>
                         <h1>Create a Ride</h1>
                     </a>
                     <br/><br/>
@@ -32,22 +32,24 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
             </div>
             <div class="4u 12u$(medium)">
                 <section class="box">
-                    <img src="https://image.flaticon.com/icons/svg/426/426140.svg" height="98" width="95" />
+                    <a href="index.php#offers">
+                        <img src="https://image.flaticon.com/icons/svg/426/426140.svg" height="98" width="95" />
+                        <br/><br/><br/>
+                        <h1>Find a Ride</h1>
+                    </a>
                     <br/><br/>
-                    <h1>Find a Ride</h1>
-                    <br/><br/>
-                    <p>Search for available rides heading to your intended destination and request for a seat.</p>
+                    <p>SSee the list of all available carpool rides and request for a seat.</p>
                 </section>
             </div>
             <div class="4u$ 12u$(medium)">
                 <section class="box">
-                    <a href="index.php#offers">
-                        <img src="https://image.flaticon.com/icons/svg/214/214280.svg" height=100 width="95" />
-                        <br/><br/>
-                        <h1>View All Rides</h1>
+                    <a href="https://ride-share.glitch.me/">
+                        <img src="slacklogo.png" height="98"/>
+                        <br/><br/><br/>
+                        <h1>Slack App</h1>
                     </a>
-                    <br/><br/><br/>
-                    <p>See the list of all available carpool rides.</p>
+                    <br/><br/>
+                    <p>Download RideShare's Slack App and integrate it with your Slack workspace.</p>
                 </section>
             </div>
         </div>
@@ -65,15 +67,15 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
             <br/><br/>
             <a href="#"><button class="button alt">Back to Home</button></a>
         </header>
-        <section class="box">
-                <header class="major">
-                <p>Fill out the form to offer a drive: </p>
-            </header>
-            <div class="row">
-                <div id="driver" class="container">
+        <header class="major">
+            <p>Fill out the form to offer a drive: </p>
+        </header>
+        <div class="container">
+            <section class="box">
+                <div id="driver">
                         <?php if (isset($_SESSION['user_id'])) { ?>
                                 <form method="post" action="php/make_offer.php" id="driverForm" >
-                                    <div class="row uniform 50%">
+                                    <div class="row 150%">
                                         <!-- Driver Date --> 
                                         <div class="6u 12u$(4)">
                                             <label for="driver_date">Date:</label>    
@@ -87,6 +89,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                                                 document.getElementById('driver_date').defaultValue = new Date().toDateInputValue();
                                             </script>
                                         </div>
+                                        
                                         <!-- Driver Time -->
                                         <div class="6u$ 12u$(4)">
                                             <label for="driver_time">Start Time:</label>
@@ -105,18 +108,20 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                                                 document.getElementById('driver_time').defaultValue = time;
                                             </script>
                                         </div>
+                                        <br/><br/>
                                         <!-- Driver start -->
                                         <div class="12u$">
                                                 <label for="driver_start">Start From:</label>
                                                 <input class="form-control" type="text" name="driver_start" id="driver_start" required/>
                                             
                                         </div>
-
+                                        <br/><br/>
                                         <!-- Driver end -->
                                         <div class="12u$">
                                                 <label for="driver_end">Destination:</label>
                                             <input class="form-control" type="text" name="driver_end" id="driver_end" required/>
                                         </div>
+                                        <br/><br/>
                                         <!-- Seats Available -->
                                         <div class="12u$">
                                             <label for="driver_seats">No. of Seats Available</label>
@@ -128,6 +133,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                                             </select>
                                         
                                         </div>
+                                        <br/><br/>
                                         <div class="12u$">
                                             <ul class="actions">
                                                 <li><input type="submit" value="Submit" class="special" /></li>
@@ -139,7 +145,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                         </section>
 
                         <?php } else {
-                            echo "<div class='container'><header class='major'><h1>Please login to create a ride!</h1></header></div>";
+                            echo "<header class='major'><h1>Please login to create a ride!</h1></header>";
                             }   
                             ?>  
                 </div>
@@ -156,7 +162,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                 <h2>View Available Rides</h2>
                 <img src="https://image.flaticon.com/icons/svg/198/198335.svg" height=200 width=200/>
                 <br/><br/>
-                <a href="#"><button>Back to Home</button></a>
+                <a href="#"><button class="btn btn default">Back to Home</button></a>
             </header>
             <section class="offers">
                 <div class="row">
