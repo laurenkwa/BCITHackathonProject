@@ -171,7 +171,7 @@
 
                                         // received requests for offer
                                
-                                        $result = $requestDatabase->getRequestByDriver($_SESSION['user_id']);
+                                        $result = $requestDatabase->getRequestByOfferID($offer->getID());
 
                                         if (sizeof($result) == 0) {
                                             echo "<header class='major'>";
