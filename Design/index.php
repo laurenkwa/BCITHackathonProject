@@ -60,93 +60,89 @@ include("includes/header.html");
                         <h2>Create A Ride</h2>
                         <img src="https://image.flaticon.com/icons/svg/146/146269.svg" height=200 width=200/>
                     </header>
-                    <section class="createRide">
+                    <section class="box">
+                         <header class="major">
+                            <p>Fill out the form to offer a drive: </p>
+                        </header>
                         <div class="row">
-                            <section class="3u 6u(medium) 12u$(xsmall) profile">
-                            <div id="driver" class="tab-pane fade in">
+                            <div id="driver" class="container">
                                  <?php if (isset($_SESSION['user_id'])) { ?>
-                                    <h3>Offer a drive</h3>
-                                    <form class="form-horizontal" id="driverForm" method="post" action="php/make_offer.php">
-                                        <!-- driver_date -->
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" for="driver_date">Date: </label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="date" name="driver_date" id="driver_date" />
-                                            </div>
-                                        </div>
-                                        <script>
-                                            Date.prototype.toDateInputValue = (function() {
-                                                var local = new Date(this);
-                                                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-                                                return local.toJSON().slice(0,10);
-                                            });
-                                            document.getElementById('driver_date').defaultValue = new Date().toDateInputValue();
-                                        </script>
-                                        <!-- driver_time -->
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" for="driver_time">Time: </label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="time" name="driver_time" id="driver_time" />
-                                            </div>
-                                        </div>
-                                        <script>
-                                            var d = new Date();
-                                            var hours = d.getHours().toString();
-                                            if (hours.length == 1) {
-                                                hours = "0" + hours;
-                                            }
-                                            var minutes = d.getMinutes().toString();
-                                            if (minutes.length == 1) {
-                                                minutes = "0" + minutes;
-                                            }
-                                            var time = hours + ":" + minutes;
-                                            document.getElementById('driver_time').defaultValue = time;
-                                        </script>
-                                        <!-- driver_start -->
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" for="driver_start">Start From: </label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="driver_start" id="driver_start" required/>
-                                            </div>
-                                        </div>
-                                        <!-- driver_end -->
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" for="driver_end">Destination: </label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="driver_end" id="driver_end" required/>
-                                            </div>
-                                        </div>
-                                        <!-- seats avaliable -->
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2" for="driver_seats">No. of seats available: </label>
-                                            <div class="col-sm-10">
-                                                <select class="form-control" name="driver_seats" id="driver_seats">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-10 col-sm-offset-2">
-                                            <input type="submit" class="btn btn-success" id="driver_submit">
-                                        </div>
-                                    </form>
-                                </div>
-                             </section>
-                        </div>
-                    </section>
-                 </div>
-                            <?php } else {
-                                echo "<div class='container'><header class='major'><h1>Please login to create a ride!</h1></header></div>";
-                                }   
-                            ?>       
-            </section>       
+                                            <form method="post" action="php/make_offer.php" id="driverForm" >
+                                                <div class="row uniform 50%">
+                                                    <!-- Driver Date --> 
+                                                    <div class="6u 12u$(4)">
+                                                        <label for="driver_date">Date:</label>    
+                                                        <input class="form-control" type="date" name="driver_date" id="driver_date" />
+                                                        <script>
+                                                            Date.prototype.toDateInputValue = (function() {
+                                                                var local = new Date(this);
+                                                                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                                                                return local.toJSON().slice(0,10);
+                                                            });
+                                                            document.getElementById('driver_date').defaultValue = new Date().toDateInputValue();
+                                                        </script>
+                                                    </div>
+                                                    <!-- Driver Time -->
+                                                    <div class="6u$ 12u$(4)">
+                                                        <label for="driver_time">Start Time:</label>
+                                                        <input class="form-control" type="time" name="driver_time" id="driver_time" />
+                                                        <script>
+                                                            var d = new Date();
+                                                            var hours = d.getHours().toString();
+                                                            if (hours.length == 1) {
+                                                                hours = "0" + hours;
+                                                            }
+                                                            var minutes = d.getMinutes().toString();
+                                                            if (minutes.length == 1) {
+                                                                minutes = "0" + minutes;
+                                                            }
+                                                            var time = hours + ":" + minutes;
+                                                            document.getElementById('driver_time').defaultValue = time;
+                                                        </script>
+                                                    </div>
+                                                    <!-- Driver start -->
+                                                    <div class="12u$">
+                                                            <label for="driver_start">Start From:</label>
+                                                            <input class="form-control" type="text" name="driver_start" id="driver_start" required/>
+                                                        
+                                                    </div>
 
-            <hr/>
+                                                    <!-- Driver end -->
+                                                    <div class="12u$">
+                                                         <label for="driver_end">Destination:</label>
+                                                        <input class="form-control" type="text" name="driver_end" id="driver_end" required/>
+                                                    </div>
+                                                    <!-- Seats Available -->
+                                                    <div class="12u$">
+                                                        <label for="driver_seats">No. of Seats Available</label>
+                                                         <select class="form-control" name="driver_seats" id="driver_seats">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                        </select>
+                                                    
+                                                    </div>
+                                                    <div class="12u$">
+                                                        <ul class="actions">
+                                                            <li><input type="submit" value="Submit" class="special" /></li>
+                                                            <li><input type="reset" value="Reset" /></li>
+                                                        </ul>
+                                                    </div>
+                                            </div>
+                                        </form>
+                                    </section>
 
-        </div>
-    </div>
+                                    <?php } else {
+                                        echo "<div class='container'><header class='major'><h1>Please login to create a ride!</h1></header></div>";
+                                        }   
+                                     ?>  
+                            </div>
+                        </div>             
+                  </section>
+                </div>
+            </section>
+           
 
             <!-- View Offers -->
             <section id="two" class="wrapper style3">

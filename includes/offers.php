@@ -7,7 +7,7 @@
     $requestDatabase = RequestTable::getInstance();
     
     if ($offerDatabase->size() == 0) {
-        echo "<div class=\"row seg\"><div class=\"col-md-12 text-center\">No offer has been posted</div></div>";
+        echo "<div class='container'><section><p>No offer has been posted!</p></section></div>";
     } else {
         echo "<div class=\"row\"><div class=\"col-md-12 text-center bg-primary\">" . $offerDatabase->size() . " offer(s) available</div></div>";
         foreach ($offerDatabase->getAllOffer() as $offer) {
@@ -27,7 +27,7 @@
                 echo "<p><button class=\"btn btn-success\" onclick=\"setupModal(" . $offer->getID() .")\" data-toggle=\"modal\" data-target=\"#reserve_modal\">Reserve a seat</button></p>";
             echo "</div>";
             if ($offer->getSeats() < 1)
-                echo "<div class=\"col-md-12 text-center bg-primary\">This offer do not have seats avaiilable</div>";
+                echo "<div class=\"col-md-12 text-center bg-primary\">No available seats for this offer</div>";
             echo "</div>";
             
         }

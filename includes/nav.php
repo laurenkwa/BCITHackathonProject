@@ -1,17 +1,29 @@
-<div class="jumbotron text-center" style="padding: 10px;">
-  <br/>
-  <a href="/index.php"><h1>Ride Share</h1></a>
-  <p>Need a ride? Find one here!</p>
-  <p><a href="https://ride-share.glitch.me/" target="_blank"><button class = "btn btn-primary" id="slackLink" >Download Slack App</button></a></p>
-
-</div>
-<div class="text-center" style="background-color: #efdede;padding: 10px; margin-bottom: 10px;">
-  <?php
+<?php
   if (isset($_SESSION['user_id'])) {
-    echo('<p>Welcome to Ride-Share, <a href="/php/userpage.php"><span style="font-weight: bold;">' . $_SESSION['user_name'] . '</span></a>!</p>');
-    echo('<p><a href="/php/logout.php" class="btn btn-danger">Log out</a></p>');
+    echo('<header id="header">
+        <h1><a href="index.php">Ride Share</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="php/userpage.php">Inbox</a></li>
+                <li><a href="index.php#newRide">New Ride</a></li>
+                <li><a href="elements.html">Logout</a></li>
+                <li><a href="https://ride-share.glitch.me/" class="button special">Download Slack App</a></li>
+            </ul>
+        </nav>
+    </header>');
+    echo('<section id="banner"><h2>Ride Share</h2><p>Welcome,<a href="/php/userpage.php">' . $_SESSION['user_name'] . '</a></p></section>');
   } else {
-    echo('<p><a href="https://slack.com/oauth/authorize?client_id=155127176102.293670961635&scope=identity.basic&redirect_uri=https://ride-share.azurewebsites.net/php/process_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"></a></p>');
+    echo('<header id="header">
+        <h1><a href="index.php">Ride Share</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="generic.html">About</a></li>
+                <li><a href="https://ride-share.glitch.me/" class="button special">Download Slack App</a></li>
+            </ul>
+        </nav>
+    </header>');
+    echo('<section id="banner"><h2>Ride Share</h2><p><a href="https://slack.com/oauth/authorize?client_id=155127176102.293670961635&scope=identity.basic&redirect_uri=https://ride-share.azurewebsites.net/php/process_login.php"><img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"></a></p></section>');
   }
   ?>
-</div>

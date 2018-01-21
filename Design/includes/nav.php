@@ -5,14 +5,14 @@
         <nav id="nav">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="generic.html">Inbox</a></li>
+                <li><a href="php/userpage.php">Inbox</a></li>
                 <li><a href="index.php#newRide">New Ride</a></li>
                 <li><a href="elements.html">Logout</a></li>
                 <li><a href="https://ride-share.glitch.me/" class="button special">Download Slack App</a></li>
             </ul>
         </nav>
     </header>');
-    echo('<section id="banner"><h2>Ride Share</h2><p>Welcome,<a href="/php/userpage.php">' . $_SESSION['user_name'] . '</a></p></section>');
+    echo('<section id="banner"><h2>Ride Share</h2><p>Welcome, ' . $_SESSION['user_name'] . '!</p></section>');
   } else {
     echo('<header id="header">
         <h1><a href="index.php">Ride Share</a></h1>
