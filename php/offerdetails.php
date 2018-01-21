@@ -6,7 +6,9 @@ function __autoload($className){
 } 
 
 if (!isset($_GET['id'])) {
-    header("Location: error.php?code=2");
+    echo "Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2";
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
+    exit();
 }
 $offer_id = $_GET['id'];
 
@@ -15,11 +17,11 @@ $requestDatabase = RequestTable::getInstance();
 
 $offer = $offerDatabase->getOffer($offer_id);
 if ($offer == FALSE) {
-    header("Location: error.php?code=3");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=3");
     exit();
 } else {
-    include("./../includes/header.html");
-    include("./../includes/nav.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
 
     echo "<div class=\"container\">";
     echo "<div class=\"row seg\">";
@@ -58,6 +60,6 @@ if ($offer == FALSE) {
 </div>
 
 <?php 
-include("./../includes/reserve_modal.html");
-include("./../includes/footer.html"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/reserve_modal.html");
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.html"); 
 ?>

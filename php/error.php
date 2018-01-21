@@ -1,5 +1,5 @@
 <?php 
-    include("./../includes/header.html");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
 
     $code = isset($_GET['code']) ? $_GET['code'] : 0;
 ?>
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<?php include("./../includes/footer.html"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.html"); ?>

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
 
     function __autoload($className){
         require_once("classes/$className.php");
@@ -7,7 +8,7 @@
 
     // redirect to home page if the user is not logged in
     if (!isset($_SESSION['user_id'])) {
-        header("Location: ./error.php?code=1");
+        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
         exit();
     }
 
@@ -18,23 +19,72 @@
 
     $user = $userDatabase->getUser($_SESSION['user_id']);
     if (empty($user)) {
-        header("Location: ./error.php?code=4");
+        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=4");
     }
 
-    include("./../includes/header.html");
-    include("./../includes/nav.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");
     ?>
-    <div class="container">
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-            <a data-toggle="collapse" href="#notification">Notification</a>
-            </h4>
-        </div>
-        <div id="notification" class="panel-collapse collapse in">
-            <div class="panel-body">
-            <?php
+
+<section id="one" class="wrapper style1 special">
+                <div class="container" id="inbox">
+                    <header class="major">
+                        <h2>Welcome to your Inbox!</h2>
+                        <br/><br/>
+                        <a href="/index.php"><button class="button alt">Back to Home</button></a>
+                        
+                    </header>
+                    <div class="row 150%">
+                        <div class="4u 12u$(medium)">
+                            <section class="box">
+                                <a href="userpage.php#notifications">
+                                <img src="https://image.flaticon.com/icons/svg/321/321817.svg" height="100" width="100" />
+                                <br/><br/>
+                                <h1>Notifications</h1>
+                                </a>
+                                <br/><br/>
+                                <p>Check out what's new!</p>
+                            </section>
+                        </div>
+                        <div class="4u 12u$(medium)">
+                            <section class="box">
+                                <a href="userpage.php#requests">
+                                <img src="https://image.flaticon.com/icons/svg/129/129517.svg" height="98" width="95" />
+                                <br/><br/>
+                                <h1>My Requests</h1>
+                                </a>
+                                <br/><br/>
+                                <p>View the status of your requests</p>
+                            </section>
+                        </div>
+                        <div class="4u$ 12u$(medium)">
+                            <section class="box">
+                                <a href="userpage.php#offers">
+                                <img src="https://image.flaticon.com/icons/svg/254/254048.svg" height=100 width="95" />
+                                <br/><br/>
+                                <h1>Offers</h1>
+                                </a>
+                                <br/><br/>
+                                <p>View the status of your offers</p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- View Offers -->
+            <section id="two" class="wrapper style2">
+                <div class="container" id="notifications">
+                        <header class="major">
+                            <h2>View Notifications</h2>
+                            <img src="https://image.flaticon.com/icons/svg/321/321817.svg" height=200 width=200/>
+                            <br/><br/>
+                            <a href="#"><button class="button alt">Back to Inbox</button></a>
+                        </header>
+                        <section>
+                            <div class="row">
+                                <section class="container">
+                                <?php
             $msgs = $user->getAllNotification();
             if (sizeof($msgs) == 0) {
                 echo "<div class=\"row seg text-center\">";
@@ -60,17 +110,29 @@
                 }
             }
             ?>
-        </div>
-        </div>
-        <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-            <a data-toggle="collapse" href="#offers">My Offers</a>
-            </h4>
-        </div>
-        <div id="offers" class="panel-collapse collapse collapse in">
-            <div class="panel-body">
-            <?php
+                                         
+                                </section>
+                            </div>
+                        </section>
+                </div>
+               
+            </section>
+            <!-- Offers -->
+            <section id="two" class="wrapper style3">
+                <div class="container" id="offers">
+                        <header class="major">
+                            <h2>My Offers</h2>
+
+                            <p>View pending requests from passengers</p>
+
+                            <img src="https://image.flaticon.com/icons/svg/254/254048.svg" height=200 width=200/>
+                            <br/><br/>
+                            <a href="#"><button>Back to Inbox</button></a>
+                        </header>
+                        <section>
+                            <div class="row">
+                                <section class="container">
+                                <?php
             $result = $offerDatabase->getOfferByDriverID($_SESSION['user_id']);
             
             if (sizeof($result) == 0) {
@@ -96,18 +158,29 @@
                 }
             }
             ?>
-            </div>
-        </div>
-        </div>
-        <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-            <a data-toggle="collapse" href="#requests">My Requests</a>
-            </h4>
-        </div>
-        <div id="requests" class="panel-collapse collapse collapse in">
-            <div class="panel-body">
-            <?php
+                                         
+                                </section>
+                            </div>
+                        </section>
+                </div>
+               
+            </section>
+
+            <!-- Requests -->
+
+            <section id="two" class="wrapper style2">
+                <div class="container" id="requests">
+                        <header class="major">
+                            <h2>My Requests</h2>
+                            <p>View the status of your requests for rides</p>
+                            <img src="https://image.flaticon.com/icons/svg/129/129517.svg" height=200 width=200/>
+                            <br/><br/>
+                            <a href="#"><button class="button alt">Back to Inbox</button></a>
+                        </header>
+                        <section>
+                            <div class="row">
+                                <section class="container">
+                                <?php
             $result = $requestDatabase->getRequestByRider($_SESSION['user_id']);
 
             if (sizeof($result) == 0) {
@@ -142,19 +215,9 @@
                     echo "</div>";
                 }
             }
-            ?>
-            </div>
-        </div>
-        </div>
-        <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-            <a data-toggle="collapse" href="#received">Received Requests</a>
-            </h4>
-        </div>
-        <div id="received" class="panel-collapse collapse collapse in">
-            <div class="panel-body">
-            <?php
+
+            // received
+
             $result = $requestDatabase->getRequestByDriver($_SESSION['user_id']);
 
             if (sizeof($result) == 0) {
@@ -194,12 +257,13 @@
                 }
             }
             ?>
-            </div>
-        </div>
-        </div>
-    </div> 
-    </div>
+                                </section>
+                            </div>
+                        </section>
+                </div>
+               
+            </section>
 
     <?php
-    include("./../includes/footer.html"); 
+    include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.html"); 
 ?>

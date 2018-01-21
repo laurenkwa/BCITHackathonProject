@@ -7,7 +7,7 @@ function __autoload($className){
 
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
-    header("Location: ./../php/error.php?code=1");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
     exit();
 }
 
@@ -19,11 +19,11 @@ $requestDatabase = RequestTable::getInstance();
 // remove the offer
 $offer = $offerDatabase->getOffer($_GET['id']);
 if ($offer == FALSE) {
-    header("Location: ./error.php?code=2");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
     exit();
 }
 if ($offer->getDriverID() != $_SESSION['user_id']) {
-    header("Location: ./error.php?code=2");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
     exit();
 }
 

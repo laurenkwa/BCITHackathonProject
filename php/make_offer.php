@@ -7,7 +7,7 @@ function __autoload($className){
 
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ./../php/error.php?code=1");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
     exit();
 }
 

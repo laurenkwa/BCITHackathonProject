@@ -7,7 +7,7 @@ function __autoload($className){
 
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ./error.php?code=1");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
     exit();
 }
 
@@ -17,24 +17,24 @@ $offerDatabase = OfferTable::getInstance();
 $requestDatabase = RequestTable::getInstance();
 
 if ($requestDatabase->ifUserReserved($_POST['id'], $_SESSION['user_id'])) {
-    header("Location: ./error.php?code=6");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=6");
     exit();
 }
 
 $offer = $offerDatabase->getOffer($_POST['id']);
 if ($offer->getSeats() < 1) {
-    header("Location: ./error.php?code=2");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
     exit();
 }
 // load both the driver's and the rider's user data
 $driver = $userDatabase->getUser($offer->getDriverID());
 $rider = $userDatabase->getUser($_SESSION['user_id']);
 if ($driver->getID() == $_SESSION['user_id']) {
-    header("Location: ./error.php?code=7");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=7");
     exit();
 }
 if ($driver == FALSE || $rider == FALSE) {
-    header("Location: ./error.php?code=4");
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=4");
     exit();
 }
 
