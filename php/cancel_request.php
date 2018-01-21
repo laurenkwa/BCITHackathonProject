@@ -33,7 +33,7 @@ $offer = $offerDatabase->getOffer($request->getOfferID());
 
 if ($isDriver) {
     $rider = $userDatabase->getUser($request->getRiderID());
-    $rider->addNotification("You request is accepted",
+    $rider->addNotification("You request is refused",
     "Your request for the offer<br> From <strong>" . $offer->getStartLocation() . "</strong> to <strong>" . $offer->getDestination() . 
     "</strong> is refused <a href=\"/php/offerdetails.php?id=" . $offer->getID() . "\">offer #" . $offer->getID() . "</a>");
 } else if ($isRider) {
