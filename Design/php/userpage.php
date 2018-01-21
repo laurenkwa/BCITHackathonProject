@@ -1,6 +1,12 @@
 <?php
     session_start();
-
+    include("../includes/header.html");
+    include("../includes/nav.php");
+?>
+    <style>
+        <?php include("../css/ride-share.css"); ?>
+    </style>
+<?php
     function __autoload($className){
         require_once("classes/$className.php");
     } 
@@ -21,8 +27,7 @@
         header("Location: ./error.php?code=4");
     }
 
-    include("./../includes/header.html");
-    include("./../includes/nav.php");
+    
     ?>
     <div class="container">
     <div class="panel-group" id="accordion">
@@ -77,9 +82,7 @@
             </h4>
         </div>
         <div id="requests" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div class="panel-body"></div>
         </div>
         </div>
         <div class="panel panel-primary">
@@ -89,9 +92,7 @@
             </h4>
         </div>
         <div id="received" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <div class="panel-body"></div>
         </div>
         </div>
     </div> 

@@ -5,9 +5,9 @@
         <nav id="nav">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="php/userpage.php">Inbox</a></li>
+                <li><a href="userpage.php#inbox">Inbox</a></li>
                 <li><a href="index.php#newRide">New Ride</a></li>
-                <li><a href="elements.html">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
                 <li><a href="https://ride-share.glitch.me/" class="button special">Download Slack App</a></li>
             </ul>
         </nav>

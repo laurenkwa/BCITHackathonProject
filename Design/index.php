@@ -18,6 +18,8 @@ include("includes/header.html");
                     <header class="major">
                         <h2>BCIT Carpool Services</h2>
                         <p>Find, book, or create a new ride!</p>
+                        <br/><br/>
+                        <button class="button alt"><a href="index.php">Back to Home</a></button>  
                     </header>
                     <div class="row 150%">
                         <div class="4u 12u$(medium)">
@@ -59,6 +61,8 @@ include("includes/header.html");
                     <header class="major">
                         <h2>Create A Ride</h2>
                         <img src="https://image.flaticon.com/icons/svg/146/146269.svg" height=200 width=200/>
+                        <br/><br/>
+                        <button class="button alt"><a href="index.php">Back to Home</a></button> 
                     </header>
                     <section class="box">
                          <header class="major">
@@ -150,6 +154,8 @@ include("includes/header.html");
                         <header class="major">
                             <h2>View Available Rides</h2>
                             <img src="https://image.flaticon.com/icons/svg/198/198335.svg" height=200 width=200/>
+                            <br/><br/>
+                            <button><a href="index.php">Back to Home</a></button> 
                         </header>
                         <section class="offers">
                             <div class="row">
