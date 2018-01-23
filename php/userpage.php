@@ -8,7 +8,7 @@
 
     // redirect to home page if the user is not logged in
     if (!isset($_SESSION['user_id'])) {
-        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
+        header("Location: error.php?code=1");
         exit();
     }
 
@@ -19,7 +19,7 @@
 
     $user = $userDatabase->getUser($_SESSION['user_id']);
     if (empty($user)) {
-        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=4");
+        header("Location: error.php?code=4");
     }
 
     include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");

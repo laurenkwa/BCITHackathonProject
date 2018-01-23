@@ -7,14 +7,14 @@ function __autoload($className){
 
 // redirect to home page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
+    header("Location: error.php?code=1");
     exit();
 }
 
 if (!isset($_POST['driver_date']) || !isset($_POST['driver_time']) 
 || !isset($_POST['driver_start'])  || !isset($_POST['driver_end']) 
 || !isset($_POST['driver_seats'])) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
+    header("Location: error.php?code=1");
     exit();
 }
 

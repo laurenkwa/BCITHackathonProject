@@ -7,7 +7,7 @@ function __autoload($className){
 
 if (!isset($_GET['id'])) {
     echo "Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2";
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
+    header("Location: error.php?code=2");
     exit();
 }
 $offer_id = $_GET['id'];
@@ -18,7 +18,7 @@ $requestDatabase = RequestTable::getInstance();
 
 $offer = $offerDatabase->getOffer($offer_id);
 if ($offer == FALSE) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=3");
+    header("Location: error.php?code=3");
     exit();
 } else {
     include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");

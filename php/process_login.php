@@ -6,7 +6,7 @@ function __autoload($className){
 } 
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=0");
+    header("Location: error.php?code=0");
     exit();
 }
 
@@ -27,9 +27,9 @@ $result = json_decode($result, TRUE);
 
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'access_denied') {
-        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=8");
+        header("Location: error.php?code=8");
     } else {
-        header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=4");
+        header("Location: error.php?code=4");
     }
     exit();
 }
@@ -51,7 +51,7 @@ if ($result['ok']) {
     exit();
 } else {
     var_dump($result);
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=5");
+    header("Location: error.php?code=5");
     exit();
 }
 ?>

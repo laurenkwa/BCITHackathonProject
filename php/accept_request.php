@@ -19,12 +19,12 @@ $requestDatabase = RequestTable::getInstance();
 // remove the offer
 $request = $requestDatabase->getRequestByID($_GET['id']);
 if ($request == FALSE) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
+    header("Location: error.php?code=2");
     exit();
 }
 $isDriver = $request->getDriverID() == $_SESSION['user_id'];
 if (!$isDriver) {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=2");
+    header("Location: error.php?code=2");
     exit();
 }
 
