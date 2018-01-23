@@ -3,10 +3,10 @@
 
     $code = isset($_GET['code']) ? $_GET['code'] : 0;
 ?>
-<meta http-equiv="refresh" content="3;url=./../index.php" />
+<meta http-equiv="refresh" content="3;url=/index.php" />
 <div class="container text-center">
     <div class="jumbotron">
-        <a href="index.php"><h1>Ride Share</h1></a>
+        <a href="/index.php"><h1>Ride Share</h1></a>
         <p>
         <?php 
             switch ($code) {
