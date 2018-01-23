@@ -66,6 +66,17 @@ class RequestTable {
         return $arr;
     }
 
+    public function getRequestByOfferIDAndRiderID($offer_id, $rider_id) {
+        $result = $this->_database->searchNodes("/list/request", NULL, array("offer_id" => $offer_id));
+        $arr = [];
+        foreach ($result as $request) {
+            $request = new Request($request);
+            if ($request->getRiderID() == $rider_id)
+                $arr[] = $request;
+        }
+        return $arr;
+    }
+
     public function getRequestByDriver($id) {
         $result = $this->getAllRequest();
         $arr = [];

@@ -44,7 +44,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
             <div class="4u$ 12u$(medium)">
                 <section class="box">
                     <a href="https://ride-share.glitch.me/">
-                        <img src="slacklogo.png" height="98"/>
+                        <img src="/image/slacklogo.png" height="98"/>
                         <br/><br/><br/>
                         <h1>Slack App</h1>
                     </a>

@@ -11,6 +11,13 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+if (!isset($_POST['driver_date']) || !isset($_POST['driver_time']) 
+|| !isset($_POST['driver_start'])  || !isset($_POST['driver_end']) 
+|| !isset($_POST['driver_seats'])) {
+    header("Location: " . $_SERVER['DOCUMENT_ROOT'] ."/php/error.php?code=1");
+    exit();
+}
+
 // Open up a database using this file
 $database = OfferTable::getInstance();
 // increment the count attribute (total offers created including those deleted)
@@ -23,12 +30,12 @@ $info = array(
     "end"       => $_POST['driver_end'],
     "seats"     => $_POST['driver_seats']
 );
-$database->addOffer($info);
+$id = $database->addOffer($info)->getID();
 
 // save the modification
 $database->save();
 
 // redirection
-header("Location: ./../index.php");
+header("Location: ./offerdetails.php?id=" . $id);
 
 ?>

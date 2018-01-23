@@ -12,6 +12,7 @@ if (!isset($_GET['id'])) {
 }
 $offer_id = $_GET['id'];
 
+$userDatabase = UserTable::getInstance();
 $offerDatabase = OfferTable::getInstance();
 $requestDatabase = RequestTable::getInstance();
 
@@ -43,6 +44,76 @@ if ($offer == FALSE) {
         echo "<p><a href=\"cancel_offer.php?id=" . $offer->getID() . "\"><button class=\"btn btn-danger\">Cancel Offer</button></a></p>";
     echo "</div>";
     echo "</div>";
+    if ($_SESSION['user_id'] == $offer->getDriverID()) {
+        
+        $result = $requestDatabase->getRequestByOfferID($offer->getID());
+        if (sizeof($result) != 0) {
+        echo "<div class=\"row seg\">";
+        echo "<div class=\"col-md-12\">";
+        echo "<strong>Pending Requests: </strong>";
+        echo "</div>";
+        foreach ($result as $request) {
+            $rider = $userDatabase->getUser($request->getRiderID());
+            echo "<div class=\"col-md-9\">";
+            echo "<strong>" . $rider->getName() . "</strong>: ";
+            if (empty($msg))
+                echo "No message left";
+            else
+                echo "Message: <strong> " . $msg . "</strong>";
+            echo "</div>";
+            $msg = $request->getMsg();
+            
+            echo "<div class\"col-md-3\">";   
+            echo "<a class=\"btn btn-success\" type=\"button\" href=\"/php/accept_request.php?id=" . $request->getID() . "\">Accept Request</a>";
+            echo "<a class=\"btn btn-danger\" type=\"button\" href=\"/php/cancel_request.php?id=" . $request->getID() . "\">Refuse Request</a>";
+            
+            echo "</div>";
+        }
+        echo "</div>";
+        }
+
+        
+        $riders = $offer->getAllRider();
+        if (sizeof($riders) != 0) {
+        echo "<div class=\"row seg\">";
+        echo "<div class=\"col-md-12\">";
+        echo "<strong>Accepted Riders: </strong>";
+        echo "</div>";
+        foreach ($riders as $rider) {
+            echo "<div class=\"col-md-10\">";
+            echo "<strong>" . $rider->getName() . "</strong>";
+            echo "</div>";
+            echo "<div class=\"col-md-2\">";
+            echo "<p><a href=\"remove_rider.php?offer_id=" . $offer->getID() . "&user_id=" . $rider->getID() . "\"><button class=\"btn btn-danger\">Remove</button></a></p>";
+            echo "</div>";
+        }
+        echo "</div>";
+        }
+    } 
+    $myRequests = $requestDatabase->getRequestByOfferIDAndRiderID($offer_id, $_SESSION['user_id']);
+    if (sizeof($myRequests) != 0) {
+        foreach ($myRequests as $request){
+            echo "<div class=\"row seg\">";
+            echo "<div class=\"col-md-12\">";
+            echo "<h4>My request:</h4>";
+            echo "</div>";
+            echo "<div class=\"col-md-10\">";
+            echo "<strong>Message</strong>: ";
+            $msg = $request->getMsg();
+            if (empty($msg))
+                echo "No message left";
+            else
+                echo $msg;
+            echo "</div>";
+            echo "<div class=\"col-md-2\">";
+            echo "<a class=\"btn btn-danger\" type=\"button\" href=\"/php/cancel_request.php?id=" . $request->getID() . "\">Cancel Request</a>";
+            echo "</div>";
+            echo "</div>";
+        }
+    }
+    
+        
+    
 }
 ?>
 <div class="embed-responsive embed-responsive-16by9">

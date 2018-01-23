@@ -62,6 +62,6 @@ $requestDatabase->save();
 $offerDatabase->save();
 
 // redirection
-header("Location: ./../index.php");
+header("Location: ./offerdetails.php?id=" . $_POST['id']);
 
 ?>

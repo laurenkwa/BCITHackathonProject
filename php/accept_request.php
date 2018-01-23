@@ -46,6 +46,6 @@ $offerDatabase->save();
 $userDatabase->save();
 
 // redirection
-header("Location: ./../index.php");
+header("Location: ./offerdetails.php?id=" . $offer->getID());
 
 ?>
