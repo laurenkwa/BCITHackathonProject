@@ -44,10 +44,21 @@ class Offer {
         return $this->_offer->seats->__toString();
     }
 
+    function getAllRider() {
+        $userDatabase = UserTable::getInstance();
+        $arr = [];
+        $result = $this->_parser->searchNodes("riders/rider");
+        foreach ($result as $item) {
+            $arr[] = $userDatabase->getUser($item->attributes()->id->__toString());
+        }
+        return $arr;
+    }
+
     function addRider($id) {
         $this->_offer->riders->attributes()->count = $this->_offer->riders->attributes()->count + 1;
+        $this->_offer->seats = $this->_offer->seats - 1;
         $rider = $this->_offer->riders->addChild("rider");
-        $rider->addAttribute("id", $id);      
+        $rider->addAttribute("id", $id);
     }
 
     function hasRider($id) {
@@ -60,7 +71,12 @@ class Offer {
 
     function removeRider($id) {
         $rider = $this->hasRider($id);
-        return Database::removeChild($rider);
+        $result = Database::removeChild($rider);
+        if ($result) {
+            $this->_offer->seats = $this->_offer->seats + 1;
+            $this->_offer->riders->attributes()->count = $this->_offer->riders->attributes()->count - 1;
+        }
+        return $result;
     }
 
 }
