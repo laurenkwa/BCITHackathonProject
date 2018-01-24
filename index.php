@@ -38,7 +38,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
                         <h1>Find a Ride</h1>
                     </a>
                     <br/><br/>
-                    <p>SSee the list of all available carpool rides and request for a seat.</p>
+                    <p>See the list of all available carpool rides and request for a seat.</p>
                 </section>
             </div>
             <div class="4u$ 12u$(medium)">

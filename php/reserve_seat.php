@@ -50,7 +50,7 @@ $request = $requestDatabase->addRequest($info);
 
 $driver->addNotification("You have received a request",
 "<strong>" . $rider->getName() . 
-"</strong> request a seat for the offer<br> From <strong>" . $offer->getStartLocation() . "</strong> to <strong>" . $offer->getDestination() . 
+"</strong> requested a seat for the offer<br> From <strong>" . $offer->getStartLocation() . "</strong> to <strong>" . $offer->getDestination() . 
 "</strong> <a href=\"/php/offerdetails.php?id=" . $_POST['id'] . "\">offer #" . $_POST['id'] . "</a>");
 
 $driver->addReceived($request->getID());
