@@ -9,7 +9,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/includes/nav.php");?>
 
 
-<!-- One -->
 <section id="one" class="wrapper style1 special">
     <div class="container" id="newRide">
         <header class="major">
