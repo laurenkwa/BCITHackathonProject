@@ -175,6 +175,9 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/header.html");
 </section>
 </div>
           
+<!--  -->
+
+
 <?php 
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/reserve_modal.html");
 include($_SERVER['DOCUMENT_ROOT'] . "/includes/footer.html"); 
